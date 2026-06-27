@@ -1,0 +1,124 @@
+{
+  "metadata": {
+    "scope": "RE2020/*.lean",
+    "assessmentDate": "2026-06-27",
+    "method": "repository evidence audit",
+    "structuralCoverageEstimate": 0.70,
+    "regulatoryFidelityEstimate": 0.35
+  },
+  "legend": {
+    "Implemented": "Executable algorithm in active pipeline, no placeholder marker",
+    "Partial": "Executable but simplified/heuristic or missing table-driven regulatory data",
+    "Missing": "Placeholder, sorry, TODO-critical, or not wired in pipeline"
+  },
+  "entries": [
+    {
+      "domain": "Climate datasets",
+      "claimedLegalAnchor": "Annexe III climate conventions + canicule sequence",
+      "codeAnchor": "Climate.lean:loadClimateData",
+      "status": "Missing",
+      "evidence": "Placeholder synthetic arrays; no official file ingestion",
+      "gapType": "input_data_critical",
+      "priority": "P0"
+    },
+    {
+      "domain": "Annual thermal simulation",
+      "claimedLegalAnchor": "Th-BCE annual hourly simulation",
+      "codeAnchor": "Thermal.lean:simulateYear",
+      "status": "Missing",
+      "evidence": "Function unresolved (sorry)",
+      "gapType": "core_engine_critical",
+      "priority": "P0"
+    },
+    {
+      "domain": "Bbio indicator",
+      "claimedLegalAnchor": "Annexe II/III indicator method",
+      "codeAnchor": "Indicators.lean:calculateBbio",
+      "status": "Partial",
+      "evidence": "Formula present; modulation tables not encoded",
+      "gapType": "constants_traceability",
+      "priority": "P1"
+    },
+    {
+      "domain": "Cep indicator",
+      "claimedLegalAnchor": "Annexe II/III indicator method",
+      "codeAnchor": "Indicators.lean:calculateCep",
+      "status": "Partial",
+      "evidence": "Main pipeline uses simplified usage list",
+      "gapType": "usage_coverage",
+      "priority": "P1"
+    },
+    {
+      "domain": "Cep_nr indicator",
+      "claimedLegalAnchor": "Annexe II/III indicator method",
+      "codeAnchor": "Indicators.lean:calculateCepNr",
+      "status": "Partial",
+      "evidence": "Uses simplified non-renewable vectors",
+      "gapType": "usage_coverage",
+      "priority": "P1"
+    },
+    {
+      "domain": "DH indicator",
+      "claimedLegalAnchor": "Annexe canicule/discomfort logic",
+      "codeAnchor": "Indicators.lean:calculateDHFromCanicule",
+      "status": "Partial",
+      "evidence": "Adaptive threshold and occupancy coupling simplified",
+      "gapType": "algorithm_fidelity",
+      "priority": "P1"
+    },
+    {
+      "domain": "Modulation coefficients",
+      "claimedLegalAnchor": "Guide/annex coefficient tables",
+      "codeAnchor": "RE2020.lean:defaultModulations",
+      "status": "Missing",
+      "evidence": "All modulation coefficients set to 0.0",
+      "gapType": "constants_traceability",
+      "priority": "P0"
+    },
+    {
+      "domain": "Occupancy schedules",
+      "claimedLegalAnchor": "Th-BCE convention schedules",
+      "codeAnchor": "Scenarios.lean:residentialScenario+officeScenario",
+      "status": "Partial",
+      "evidence": "Simplified daily heuristics",
+      "gapType": "scenario_fidelity",
+      "priority": "P1"
+    },
+    {
+      "domain": "Lighting method",
+      "claimedLegalAnchor": "RE2020 lighting conventions",
+      "codeAnchor": "Lighting.lean + Indicators.lean:computeLightingNeeds",
+      "status": "Partial",
+      "evidence": "Pipeline uses area*0.08 shortcut",
+      "gapType": "algorithm_fidelity",
+      "priority": "P1"
+    },
+    {
+      "domain": "Solar gains",
+      "claimedLegalAnchor": "Annexe III solar conventions",
+      "codeAnchor": "Solar.lean core functions",
+      "status": "Partial",
+      "evidence": "Simplification markers in code comments",
+      "gapType": "algorithm_fidelity",
+      "priority": "P2"
+    },
+    {
+      "domain": "Systems and auxiliaries",
+      "claimedLegalAnchor": "Annexe III systems methods",
+      "codeAnchor": "Systems.lean",
+      "status": "Partial",
+      "evidence": "Broad coverage with simplified models",
+      "gapType": "algorithm_fidelity",
+      "priority": "P2"
+    },
+    {
+      "domain": "Validation references",
+      "claimedLegalAnchor": "Official benchmark case mapping",
+      "codeAnchor": "RE2020.lean:runValidationScenario",
+      "status": "Missing",
+      "evidence": "Thermal bridge impact placeholder set to 0.0",
+      "gapType": "verification_critical",
+      "priority": "P0"
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+name: re2020-traceability
+
+on:
+  push:
+    paths:
+      - "RE2020/**"
+      - "scripts/check_traceability_p0.py"
+      - ".github/workflows/re2020-traceability.yml"
+  pull_request:
+    paths:
+      - "RE2020/**"
+      - "scripts/check_traceability_p0.py"
+      - ".github/workflows/re2020-traceability.yml"
+  workflow_dispatch:
+    inputs:
+      enforcement_mode:
+        description: "Traceability enforcement scope"
+        required: true
+        default: "p0"
+        type: choice
+        options:
+          - p0
+          - p0_p1
+
+jobs:
+  traceability-guard:
+    runs-on: ubuntu-latest
+    env:
+      ENFORCEMENT_MODE: ${{ github.event_name == 'workflow_dispatch' && inputs.enforcement_mode || 'p0' }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Enforce P0 traceability
+        run: |
+          python3 scripts/check_traceability_p0.py \
+            --matrix RE2020/regulation_traceability_matrix.json \
+            --priorities P0 \
+            --failing-status Missing
+
+      - name: Enforce P1 traceability (mode p0_p1)
+        if: env.ENFORCEMENT_MODE == 'p0_p1'
+        run: |
+          python3 scripts/check_traceability_p0.py \
+            --matrix RE2020/regulation_traceability_matrix.json \
+            --priorities P1 \
+            --failing-status Missing
