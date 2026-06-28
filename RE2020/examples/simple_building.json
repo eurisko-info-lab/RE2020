@@ -1,0 +1,12 @@
+{
+  "name": "Maison Demo",
+  "category": "maison",
+  "climateZone": "H2c",
+  "floorArea": 110,
+  "floors": 2,
+  "windowRatio": 0.18,
+  "envelope": "standard",
+  "ventilation": "standardmechanical",
+  "heating": "airwaterheatpump",
+  "shading": true
+}

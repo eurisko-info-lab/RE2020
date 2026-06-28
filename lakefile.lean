@@ -8,3 +8,6 @@ package RE2020 where
 lean_lib RE2020 where
   roots := #[`RE2020]
   srcDir := "."
+
+lean_exe re2020_optimize where
+  root := `RE2020.OptimizeCli

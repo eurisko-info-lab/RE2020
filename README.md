@@ -87,6 +87,34 @@ python3 scripts/check_legal_reference_catalog.py
 python3 scripts/check_legal_reference_catalog.py --require-finalized-used
 ```
 
+10. Suggérer des ajustements pour atteindre une cible (sans CAO) :
+
+```bash
+# Entrée JSON (exemple)
+python3 scripts/suggest_retrofit.py \
+  --input RE2020/examples/simple_building.json \
+  --metric cep \
+  --target 85 \
+  --profile standard \
+  --json-out RE2020/examples/result_cep.json
+
+# Entrée CSV (une seule ligne bâtiment)
+python3 scripts/suggest_retrofit.py \
+  --input RE2020/examples/simple_building.csv \
+  --metric bbio \
+  --target 60 \
+  --profile aggressive \
+  --cost-envelope 4.0 \
+  --cost-window 1.0
+
+# Option stricte: retourner un code non-zero si la cible n'est pas atteinte
+python3 scripts/suggest_retrofit.py \
+  --input RE2020/examples/simple_building.csv \
+  --metric bbio \
+  --target 60 \
+  --strict-target
+```
+
 ## Workflow de développement
 
 1. Implémenter ou ajuster la logique Lean dans `RE2020/*.lean`.
@@ -145,6 +173,11 @@ scripts/run_compliance_modes.sh maintain
 # Vérifier le catalogue d'identifiants de référence légale
 python3 scripts/check_legal_reference_catalog.py
 python3 scripts/check_legal_reference_catalog.py --require-finalized-used
+
+# Optimisation cible depuis un fichier simple (JSON/CSV)
+python3 scripts/suggest_retrofit.py --input RE2020/examples/simple_building.json --metric cep --target 85
+python3 scripts/suggest_retrofit.py --input RE2020/examples/simple_building.csv --metric bbio --target 60
+python3 scripts/suggest_retrofit.py --input RE2020/examples/simple_building.json --metric cep --target 85 --profile conservative --json-out RE2020/examples/result_cep.json
 ```
 
 ## État actuel

@@ -1,0 +1,2 @@
+name,category,climateZone,floorArea,floors,windowRatio,envelope,ventilation,heating,shading
+Maison Demo,maison,H2c,110,2,0.18,standard,standardmechanical,airwaterheatpump,true
