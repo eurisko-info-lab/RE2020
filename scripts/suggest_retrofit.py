@@ -21,11 +21,15 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--metric", required=True, choices=["bbio", "cep", "cepnr", "dh"])
     p.add_argument("--target", required=True, type=float)
     p.add_argument("--profile", choices=["conservative", "standard", "aggressive"], default="standard")
+    p.add_argument("--top-k", type=int, default=1, help="Number of ranked suggestions to return")
+    p.add_argument("--pareto", action="store_true", help="Use Pareto frontier pre-filtering before ranking")
+    p.add_argument("--require-target", action="store_true", help="Only keep suggestions that meet target")
     p.add_argument("--cost-envelope", type=float, default=3.0)
     p.add_argument("--cost-ventilation", type=float, default=2.0)
     p.add_argument("--cost-heating", type=float, default=4.0)
     p.add_argument("--cost-window", type=float, default=1.5)
     p.add_argument("--cost-shading", type=float, default=0.5)
+    p.add_argument("--max-weighted-cost", type=float, default=None, help="Discard suggestions above this weighted retrofit cost")
     p.add_argument("--json-out", default=None, help="Optional path to write structured JSON result")
     p.add_argument(
         "--strict-target",
@@ -106,6 +110,8 @@ def build_cli_args(data: dict[str, Any], args: argparse.Namespace) -> list[str]:
         optional_field(data, "shading", "true"),
         "--profile",
         args.profile,
+        "--top-k",
+        str(max(1, args.top_k)),
         "--cost-envelope",
         str(args.cost_envelope),
         "--cost-ventilation",
@@ -123,6 +129,12 @@ def build_cli_args(data: dict[str, Any], args: argparse.Namespace) -> list[str]:
     ]
     if args.json_out:
         cli_args.extend(["--json-out", str(Path(args.json_out).resolve())])
+    if args.max_weighted_cost is not None:
+        cli_args.extend(["--max-weighted-cost", str(args.max_weighted_cost)])
+    if args.pareto:
+        cli_args.extend(["--pareto", "true"])
+    if args.require_target:
+        cli_args.extend(["--require-target", "true"])
     if args.strict_target:
         cli_args.extend(["--strict-target", "true"])
     return cli_args

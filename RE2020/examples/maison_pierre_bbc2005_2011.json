@@ -1,0 +1,14 @@
+{
+  "name": "Maison Pierre BBC2005 2011",
+  "yearBuilt": 2011,
+  "standard": "BBC 2005",
+  "category": "maison",
+  "climateZone": "H2c",
+  "floorArea": 95.0,
+  "floors": 1,
+  "windowRatio": 0.19,
+  "envelope": "good",
+  "ventilation": "standardmechanical",
+  "heating": "gasboiler",
+  "shading": "true"
+}

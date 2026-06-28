@@ -75,6 +75,7 @@ def usage : String :=
       "                      [--ventilation <natural|standardmechanical|heatrecovery>]",
       "                      [--heating <gasboiler|airwaterheatpump|airairheatpump|districtheating|electricheating>]",
       "                      [--shading <true|false>] [--profile <conservative|standard|aggressive>]",
+      "                      [--top-k <n>] [--pareto true|false] [--max-weighted-cost <v>] [--require-target true|false]",
       "                      [--cost-envelope <v>] [--cost-ventilation <v>] [--cost-heating <v>] [--cost-window <v>] [--cost-shading <v>]",
       "                      [--json-out <path>] [--strict-target true|false] --metric <bbio|cep|cepnr|dh> --target <value>",
       "",
@@ -145,6 +146,14 @@ def parseBoolArg (pairs : List (String × String)) (key : String) (default : Boo
       match parseBool raw with
       | some value => pure value
       | none => throw s!"Invalid Bool for --{key}: {raw}"
+
+def parseOptionalFloatArg (pairs : List (String × String)) (key : String) : Except String (Option Float) :=
+  match findArg pairs key with
+  | none => pure none
+  | some raw =>
+      match parsePositiveDecimal? raw with
+      | some value => pure (some value)
+      | none => throw s!"Invalid Float for --{key}: {raw}"
 
 def buildSpecAndRequest (pairs : List (String × String)) : Except String (SimplifiedBuildingSpec × SimplifiedTargetRequest) := do
   let name <- requireArg pairs "name"
@@ -335,34 +344,186 @@ def indicatorsToJson (i : Indicators) : String :=
     ",\"dh\":" ++ s!"{i.dh}" ++
   "}"
 
+def specChangeTriples
+    (baseSpec candidate : SimplifiedBuildingSpec) : List (String × String × String) :=
+  (if baseSpec.envelope == candidate.envelope then
+    []
+  else
+    [("envelope", toJsonEnvelope baseSpec.envelope, toJsonEnvelope candidate.envelope)]) ++
+  (if baseSpec.ventilation == candidate.ventilation then
+    []
+  else
+    [("ventilation", toJsonVentilation baseSpec.ventilation, toJsonVentilation candidate.ventilation)]) ++
+  (if baseSpec.heating == candidate.heating then
+    []
+  else
+    [("heating", toJsonHeating baseSpec.heating, toJsonHeating candidate.heating)]) ++
+  (if Float.abs (baseSpec.windowRatio - candidate.windowRatio) < 0.0005 then
+    []
+  else
+    [("windowRatio", s!"{baseSpec.windowRatio}", s!"{candidate.windowRatio}")]) ++
+  (if baseSpec.shading == candidate.shading then
+    []
+  else
+    [("shading", if baseSpec.shading then "true" else "false", if candidate.shading then "true" else "false")])
+
+def changeSetToJson
+    (baseSpec candidate : SimplifiedBuildingSpec) : String :=
+  let changes := specChangeTriples baseSpec candidate
+  let entries := changes.map (fun (field, before, after) =>
+    "{" ++
+      "\"field\":" ++ jsonQuoted field ++
+      ",\"from\":" ++ jsonQuoted before ++
+      ",\"to\":" ++ jsonQuoted after ++
+    "}")
+  "[" ++ String.intercalate "," entries ++ "]"
+
+def specChangeSummary
+    (baseSpec candidate : SimplifiedBuildingSpec) : String :=
+  let changes := specChangeTriples baseSpec candidate
+  if changes.isEmpty then
+    "no changes"
+  else
+    String.intercalate ", " (changes.map (fun (field, before, after) => s!"{field}:{before}->{after}"))
+
+def recommendationToJson
+    (baseSpec : SimplifiedBuildingSpec)
+    (weights : RetrofitCostWeights)
+    (recommendation : SimplifiedOptimizationResult) : String :=
+  let achieved := if recommendation.achieved then "true" else "false"
+  let recommendationCost := retrofitCost baseSpec recommendation.spec weights
+  let changeSummary := specChangeSummary baseSpec recommendation.spec
+  let changeSetJson := changeSetToJson baseSpec recommendation.spec
+  "{" ++
+    "\"achieved\":" ++ achieved ++
+    ",\"gap\":" ++ s!"{recommendation.gap}" ++
+    ",\"changes\":" ++ s!"{recommendation.changes}" ++
+    ",\"weightedCost\":" ++ s!"{recommendationCost}" ++
+    ",\"changeSummary\":" ++ jsonQuoted changeSummary ++
+    ",\"changeSet\":" ++ changeSetJson ++
+    ",\"spec\":" ++ specToJson recommendation.spec ++
+    ",\"indicators\":" ++ indicatorsToJson recommendation.evaluation.indicators ++
+  "}"
+
+structure SearchDiagnostics where
+  totalCandidates : Nat
+  underBudgetCandidates : Nat
+  achievedCandidates : Nat
+  achievedUnderBudgetCandidates : Nat
+  deriving Repr
+
+def searchDiagnosticsToJson (d : SearchDiagnostics) : String :=
+  "{" ++
+    "\"totalCandidates\":" ++ s!"{d.totalCandidates}" ++
+    ",\"underBudgetCandidates\":" ++ s!"{d.underBudgetCandidates}" ++
+    ",\"achievedCandidates\":" ++ s!"{d.achievedCandidates}" ++
+    ",\"achievedUnderBudgetCandidates\":" ++ s!"{d.achievedUnderBudgetCandidates}" ++
+  "}"
+
+def computeSearchDiagnostics
+    (baseSpec : SimplifiedBuildingSpec)
+    (request : SimplifiedTargetRequest)
+    (profile : SearchProfile)
+    (weights : RetrofitCostWeights)
+    (maxWeightedCost? : Option Float)
+    (climate : ClimateData) : SearchDiagnostics :=
+  let candidates := candidateSpecsWithProfile baseSpec profile
+  let evaluated := candidates.map (fun spec =>
+    let evaluation := evaluateSimplifiedBuilding spec climate
+    let achieved := targetSatisfied request.metric request.targetValue evaluation.indicators
+    let cost := retrofitCost baseSpec spec weights
+    (achieved, cost))
+  let underBudget := evaluated.filter (fun (_, cost) =>
+    match maxWeightedCost? with
+    | none => true
+    | some cap => cost <= cap)
+  let achievedCount := (evaluated.filter (fun (achieved, _) => achieved)).length
+  let achievedUnderBudgetCount := (underBudget.filter (fun (achieved, _) => achieved)).length
+  { totalCandidates := evaluated.length,
+    underBudgetCandidates := underBudget.length,
+    achievedCandidates := achievedCount,
+    achievedUnderBudgetCandidates := achievedUnderBudgetCount }
+
+def noCandidateReason
+    (requireTarget : Bool)
+    (maxWeightedCost? : Option Float)
+    (d : SearchDiagnostics) : String :=
+  if requireTarget then
+    if d.achievedCandidates == 0 then
+      "target_not_achievable_in_search_space"
+    else
+      match maxWeightedCost? with
+      | some _ => "budget_constraint_blocks_target"
+      | none => "target_not_achievable_with_current_filters"
+  else
+    if d.underBudgetCandidates == 0 then
+      "no_candidate_within_budget"
+    else
+      "no_candidate_generated"
+
+  partial def printAlternativeSummaries
+    (baseSpec : SimplifiedBuildingSpec)
+    (weights : RetrofitCostWeights)
+    (alternatives : List SimplifiedOptimizationResult)
+    (rank : Nat) : IO Unit := do
+    match alternatives with
+    | [] => pure ()
+    | alt :: rest =>
+      let altCost := retrofitCost baseSpec alt.spec weights
+      let changes := specChangeSummary baseSpec alt.spec
+      IO.println s!"  #{rank}: achieved={alt.achieved}, gap={alt.gap}, changes={alt.changes}, weightedCost={altCost}, changeSet={changes}"
+      printAlternativeSummaries baseSpec weights rest (rank + 1)
+
 def printResult
     (baseSpec : SimplifiedBuildingSpec)
     (request : SimplifiedTargetRequest)
     (profile : SearchProfile)
     (weights : RetrofitCostWeights)
+    (topK : Nat)
+    (usePareto : Bool)
+    (maxWeightedCost? : Option Float)
+    (requireTarget : Bool)
     (jsonOut? : Option String)
     (strictTarget : Bool) : IO UInt32 := do
   let climate <- loadClimateDataProductionIO baseSpec.climateZone
   let baseEval := evaluateSimplifiedBuilding baseSpec climate
-  let recommendation? := bestTargetSuggestionWeighted baseSpec request climate profile weights
+  let recommendations :=
+    if usePareto then
+      topTargetSuggestionsParetoWeighted baseSpec request climate profile weights topK maxWeightedCost? requireTarget
+    else
+      topTargetSuggestionsWeighted baseSpec request climate profile weights topK maxWeightedCost? requireTarget
 
   IO.println "=== RE2020 Target Optimization ==="
+  IO.println s!"Search mode: {if usePareto then "pareto" else "weighted"}"
+  IO.println s!"Require target: {requireTarget}"
+  match maxWeightedCost? with
+  | some cap => IO.println s!"Weighted cost cap: {cap}"
+  | none => pure ()
   IO.println s!"Base spec: {describeSimplifiedBuildingSpec baseSpec}"
   IO.println s!"Base indicators: Bbio={baseEval.indicators.bbio}, Cep={baseEval.indicators.cep}, CepNr={baseEval.indicators.cepNr}, DH={baseEval.indicators.dh}"
 
-  match recommendation? with
-  | none =>
+  match recommendations with
+  | [] =>
+      let diagnostics := computeSearchDiagnostics baseSpec request profile weights maxWeightedCost? climate
+      let reason := noCandidateReason requireTarget maxWeightedCost? diagnostics
       IO.println "No candidate could be generated."
+      IO.println s!"No-candidate reason: {reason}"
+      IO.println s!"Diagnostics: total={diagnostics.totalCandidates}, underBudget={diagnostics.underBudgetCandidates}, achieved={diagnostics.achievedCandidates}, achievedUnderBudget={diagnostics.achievedUnderBudgetCandidates}"
       match jsonOut? with
       | some path =>
           let payload :=
             "{" ++
               "\"status\":\"no_candidate\"," ++
+              "\"reason\":" ++ jsonQuoted reason ++ "," ++
               "\"target\":{" ++
                 "\"metric\":" ++ jsonQuoted (toJsonMetric request.metric) ++
                 ",\"value\":" ++ s!"{request.targetValue}" ++
               "}," ++
               "\"profile\":" ++ jsonQuoted (toJsonProfile profile) ++ "," ++
+              "\"searchMode\":" ++ jsonQuoted (if usePareto then "pareto" else "weighted") ++ "," ++
+              "\"requireTarget\":" ++ (if requireTarget then "true" else "false") ++ "," ++
+              "\"maxWeightedCost\":" ++ (match maxWeightedCost? with | some cap => s!"{cap}" | none => "null") ++ "," ++
+              "\"diagnostics\":" ++ searchDiagnosticsToJson diagnostics ++ "," ++
               "\"base\":{" ++
                 "\"spec\":" ++ specToJson baseSpec ++
                 ",\"indicators\":" ++ indicatorsToJson baseEval.indicators ++
@@ -371,15 +532,21 @@ def printResult
           IO.FS.writeFile path payload
       | none => pure ()
       pure 1
-  | some recommendation =>
+  | recommendation :: alternatives =>
       let recommendationCost := retrofitCost baseSpec recommendation.spec weights
       IO.println s!"Request: metric={repr request.metric}, target={request.targetValue}"
       IO.println s!"Recommendation summary: {describeOptimizationResult recommendation}"
       IO.println s!"Recommendation weighted retrofit cost: {recommendationCost}"
       IO.println s!"Suggested spec: {describeSimplifiedBuildingSpec recommendation.spec}"
+      IO.println s!"Recommendation changes: {specChangeSummary baseSpec recommendation.spec}"
+      if !alternatives.isEmpty then
+        IO.println s!"Alternative suggestions ({alternatives.length}):"
+        printAlternativeSummaries baseSpec weights alternatives 2
+      else
+        pure ()
       match jsonOut? with
       | some path =>
-          let achieved := if recommendation.achieved then "true" else "false"
+          let allJson := String.intercalate "," (recommendations.map (fun r => recommendationToJson baseSpec weights r))
           let payload :=
             "{" ++
               "\"status\":\"ok\"," ++
@@ -388,6 +555,9 @@ def printResult
                 ",\"value\":" ++ s!"{request.targetValue}" ++
               "}," ++
               "\"profile\":" ++ jsonQuoted (toJsonProfile profile) ++ "," ++
+              "\"searchMode\":" ++ jsonQuoted (if usePareto then "pareto" else "weighted") ++ "," ++
+              "\"requireTarget\":" ++ (if requireTarget then "true" else "false") ++ "," ++
+              "\"maxWeightedCost\":" ++ (match maxWeightedCost? with | some cap => s!"{cap}" | none => "null") ++ "," ++
               "\"weights\":{" ++
                 "\"envelope\":" ++ s!"{weights.envelope}" ++
                 ",\"ventilation\":" ++ s!"{weights.ventilation}" ++
@@ -399,14 +569,8 @@ def printResult
                 "\"spec\":" ++ specToJson baseSpec ++
                 ",\"indicators\":" ++ indicatorsToJson baseEval.indicators ++
               "}," ++
-              "\"recommendation\":{" ++
-                "\"achieved\":" ++ achieved ++
-                ",\"gap\":" ++ s!"{recommendation.gap}" ++
-                ",\"changes\":" ++ s!"{recommendation.changes}" ++
-                ",\"weightedCost\":" ++ s!"{recommendationCost}" ++
-                ",\"spec\":" ++ specToJson recommendation.spec ++
-                ",\"indicators\":" ++ indicatorsToJson recommendation.evaluation.indicators ++
-              "}" ++
+              "\"recommendation\":" ++ recommendationToJson baseSpec weights recommendation ++ "," ++
+              "\"recommendations\":[" ++ allJson ++ "]" ++
             "}"
           IO.FS.writeFile path payload
       | none => pure ()
@@ -444,9 +608,29 @@ def main (args : List String) : IO UInt32 := do
           IO.eprintln usage
           pure 2
         | Except.ok (profile, weights) =>
-          let jsonOut? := findArg pairs "json-out"
-          let strictTarget :=
-          match findArg pairs "strict-target" with
-          | none => false
-          | some raw => (parseBool raw).getD false
-          printResult spec request profile weights jsonOut? strictTarget
+          match parseNatArg pairs "top-k" 1 with
+          | Except.error err =>
+              IO.eprintln s!"ERROR: {err}"
+              IO.eprintln usage
+              pure 2
+          | Except.ok topK =>
+              match parseOptionalFloatArg pairs "max-weighted-cost" with
+              | Except.error err =>
+                IO.eprintln s!"ERROR: {err}"
+                IO.eprintln usage
+                pure 2
+              | Except.ok maxWeightedCost? =>
+                  let jsonOut? := findArg pairs "json-out"
+                  let usePareto :=
+                    match findArg pairs "pareto" with
+                    | none => false
+                    | some raw => (parseBool raw).getD false
+                  let requireTarget :=
+                    match findArg pairs "require-target" with
+                    | none => false
+                    | some raw => (parseBool raw).getD false
+                  let strictTarget :=
+                    match findArg pairs "strict-target" with
+                    | none => false
+                    | some raw => (parseBool raw).getD false
+                  printResult spec request profile weights topK usePareto maxWeightedCost? requireTarget jsonOut? strictTarget

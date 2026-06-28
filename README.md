@@ -96,6 +96,8 @@ python3 scripts/suggest_retrofit.py \
   --metric cep \
   --target 85 \
   --profile standard \
+  --pareto \
+  --top-k 3 \
   --json-out RE2020/examples/result_cep.json
 
 # Entrée CSV (une seule ligne bâtiment)
@@ -105,7 +107,8 @@ python3 scripts/suggest_retrofit.py \
   --target 60 \
   --profile aggressive \
   --cost-envelope 4.0 \
-  --cost-window 1.0
+  --cost-window 1.0 \
+  --max-weighted-cost 14.0
 
 # Option stricte: retourner un code non-zero si la cible n'est pas atteinte
 python3 scripts/suggest_retrofit.py \
@@ -113,6 +116,22 @@ python3 scripts/suggest_retrofit.py \
   --metric bbio \
   --target 60 \
   --strict-target
+
+# Exiger uniquement des solutions qui atteignent la cible
+python3 scripts/suggest_retrofit.py \
+  --input RE2020/examples/simple_building.csv \
+  --metric bbio \
+  --target 60 \
+  --pareto \
+  --max-weighted-cost 14 \
+  --require-target
+
+# Le JSON inclut recommendation.changeSummary / recommendation.changeSet
+# et recommendations[] pour comparer plusieurs options classées.
+# Avec --pareto, le pré-filtrage se fait sur la frontière de Pareto (gap vs coût pondéré)
+# --max-weighted-cost limite les options aux budgets compatibles.
+# --require-target force la faisabilité (sinon status=no_candidate).
+# En status=no_candidate, le JSON inclut reason + diagnostics.* pour expliquer l'échec.
 ```
 
 ## Workflow de développement
@@ -178,6 +197,10 @@ python3 scripts/check_legal_reference_catalog.py --require-finalized-used
 python3 scripts/suggest_retrofit.py --input RE2020/examples/simple_building.json --metric cep --target 85
 python3 scripts/suggest_retrofit.py --input RE2020/examples/simple_building.csv --metric bbio --target 60
 python3 scripts/suggest_retrofit.py --input RE2020/examples/simple_building.json --metric cep --target 85 --profile conservative --json-out RE2020/examples/result_cep.json
+python3 scripts/suggest_retrofit.py --input RE2020/examples/simple_building.json --metric cep --target 85 --profile standard --top-k 3 --json-out RE2020/examples/result_cep.json
+python3 scripts/suggest_retrofit.py --input RE2020/examples/simple_building.json --metric cep --target 85 --profile standard --pareto --top-k 3 --json-out RE2020/examples/result_cep.json
+python3 scripts/suggest_retrofit.py --input RE2020/examples/simple_building.csv --metric bbio --target 60 --profile aggressive --pareto --top-k 5 --max-weighted-cost 14 --json-out RE2020/examples/result_cep.json
+python3 scripts/suggest_retrofit.py --input RE2020/examples/simple_building.csv --metric bbio --target 60 --profile aggressive --pareto --top-k 5 --max-weighted-cost 14 --require-target --json-out RE2020/examples/result_cep.json
 ```
 
 ## État actuel

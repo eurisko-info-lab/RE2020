@@ -485,6 +485,105 @@ def betterResultWeighted
     else if a.changes != b.changes then a.changes < b.changes
     else a.evaluation.indicators.cep < b.evaluation.indicators.cep
 
+def insertResultWeighted
+    (base : SimplifiedBuildingSpec)
+    (weights : RetrofitCostWeights)
+    (candidate : SimplifiedOptimizationResult)
+    (sorted : List SimplifiedOptimizationResult) : List SimplifiedOptimizationResult :=
+  match sorted with
+  | [] => [candidate]
+  | head :: tail =>
+      if betterResultWeighted base weights candidate head then
+        candidate :: sorted
+      else
+        head :: insertResultWeighted base weights candidate tail
+
+def resultWeightedCost
+    (base : SimplifiedBuildingSpec)
+    (weights : RetrofitCostWeights)
+    (r : SimplifiedOptimizationResult) : Float :=
+  retrofitCost base r.spec weights
+
+def dominatesByGapAndCost
+    (base : SimplifiedBuildingSpec)
+    (weights : RetrofitCostWeights)
+    (a b : SimplifiedOptimizationResult) : Bool :=
+  let gapA := a.gap
+  let gapB := b.gap
+  let costA := resultWeightedCost base weights a
+  let costB := resultWeightedCost base weights b
+  let noWorse := gapA <= gapB && costA <= costB
+  let strictlyBetter := gapA < gapB || costA < costB
+  noWorse && strictlyBetter
+
+def paretoFrontierByGapAndCost
+    (base : SimplifiedBuildingSpec)
+    (weights : RetrofitCostWeights)
+    (results : List SimplifiedOptimizationResult) : List SimplifiedOptimizationResult :=
+  results.filter (fun candidate =>
+    !(results.any (fun other => dominatesByGapAndCost base weights other candidate)))
+
+def topTargetSuggestionsWeighted
+    (base : SimplifiedBuildingSpec)
+    (request : SimplifiedTargetRequest)
+    (climate : ClimateData)
+    (profile : SearchProfile := .Standard)
+    (weights : RetrofitCostWeights := {})
+    (topK : Nat := 1)
+  (maxWeightedCost? : Option Float := none)
+  (requireTarget : Bool := false) : List SimplifiedOptimizationResult :=
+  let results := (candidateSpecsWithProfile base profile).map fun spec =>
+    let evaluation := evaluateSimplifiedBuilding spec climate
+    let value := metricValue request.metric evaluation.indicators
+    let gap := max 0.0 (value - request.targetValue)
+    { spec := spec,
+      evaluation := evaluation,
+      achieved := targetSatisfied request.metric request.targetValue evaluation.indicators,
+      gap := gap,
+      changes := candidateAdjustmentCount base spec }
+  let filtered :=
+    match maxWeightedCost? with
+    | none => results
+    | some maxCost => results.filter (fun r => resultWeightedCost base weights r <= maxCost)
+  let feasible :=
+    if requireTarget then filtered.filter (fun r => r.achieved)
+    else filtered
+  let sorted := feasible.foldl
+    (fun acc candidate => insertResultWeighted base weights candidate acc)
+    []
+  sorted.take (max 1 topK)
+
+def topTargetSuggestionsParetoWeighted
+    (base : SimplifiedBuildingSpec)
+    (request : SimplifiedTargetRequest)
+    (climate : ClimateData)
+    (profile : SearchProfile := .Standard)
+    (weights : RetrofitCostWeights := {})
+    (topK : Nat := 1)
+  (maxWeightedCost? : Option Float := none)
+  (requireTarget : Bool := false) : List SimplifiedOptimizationResult :=
+  let results := (candidateSpecsWithProfile base profile).map fun spec =>
+    let evaluation := evaluateSimplifiedBuilding spec climate
+    let value := metricValue request.metric evaluation.indicators
+    let gap := max 0.0 (value - request.targetValue)
+    { spec := spec,
+      evaluation := evaluation,
+      achieved := targetSatisfied request.metric request.targetValue evaluation.indicators,
+      gap := gap,
+      changes := candidateAdjustmentCount base spec }
+  let filtered :=
+    match maxWeightedCost? with
+    | none => results
+    | some maxCost => results.filter (fun r => resultWeightedCost base weights r <= maxCost)
+  let feasible :=
+    if requireTarget then filtered.filter (fun r => r.achieved)
+    else filtered
+  let frontier := paretoFrontierByGapAndCost base weights feasible
+  let sorted := frontier.foldl
+    (fun acc candidate => insertResultWeighted base weights candidate acc)
+    []
+  sorted.take (max 1 topK)
+
 def bestTargetSuggestion
     (base : SimplifiedBuildingSpec)
     (request : SimplifiedTargetRequest)
@@ -531,21 +630,9 @@ def bestTargetSuggestionWeighted
     (climate : ClimateData)
     (profile : SearchProfile := .Standard)
     (weights : RetrofitCostWeights := {}) : Option SimplifiedOptimizationResult :=
-  let results := (candidateSpecsWithProfile base profile).map fun spec =>
-    let evaluation := evaluateSimplifiedBuilding spec climate
-    let value := metricValue request.metric evaluation.indicators
-    let gap := max 0.0 (value - request.targetValue)
-    { spec := spec,
-      evaluation := evaluation,
-      achieved := targetSatisfied request.metric request.targetValue evaluation.indicators,
-      gap := gap,
-      changes := candidateAdjustmentCount base spec }
-  results.foldl
-    (fun best candidate =>
-      match best with
-      | none => some candidate
-      | some current => if betterResultWeighted base weights candidate current then some candidate else best)
-    none
+  match topTargetSuggestionsWeighted base request climate profile weights 1 with
+  | head :: _ => some head
+  | [] => none
 
 def describeSimplifiedBuildingSpec (spec : SimplifiedBuildingSpec) : String :=
   s!"{spec.name} | {repr spec.category} | zone {repr spec.climateZone} | {spec.floorArea} m² | floors={spec.floors} | WWR={spec.windowRatio} | envelope={repr spec.envelope} | ventilation={repr spec.ventilation} | heating={repr spec.heating} | shading={spec.shading}"

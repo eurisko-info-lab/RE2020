@@ -1,1 +1,12 @@
 .lake/
+.cache/
+
+# Generated optimization outputs
+RE2020/examples/result_*.json
+
+# Python bytecode/cache
+scripts/__pycache__/
+*.pyc
+
+# Generated local prompt scratchpad
+PROMPT.md
