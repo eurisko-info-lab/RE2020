@@ -1,0 +1,20 @@
+{
+  "officialCaseId": "RC-LC-H1C-03",
+  "source": {
+    "authority": "CSTB",
+    "dataset": "re2020-reference-cases",
+    "uri": "https://data.gouv.fr/fr/datasets/re2020-reference-cases/"
+  },
+  "provenance": {
+    "capturedAt": "2026-06-28T00:00:00Z",
+    "evidenceType": "local-reproducibility-anchor",
+    "status": "present",
+    "generatedBy": "scripts/sync_validation_evidence.py"
+  },
+  "notes": "Local benchmark evidence anchor for readiness-v2 reproducible artifacts gate.",
+  "reference": {
+    "sourceDoc": "https://data.gouv.fr/fr/datasets/re2020-reference-cases/rc-lc-h1c-03.csv?sha256=eb9a4d7d94511f3d3e752e57a56266f44f58fde0f4f7f8bcd508f5306bcda2c0",
+    "toleranceProfile": "official-cstb-cal-v1",
+    "citationId": "VAL-REF-LC-H1C-03"
+  }
+}

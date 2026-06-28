@@ -1,0 +1,402 @@
+{
+  "metadata": {
+    "source": "RE2020/RegulationTables.lean",
+    "tableVersion": "re2020-convention-table-v2",
+    "generator": "scripts/export_regulation_tables.py"
+  },
+  "tables": {
+    "geoCoefficientTable": [
+      {
+        "zone": "H1a",
+        "value": 0.15,
+        "citation": {
+          "sectionId": "Annexe II.B",
+          "tableId": "MBGEO-H1a",
+          "articleRef": "Arrete 4 aout 2021 - Annexe II, modulation geographique"
+        }
+      },
+      {
+        "zone": "H1b",
+        "value": 0.13,
+        "citation": {
+          "sectionId": "Annexe II.B",
+          "tableId": "MBGEO-H1b",
+          "articleRef": "Arrete 4 aout 2021 - Annexe II, modulation geographique"
+        }
+      },
+      {
+        "zone": "H1c",
+        "value": 0.11,
+        "citation": {
+          "sectionId": "Annexe II.B",
+          "tableId": "MBGEO-H1c",
+          "articleRef": "Arrete 4 aout 2021 - Annexe II, modulation geographique"
+        }
+      },
+      {
+        "zone": "H2a",
+        "value": 0.08,
+        "citation": {
+          "sectionId": "Annexe II.B",
+          "tableId": "MBGEO-H2a",
+          "articleRef": "Arrete 4 aout 2021 - Annexe II, modulation geographique"
+        }
+      },
+      {
+        "zone": "H2b",
+        "value": 0.06,
+        "citation": {
+          "sectionId": "Annexe II.B",
+          "tableId": "MBGEO-H2b",
+          "articleRef": "Arrete 4 aout 2021 - Annexe II, modulation geographique"
+        }
+      },
+      {
+        "zone": "H2c",
+        "value": 0.04,
+        "citation": {
+          "sectionId": "Annexe II.B",
+          "tableId": "MBGEO-H2c",
+          "articleRef": "Arrete 4 aout 2021 - Annexe II, modulation geographique"
+        }
+      },
+      {
+        "zone": "H2d",
+        "value": 0.05,
+        "citation": {
+          "sectionId": "Annexe II.B",
+          "tableId": "MBGEO-H2d",
+          "articleRef": "Arrete 4 aout 2021 - Annexe II, modulation geographique"
+        }
+      },
+      {
+        "zone": "H3",
+        "value": 0.02,
+        "citation": {
+          "sectionId": "Annexe II.B",
+          "tableId": "MBGEO-H3",
+          "articleRef": "Arrete 4 aout 2021 - Annexe II, modulation geographique"
+        }
+      }
+    ],
+    "comblesCoefficientTable": [
+      {
+        "category": "MaisonIndividuelle",
+        "value": 0.04,
+        "citation": {
+          "sectionId": "Annexe II.B",
+          "tableId": "MBCOMBLES-MI",
+          "articleRef": "Arrete 4 aout 2021 - Annexe II, modulation combles"
+        }
+      },
+      {
+        "category": "LogementCollectif",
+        "value": 0.02,
+        "citation": {
+          "sectionId": "Annexe II.B",
+          "tableId": "MBCOMBLES-LC",
+          "articleRef": "Arrete 4 aout 2021 - Annexe II, modulation combles"
+        }
+      },
+      {
+        "category": "Bureau",
+        "value": 0.01,
+        "citation": {
+          "sectionId": "Annexe II.B",
+          "tableId": "MBCOMBLES-BUR",
+          "articleRef": "Arrete 4 aout 2021 - Annexe II, modulation combles"
+        }
+      },
+      {
+        "category": "EnseignementPrimaireSecondaire",
+        "value": 0.015,
+        "citation": {
+          "sectionId": "Annexe II.B",
+          "tableId": "MBCOMBLES-ENS",
+          "articleRef": "Arrete 4 aout 2021 - Annexe II, modulation combles"
+        }
+      },
+      {
+        "category": "Autre",
+        "value": 0.01,
+        "citation": {
+          "sectionId": "Annexe II.B",
+          "tableId": "MBCOMBLES-AUT",
+          "articleRef": "Arrete 4 aout 2021 - Annexe II, modulation combles"
+        }
+      }
+    ],
+    "bruitCoefficientTable": [
+      {
+        "category": "MaisonIndividuelle",
+        "value": 0.0,
+        "citation": {
+          "sectionId": "Annexe II.B",
+          "tableId": "MBBRUIT-MI",
+          "articleRef": "Arrete 4 aout 2021 - Annexe II, modulation bruit"
+        }
+      },
+      {
+        "category": "LogementCollectif",
+        "value": 0.01,
+        "citation": {
+          "sectionId": "Annexe II.B",
+          "tableId": "MBBRUIT-LC",
+          "articleRef": "Arrete 4 aout 2021 - Annexe II, modulation bruit"
+        }
+      },
+      {
+        "category": "Bureau",
+        "value": 0.02,
+        "citation": {
+          "sectionId": "Annexe II.B",
+          "tableId": "MBBRUIT-BUR",
+          "articleRef": "Arrete 4 aout 2021 - Annexe II, modulation bruit"
+        }
+      },
+      {
+        "category": "EnseignementPrimaireSecondaire",
+        "value": 0.015,
+        "citation": {
+          "sectionId": "Annexe II.B",
+          "tableId": "MBBRUIT-ENS",
+          "articleRef": "Arrete 4 aout 2021 - Annexe II, modulation bruit"
+        }
+      },
+      {
+        "category": "Autre",
+        "value": 0.01,
+        "citation": {
+          "sectionId": "Annexe II.B",
+          "tableId": "MBBRUIT-AUT",
+          "articleRef": "Arrete 4 aout 2021 - Annexe II, modulation bruit"
+        }
+      }
+    ],
+    "catCoefficientTable": [
+      {
+        "category": "MaisonIndividuelle",
+        "value": 0.0,
+        "citation": {
+          "sectionId": "Annexe II.C",
+          "tableId": "MCCAT-MI",
+          "articleRef": "Arrete 4 aout 2021 - Annexe II, modulation categorie Cep"
+        }
+      },
+      {
+        "category": "LogementCollectif",
+        "value": 0.01,
+        "citation": {
+          "sectionId": "Annexe II.C",
+          "tableId": "MCCAT-LC",
+          "articleRef": "Arrete 4 aout 2021 - Annexe II, modulation categorie Cep"
+        }
+      },
+      {
+        "category": "Bureau",
+        "value": 0.03,
+        "citation": {
+          "sectionId": "Annexe II.C",
+          "tableId": "MCCAT-BUR",
+          "articleRef": "Arrete 4 aout 2021 - Annexe II, modulation categorie Cep"
+        }
+      },
+      {
+        "category": "EnseignementPrimaireSecondaire",
+        "value": 0.02,
+        "citation": {
+          "sectionId": "Annexe II.C",
+          "tableId": "MCCAT-ENS",
+          "articleRef": "Arrete 4 aout 2021 - Annexe II, modulation categorie Cep"
+        }
+      },
+      {
+        "category": "Autre",
+        "value": 0.015,
+        "citation": {
+          "sectionId": "Annexe II.C",
+          "tableId": "MCCAT-AUT",
+          "articleRef": "Arrete 4 aout 2021 - Annexe II, modulation categorie Cep"
+        }
+      }
+    ],
+    "surfMoyCoefficientTable": [
+      {
+        "minArea": 0.0,
+        "maxArea": 60.0,
+        "value": 0.05,
+        "citation": {
+          "sectionId": "Annexe II.B",
+          "tableId": "MBSURFMOY-000-060",
+          "articleRef": "Arrete 4 aout 2021 - Annexe II, modulation surface moyenne"
+        }
+      },
+      {
+        "minArea": 60.0,
+        "maxArea": 120.0,
+        "value": 0.03,
+        "citation": {
+          "sectionId": "Annexe II.B",
+          "tableId": "MBSURFMOY-060-120",
+          "articleRef": "Arrete 4 aout 2021 - Annexe II, modulation surface moyenne"
+        }
+      },
+      {
+        "minArea": 120.0,
+        "maxArea": 300.0,
+        "value": 0.015,
+        "citation": {
+          "sectionId": "Annexe II.B",
+          "tableId": "MBSURFMOY-120-300",
+          "articleRef": "Arrete 4 aout 2021 - Annexe II, modulation surface moyenne"
+        }
+      },
+      {
+        "minArea": 300.0,
+        "maxArea": 1000000000.0,
+        "value": 0.0,
+        "citation": {
+          "sectionId": "Annexe II.B",
+          "tableId": "MBSURFMOY-300-INF",
+          "articleRef": "Arrete 4 aout 2021 - Annexe II, modulation surface moyenne"
+        }
+      }
+    ],
+    "surfTotCoefficientTable": [
+      {
+        "minArea": 0.0,
+        "maxArea": 100.0,
+        "value": 0.03,
+        "citation": {
+          "sectionId": "Annexe II.B",
+          "tableId": "MBSURFTOT-000-100",
+          "articleRef": "Arrete 4 aout 2021 - Annexe II, modulation surface totale"
+        }
+      },
+      {
+        "minArea": 100.0,
+        "maxArea": 500.0,
+        "value": 0.015,
+        "citation": {
+          "sectionId": "Annexe II.B",
+          "tableId": "MBSURFTOT-100-500",
+          "articleRef": "Arrete 4 aout 2021 - Annexe II, modulation surface totale"
+        }
+      },
+      {
+        "minArea": 500.0,
+        "maxArea": 2000.0,
+        "value": 0.005,
+        "citation": {
+          "sectionId": "Annexe II.B",
+          "tableId": "MBSURFTOT-500-2000",
+          "articleRef": "Arrete 4 aout 2021 - Annexe II, modulation surface totale"
+        }
+      },
+      {
+        "minArea": 2000.0,
+        "maxArea": 1000000000.0,
+        "value": 0.0,
+        "citation": {
+          "sectionId": "Annexe II.B",
+          "tableId": "MBSURFTOT-2000-INF",
+          "articleRef": "Arrete 4 aout 2021 - Annexe II, modulation surface totale"
+        }
+      }
+    ],
+    "primaryEnergyFactorTable": [
+      {
+        "usage": "heating",
+        "value": 1.0,
+        "citation": {
+          "sectionId": "Annexe III",
+          "tableId": "PEF-HEATING",
+          "articleRef": "Facteur energie primaire chauffage selon vecteur retenu"
+        }
+      },
+      {
+        "usage": "dhw",
+        "value": 2.3,
+        "citation": {
+          "sectionId": "Annexe III",
+          "tableId": "PEF-DHW",
+          "articleRef": "Facteur energie primaire ECS (convention electrique par defaut)"
+        }
+      },
+      {
+        "usage": "cooling",
+        "value": 2.3,
+        "citation": {
+          "sectionId": "Annexe III",
+          "tableId": "PEF-COOLING",
+          "articleRef": "Facteur energie primaire refroidissement (electricite)"
+        }
+      },
+      {
+        "usage": "lighting",
+        "value": 2.3,
+        "citation": {
+          "sectionId": "Annexe III",
+          "tableId": "PEF-LIGHTING",
+          "articleRef": "Facteur energie primaire eclairage (electricite)"
+        }
+      },
+      {
+        "usage": "auxiliaries",
+        "value": 2.3,
+        "citation": {
+          "sectionId": "Annexe III",
+          "tableId": "PEF-AUX",
+          "articleRef": "Facteur energie primaire auxiliaires (electricite)"
+        }
+      }
+    ],
+    "nonRenewableEnergyFactorTable": [
+      {
+        "usage": "heating",
+        "value": 1.0,
+        "citation": {
+          "sectionId": "Annexe III",
+          "tableId": "PENR-HEATING",
+          "articleRef": "Facteur non renouvelable chauffage selon vecteur retenu"
+        }
+      },
+      {
+        "usage": "dhw",
+        "value": 2.3,
+        "citation": {
+          "sectionId": "Annexe III",
+          "tableId": "PENR-DHW",
+          "articleRef": "Facteur non renouvelable ECS (convention electrique par defaut)"
+        }
+      },
+      {
+        "usage": "cooling",
+        "value": 2.3,
+        "citation": {
+          "sectionId": "Annexe III",
+          "tableId": "PENR-COOLING",
+          "articleRef": "Facteur non renouvelable refroidissement (electricite)"
+        }
+      },
+      {
+        "usage": "lighting",
+        "value": 2.3,
+        "citation": {
+          "sectionId": "Annexe III",
+          "tableId": "PENR-LIGHTING",
+          "articleRef": "Facteur non renouvelable eclairage (electricite)"
+        }
+      },
+      {
+        "usage": "auxiliaries",
+        "value": 2.3,
+        "citation": {
+          "sectionId": "Annexe III",
+          "tableId": "PENR-AUX",
+          "articleRef": "Facteur non renouvelable auxiliaires (electricite)"
+        }
+      }
+    ]
+  }
+}

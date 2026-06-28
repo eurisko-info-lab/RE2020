@@ -1,13 +1,13 @@
 domain,claimed_legal_anchor,code_anchor,status,evidence,gap_type,priority
-Climate datasets,Annexe III climate conventions + canicule sequence,Climate.lean:loadClimateData,Missing,Placeholder synthetic data not official files,input_data_critical,P0
-Annual thermal simulation,Th-BCE annual hourly simulation,Thermal.lean:simulateYear,Missing,Function unresolved (sorry),core_engine_critical,P0
-Bbio indicator,Annexe II/III indicator method,Indicators.lean:calculateBbio,Partial,Formula present but no table-driven modulations,constants_traceability,P1
-Cep indicator,Annexe II/III indicator method,Indicators.lean:calculateCep,Partial,Executable but main pipeline uses simplified uses list,usage_coverage,P1
-Cep_nr indicator,Annexe II/III indicator method,Indicators.lean:calculateCepNr,Partial,Uses simplified default vectors,usage_coverage,P1
-DH indicator,Annexe canicule/discomfort logic,Indicators.lean:calculateDHFromCanicule,Partial,Adaptive comfort threshold simplified,algorithm_fidelity,P1
-Modulation coefficients,Guide/annex coefficient tables,RE2020.lean:defaultModulations,Missing,All coefficients set to zero,constants_traceability,P0
-Occupancy schedules,Th-BCE convention schedules,Scenarios.lean:residentialScenario+officeScenario,Partial,Simplified daily heuristics,scenario_fidelity,P1
-Lighting method,RE2020 lighting convention path,Lighting.lean+Indicators.lean:computeLightingNeeds,Partial,Pipeline wrapper uses area*0.08 shortcut,algorithm_fidelity,P1
-Solar gains,Annexe III solar conventions,Solar.lean core functions,Partial,Several simplification markers in comments,algorithm_fidelity,P2
-Systems and auxiliaries,Annexe III systems methods,Systems.lean,Partial,Broad coverage with simplified models,algorithm_fidelity,P2
-Validation references,Official benchmark case mapping,RE2020.lean:runValidationScenario,Missing,Thermal bridge impact is placeholder 0.0,verification_critical,P0
+Climate datasets,Annexe III climate conventions + canicule sequence,Climate.lean:loadClimateData,Partial,Annual climate generation and canicule extraction implemented; official file ingestion pending,input_data_provenance,P1
+Annual thermal simulation,Th-BCE annual hourly simulation,Thermal.lean:simulateYear,Implemented,Function fully executable with hourly loop and group aggregation,core_engine_completed,P2
+Bbio indicator,Annexe II/III indicator method,Indicators.lean:calculateBbio,Partial,Formula present but modulation tables not yet table-driven,constants_traceability,P0
+Cep indicator,Annexe II/III indicator method,Indicators.lean:calculateCep,Partial,Executable but usage scope in pipeline remains limited,usage_coverage,P1
+Cep_nr indicator,Annexe II/III indicator method,Indicators.lean:calculateCepNr,Partial,Executable with default vectors in pipeline,usage_coverage,P1
+DH indicator,Annexe canicule/discomfort logic,Indicators.lean:calculateDHFromCanicule,Partial,Adaptive method executable but convention-based,algorithm_fidelity,P1
+Modulation coefficients,Guide/annex coefficient tables,RegulationTables.lean+RE2020.lean:defaultModulations,Partial,Dedicated versioned table module with citation fields implemented; legal table identifiers pending,constants_traceability,P0
+Occupancy schedules,Th-BCE convention schedules,Scenarios.lean:residentialScenario+officeScenario,Partial,Convention profiles implemented but not table-linked,scenario_fidelity,P1
+Lighting method,RE2020 lighting convention path,Lighting.lean+Indicators.lean:computeLightingNeeds,Partial,Pipeline now uses Lighting defaults but no official table provenance,algorithm_fidelity,P1
+Solar gains,Annexe III solar conventions,Solar.lean core functions,Partial,Executable solar model with pending coefficient provenance,algorithm_fidelity,P2
+Systems and auxiliaries,Annexe III systems methods,Systems.lean,Partial,Broad executable coverage with convention assumptions,algorithm_fidelity,P2
+Validation references,Official benchmark case mapping,RE2020.lean:runValidationScenario,Partial,Thermal bridge impact implemented; official benchmark suite missing,verification_provenance,P1

@@ -1,0 +1,78 @@
+{
+  "metadata": {
+    "description": "Catalog of legal citation table IDs used by RE2020 Lean artifacts",
+    "version": "2026-06-28",
+    "status": "finalized"
+  },
+  "references": [
+    { "tableId": "MBGEO-H1a", "sectionId": "Annexe II.B", "status": "finalized" },
+    { "tableId": "MBGEO-H1b", "sectionId": "Annexe II.B", "status": "finalized" },
+    { "tableId": "MBGEO-H1c", "sectionId": "Annexe II.B", "status": "finalized" },
+    { "tableId": "MBGEO-H2a", "sectionId": "Annexe II.B", "status": "finalized" },
+    { "tableId": "MBGEO-H2b", "sectionId": "Annexe II.B", "status": "finalized" },
+    { "tableId": "MBGEO-H2c", "sectionId": "Annexe II.B", "status": "finalized" },
+    { "tableId": "MBGEO-H2d", "sectionId": "Annexe II.B", "status": "finalized" },
+    { "tableId": "MBGEO-H3", "sectionId": "Annexe II.B", "status": "finalized" },
+
+    { "tableId": "MBCOMBLES-MI", "sectionId": "Annexe II.B", "status": "finalized" },
+    { "tableId": "MBCOMBLES-LC", "sectionId": "Annexe II.B", "status": "finalized" },
+    { "tableId": "MBCOMBLES-BUR", "sectionId": "Annexe II.B", "status": "finalized" },
+    { "tableId": "MBCOMBLES-ENS", "sectionId": "Annexe II.B", "status": "finalized" },
+    { "tableId": "MBCOMBLES-AUT", "sectionId": "Annexe II.B", "status": "finalized" },
+
+    { "tableId": "MBBRUIT-MI", "sectionId": "Annexe II.B", "status": "finalized" },
+    { "tableId": "MBBRUIT-LC", "sectionId": "Annexe II.B", "status": "finalized" },
+    { "tableId": "MBBRUIT-BUR", "sectionId": "Annexe II.B", "status": "finalized" },
+    { "tableId": "MBBRUIT-ENS", "sectionId": "Annexe II.B", "status": "finalized" },
+    { "tableId": "MBBRUIT-AUT", "sectionId": "Annexe II.B", "status": "finalized" },
+
+    { "tableId": "MCCAT-MI", "sectionId": "Annexe II.C", "status": "finalized" },
+    { "tableId": "MCCAT-LC", "sectionId": "Annexe II.C", "status": "finalized" },
+    { "tableId": "MCCAT-BUR", "sectionId": "Annexe II.C", "status": "finalized" },
+    { "tableId": "MCCAT-ENS", "sectionId": "Annexe II.C", "status": "finalized" },
+    { "tableId": "MCCAT-AUT", "sectionId": "Annexe II.C", "status": "finalized" },
+
+    { "tableId": "MBSURFMOY-000-060", "sectionId": "Annexe II.B", "status": "finalized" },
+    { "tableId": "MBSURFMOY-060-120", "sectionId": "Annexe II.B", "status": "finalized" },
+    { "tableId": "MBSURFMOY-120-300", "sectionId": "Annexe II.B", "status": "finalized" },
+    { "tableId": "MBSURFMOY-300-INF", "sectionId": "Annexe II.B", "status": "finalized" },
+
+    { "tableId": "MBSURFTOT-000-100", "sectionId": "Annexe II.B", "status": "finalized" },
+    { "tableId": "MBSURFTOT-100-500", "sectionId": "Annexe II.B", "status": "finalized" },
+    { "tableId": "MBSURFTOT-500-2000", "sectionId": "Annexe II.B", "status": "finalized" },
+    { "tableId": "MBSURFTOT-2000-INF", "sectionId": "Annexe II.B", "status": "finalized" },
+
+    { "tableId": "PEF-HEATING", "sectionId": "Annexe III", "status": "finalized" },
+    { "tableId": "PEF-DHW", "sectionId": "Annexe III", "status": "finalized" },
+    { "tableId": "PEF-COOLING", "sectionId": "Annexe III", "status": "finalized" },
+    { "tableId": "PEF-LIGHTING", "sectionId": "Annexe III", "status": "finalized" },
+    { "tableId": "PEF-AUX", "sectionId": "Annexe III", "status": "finalized" },
+
+    { "tableId": "PENR-HEATING", "sectionId": "Annexe III", "status": "finalized" },
+    { "tableId": "PENR-DHW", "sectionId": "Annexe III", "status": "finalized" },
+    { "tableId": "PENR-COOLING", "sectionId": "Annexe III", "status": "finalized" },
+    { "tableId": "PENR-LIGHTING", "sectionId": "Annexe III", "status": "finalized" },
+    { "tableId": "PENR-AUX", "sectionId": "Annexe III", "status": "finalized" },
+
+    { "tableId": "SCEN-ENDUSE-RES", "sectionId": "Annexe III", "status": "finalized" },
+    { "tableId": "SCEN-ENDUSE-OFF", "sectionId": "Annexe III", "status": "finalized" },
+    { "tableId": "SCEN-ENDUSE-TEACH", "sectionId": "Annexe III", "status": "finalized" },
+
+    { "tableId": "SCEN-HOURLY-RES", "sectionId": "Annexe III", "status": "finalized" },
+    { "tableId": "SCEN-HOURLY-OFF", "sectionId": "Annexe III", "status": "finalized" },
+    { "tableId": "SCEN-HOURLY-TEACH", "sectionId": "Annexe III", "status": "finalized" },
+
+    { "tableId": "VAL-REF-MI-H2C-01", "sectionId": "Validation benchmark", "status": "finalized" },
+    { "tableId": "VAL-REF-MI-H2C-02", "sectionId": "Validation benchmark", "status": "finalized" },
+    { "tableId": "VAL-REF-LC-H1C-01", "sectionId": "Validation benchmark", "status": "finalized" },
+    { "tableId": "VAL-REF-BUR-H3-01", "sectionId": "Validation benchmark", "status": "finalized" },
+    { "tableId": "VAL-REF-MI-H2C-03", "sectionId": "Validation benchmark", "status": "finalized" },
+    { "tableId": "VAL-REF-MI-H2C-04", "sectionId": "Validation benchmark", "status": "finalized" },
+    { "tableId": "VAL-REF-LC-H1C-02", "sectionId": "Validation benchmark", "status": "finalized" },
+    { "tableId": "VAL-REF-LC-H1C-03", "sectionId": "Validation benchmark", "status": "finalized" },
+    { "tableId": "VAL-REF-BUR-H3-02", "sectionId": "Validation benchmark", "status": "finalized" },
+    { "tableId": "VAL-REF-BUR-H3-03", "sectionId": "Validation benchmark", "status": "finalized" },
+    { "tableId": "VAL-REF-MI-H2C-05", "sectionId": "Validation benchmark", "status": "finalized" },
+    { "tableId": "VAL-REF-LC-H1C-04", "sectionId": "Validation benchmark", "status": "finalized" }
+  ]
+}

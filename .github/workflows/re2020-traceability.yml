@@ -5,11 +5,15 @@ on:
     paths:
       - "RE2020/**"
       - "scripts/check_traceability_p0.py"
+      - "scripts/export_regulation_tables.py"
+      - "RE2020/regulation_tables_export.json"
       - ".github/workflows/re2020-traceability.yml"
   pull_request:
     paths:
       - "RE2020/**"
       - "scripts/check_traceability_p0.py"
+      - "scripts/export_regulation_tables.py"
+      - "RE2020/regulation_tables_export.json"
       - ".github/workflows/re2020-traceability.yml"
   workflow_dispatch:
     inputs:
@@ -42,6 +46,16 @@ jobs:
             --matrix RE2020/regulation_traceability_matrix.json \
             --priorities P0 \
             --failing-status Missing
+
+      - name: Regenerate regulation table export
+        run: |
+          python3 scripts/export_regulation_tables.py \
+            --input RE2020/RegulationTables.lean \
+            --output RE2020/regulation_tables_export.json
+
+      - name: Validate regulation table export is committed
+        run: |
+          git diff --exit-code -- RE2020/regulation_tables_export.json
 
       - name: Enforce P1 traceability (mode p0_p1)
         if: env.ENFORCEMENT_MODE == 'p0_p1'

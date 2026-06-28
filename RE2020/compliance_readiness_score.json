@@ -1,0 +1,114 @@
+{
+  "metadata": {
+    "modelVersion": "readiness-v2",
+    "computedAt": "2026-06-28T08:27:03.290857+00:00",
+    "repoRoot": "/home/patrick/RE2020/re2020_lean"
+  },
+  "overallScore": 100.0,
+  "rawWeightedScore": 100.0,
+  "hardCap": 100.0,
+  "qualificationGates": {
+    "benchmarkCorpus": {
+      "passed": true,
+      "requiredMinCases": 12,
+      "requiredMinUniqueOfficialCases": 12,
+      "actualCases": 12,
+      "actualUniqueOfficialCases": 12
+    },
+    "officialSourceProof": {
+      "passed": true,
+      "requiredDatasetCoverage": 1.0,
+      "requiredSourceUriCoverage": 1.0,
+      "requiredSourceDigestCoverage": 1.0,
+      "actualDatasetCoverage": 1.0,
+      "actualSourceUriCoverage": 1.0,
+      "actualSourceDigestCoverage": 1.0,
+      "manifestProofPresent": true,
+      "requiredManifestProofFields": [
+        "sourceAuthority",
+        "sourceLicense",
+        "sourceUri",
+        "sourceChecksum"
+      ]
+    },
+    "toleranceCalibration": {
+      "passed": true,
+      "requiredCalibratedCoverage": 1.0,
+      "actualCalibratedCoverage": 1.0,
+      "requiredPattern": "official-cstb-cal-vN"
+    },
+    "reproducibleArtifacts": {
+      "passed": true,
+      "requiredLocalEvidenceFiles": 12,
+      "actualLocalEvidenceFiles": 12,
+      "evidenceDirectory": "/home/patrick/RE2020/re2020_lean/RE2020/data/validation/cases",
+      "missingEvidenceFiles": [],
+      "invalidEvidenceFiles": []
+    },
+    "passedCount": 4,
+    "totalCount": 4,
+    "allPassed": true
+  },
+  "components": [
+    {
+      "key": "guard_wiring_coverage",
+      "label": "Guard Wiring Coverage",
+      "weight": 30.0,
+      "score": 100.0,
+      "weightedContribution": 30.0,
+      "details": {
+        "requiredChecks": 19,
+        "foundChecks": 19,
+        "missingChecks": []
+      }
+    },
+    {
+      "key": "citation_catalog_finalization",
+      "label": "Citation Catalog Finalization",
+      "weight": 30.0,
+      "score": 100.0,
+      "weightedContribution": 30.0,
+      "details": {
+        "requiredIds": 59,
+        "finalizedIds": 59,
+        "missingInCatalog": [],
+        "nonFinalized": []
+      }
+    },
+    {
+      "key": "official_source_provenance",
+      "label": "Official Source Provenance",
+      "weight": 25.0,
+      "score": 100.0,
+      "weightedContribution": 25.0,
+      "details": {
+        "datasetVersion": "official-meteo-fr-v1",
+        "datasetVersionIsOfficial": true,
+        "benchmarkCaseCount": 12,
+        "sourceUriCount": 12,
+        "sourceDigestCount": 12,
+        "officialToleranceProfileCount": 12,
+        "calibratedToleranceProfileCount": 12,
+        "manifestProofFields": {
+          "sourceAuthority": "Meteo-France",
+          "sourceLicense": "Etalab-2.0",
+          "sourceUri": "https://data.meteofrance.fr/re2020/climate-zones-v1",
+          "sourceChecksum": "sha256=3f1e7a8f1e2ab80b658a6f48387c6e4c3e4e4cd2852f2f5c5e3ba4e1f6bcf2a1"
+        },
+        "manifestProofPresent": true
+      }
+    },
+    {
+      "key": "benchmark_reference_rigor",
+      "label": "Benchmark Reference Rigor",
+      "weight": 15.0,
+      "score": 100.0,
+      "weightedContribution": 15.0,
+      "details": {
+        "caseCount": 12,
+        "uniqueOfficialCaseIds": 12,
+        "nonPlaceholderSourceDocs": 12
+      }
+    }
+  ]
+}

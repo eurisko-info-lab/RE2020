@@ -10,6 +10,7 @@
 import RE2020.Types
 import RE2020.Building
 import RE2020.Lighting
+import RE2020.RegulationTables
 
 namespace RE2020
 
@@ -32,7 +33,10 @@ def calculateBbio
     (lightingNeeds : Float)
     (modulations : ModulationCoefficients)
     (bbioMaxMoyen : Float := 63.0) : Float :=
-  let rawBbio := 2.0 * heatingNeeds + 2.0 * coolingNeeds + 5.0 * lightingNeeds
+  let heatingWeight := bbioWeightValue "heating_need"
+  let coolingWeight := bbioWeightValue "cooling_need"
+  let lightingWeight := bbioWeightValue "lighting_need"
+  let rawBbio := heatingWeight * heatingNeeds + coolingWeight * coolingNeeds + lightingWeight * lightingNeeds
   let modulationFactor :=
       1.0 + modulations.geo + modulations.combles +
       modulations.surfMoy + modulations.surfTot + modulations.bruit
@@ -80,11 +84,8 @@ def calculateDHFromCanicule
     |>.zip occupancyMask
     |>.foldl (fun acc (((tInt, _), runningMean), occupied) =>
       if occupied then
-        -- Seuil adaptatif RE2020 (simplifié)
-        let tComfort :=
-          if runningMean > 28.0 then 28.0
-          else if runningMean > 26.0 then 27.0
-          else 26.0
+        -- Seuil adaptatif RE2020 via table de regulation traceable.
+        let tComfort := dhComfortThresholdForRunningMean runningMean
         let excess := max 0.0 (tInt - tComfort)
         acc + excess
       else acc
@@ -108,6 +109,6 @@ def calculateDH
 
 /-- Calcul des besoins d'éclairage (wrapper vers le module Lighting) -/
 def computeLightingNeeds (building : Building) : Float :=
-  building.groups.foldl (fun acc group => acc + group.referenceArea * 0.08) 0.0
+  calculateLightingNeedsByCategory building
 
 end RE2020

@@ -33,27 +33,139 @@ structure Generator where
   primaryEnergyFactor : Float    -- Facteur d'énergie primaire (par défaut)
   deriving Repr
 
+/-- Citation de provenance pour les conventions systèmes. -/
+structure SystemCitation where
+  sectionId : String
+  tableId : String
+  articleRef : String
+  version : String
+  deriving Repr
+
+/-- Entrée conventionnelle de générateur avec citation. -/
+structure GeneratorConventionEntry where
+  genType : GeneratorType
+  nominalEfficiency : Float
+  seasonalPerformance : Float
+  auxiliaryPower : Float
+  primaryEnergyFactor : Float
+  citation : SystemCitation
+  deriving Repr
+
+/-- Entrée de courbe de charge partielle avec citation. -/
+structure PartLoadCurveConventionEntry where
+  genType : GeneratorType
+  a0 : Float
+  a1 : Float
+  a2 : Float
+  a3 : Float := 0.0
+  citation : SystemCitation
+  deriving Repr
+
+private def mkSystemCitation (sectionId tableId articleRef : String) : SystemCitation :=
+  { sectionId := sectionId,
+    tableId := tableId,
+    articleRef := articleRef,
+    version := "2026-06-28" }
+
+/-- Table conventionnelle des paramètres générateurs. -/
+def generatorConventionTable : List GeneratorConventionEntry :=
+  [ { genType := .GasBoilerCondensing,
+      nominalEfficiency := 0.92,
+      seasonalPerformance := 0.90,
+      auxiliaryPower := 50.0,
+      primaryEnergyFactor := 1.0,
+      citation := mkSystemCitation "Annexe III" "SYS-GEN-GAS-COND"
+        "Conventions systemes - chaudiere gaz condensation" },
+    { genType := .OilBoiler,
+      nominalEfficiency := 0.88,
+      seasonalPerformance := 0.85,
+      auxiliaryPower := 60.0,
+      primaryEnergyFactor := 1.0,
+      citation := mkSystemCitation "Annexe III" "SYS-GEN-OIL"
+        "Conventions systemes - chaudiere fioul" },
+    { genType := .WoodBoiler,
+      nominalEfficiency := 0.85,
+      seasonalPerformance := 0.82,
+      auxiliaryPower := 55.0,
+      primaryEnergyFactor := 1.0,
+      citation := mkSystemCitation "Annexe III" "SYS-GEN-WOOD"
+        "Conventions systemes - chaudiere biomasse" },
+    { genType := .HeatPumpAirAir,
+      nominalEfficiency := 3.2,
+      seasonalPerformance := 2.8,
+      auxiliaryPower := 80.0,
+      primaryEnergyFactor := 2.3,
+      citation := mkSystemCitation "Annexe III" "SYS-GEN-HP-AA"
+        "Conventions systemes - PAC air-air" },
+    { genType := .HeatPumpAirWater,
+      nominalEfficiency := 3.5,
+      seasonalPerformance := 3.0,
+      auxiliaryPower := 100.0,
+      primaryEnergyFactor := 2.3,
+      citation := mkSystemCitation "Annexe III" "SYS-GEN-HP-AW"
+        "Conventions systemes - PAC air-eau" },
+    { genType := .HeatPumpWaterWater,
+      nominalEfficiency := 4.2,
+      seasonalPerformance := 3.7,
+      auxiliaryPower := 110.0,
+      primaryEnergyFactor := 2.3,
+      citation := mkSystemCitation "Annexe III" "SYS-GEN-HP-WW"
+        "Conventions systemes - PAC eau-eau" },
+    { genType := .DistrictHeating,
+      nominalEfficiency := 0.95,
+      seasonalPerformance := 0.90,
+      auxiliaryPower := 30.0,
+      primaryEnergyFactor := 1.0,
+      citation := mkSystemCitation "Annexe III" "SYS-GEN-DH"
+        "Conventions systemes - reseau de chaleur" },
+    { genType := .ElectricHeating,
+      nominalEfficiency := 1.0,
+      seasonalPerformance := 1.0,
+      auxiliaryPower := 20.0,
+      primaryEnergyFactor := 2.3,
+      citation := mkSystemCitation "Annexe III" "SYS-GEN-ELEC"
+        "Conventions systemes - chauffage electrique" } ]
+
+private def generatorConventionEntry? (genType : GeneratorType) : Option GeneratorConventionEntry :=
+  generatorConventionTable.find? (fun e => e.genType == genType)
+
+/-- Générateur conventionnel pour un type donné, si disponible. -/
+def generatorConvention? (genType : GeneratorType) : Option Generator :=
+  (generatorConventionEntry? genType).map (fun e =>
+    { genType := e.genType,
+      nominalEfficiency := e.nominalEfficiency,
+      seasonalPerformance := e.seasonalPerformance,
+      auxiliaryPower := e.auxiliaryPower,
+      primaryEnergyFactor := e.primaryEnergyFactor })
+
+/-- Citation de la convention générateur pour un type donné. -/
+def generatorConventionCitation? (genType : GeneratorType) : Option SystemCitation :=
+  (generatorConventionEntry? genType).map (·.citation)
+
 /-- Générateurs par défaut conformes aux conventions RE2020 -/
 def defaultGasBoiler : Generator :=
-  { genType := GeneratorType.GasBoilerCondensing,
-    nominalEfficiency := 0.92,
-    seasonalPerformance := 0.90,
-    auxiliaryPower := 50.0,
-    primaryEnergyFactor := 1.0 }
+  (generatorConvention? GeneratorType.GasBoilerCondensing).getD
+    { genType := GeneratorType.GasBoilerCondensing,
+      nominalEfficiency := 0.92,
+      seasonalPerformance := 0.90,
+      auxiliaryPower := 50.0,
+      primaryEnergyFactor := 1.0 }
 
 def defaultAirWaterHeatPump : Generator :=
-  { genType := GeneratorType.HeatPumpAirWater,
-    nominalEfficiency := 3.5,      -- COP nominal
-    seasonalPerformance := 3.0,    -- SCOP moyen
-    auxiliaryPower := 100.0,
-    primaryEnergyFactor := 2.3 }   -- électricité
+  (generatorConvention? GeneratorType.HeatPumpAirWater).getD
+    { genType := GeneratorType.HeatPumpAirWater,
+      nominalEfficiency := 3.5,
+      seasonalPerformance := 3.0,
+      auxiliaryPower := 100.0,
+      primaryEnergyFactor := 2.3 }
 
 def defaultDistrictHeating : Generator :=
-  { genType := GeneratorType.DistrictHeating,
-    nominalEfficiency := 0.95,
-    seasonalPerformance := 0.90,
-    auxiliaryPower := 30.0,
-    primaryEnergyFactor := 1.0 }
+  (generatorConvention? GeneratorType.DistrictHeating).getD
+    { genType := GeneratorType.DistrictHeating,
+      nominalEfficiency := 0.95,
+      seasonalPerformance := 0.90,
+      auxiliaryPower := 30.0,
+      primaryEnergyFactor := 1.0 }
 
 /-- Calcule la consommation finale d'énergie pour un besoin thermique donné -/
 def calculateFinalEnergy (thermalNeeds : Float) (generator : Generator) : Float :=
@@ -62,7 +174,7 @@ def calculateFinalEnergy (thermalNeeds : Float) (generator : Generator) : Float 
   else
     thermalNeeds / generator.nominalEfficiency
 
-/-- Consommation auxiliaires (simplifiée) -/
+/-- Consommation auxiliaires (modèle conventionnel) -/
 def calculateAuxiliaryEnergy (operatingHours : Float) (generator : Generator) : Float :=
   generator.auxiliaryPower * operatingHours / 1000.0   -- kWh
 
@@ -79,7 +191,7 @@ def calculateTotalFinalEnergy
 def toPrimaryEnergy (finalEnergy : Float) (generator : Generator) : Float :=
   finalEnergy * generator.primaryEnergyFactor
 
-/-- Modélisation simplifiée du rendement à charge partielle
+/-- Modélisation du rendement à charge partielle
     (modèle linéaire simple - peut être enrichi) -/
 def partLoadEfficiency (loadRatio : Float) (generator : Generator) : Float :=
   let base := generator.seasonalPerformance
@@ -121,6 +233,45 @@ def defaultHeatPumpPartLoadCurve : PartLoadCurve :=
 def defaultBoilerPartLoadCurve : PartLoadCurve :=
   { a0 := 0.82, a1 := 0.25, a2 := -0.07 }  -- chaudière condensation
 
+/-- Table conventionnelle des courbes de charge partielle. -/
+def partLoadCurveConventionTable : List PartLoadCurveConventionEntry :=
+  [ { genType := .HeatPumpAirWater,
+      a0 := 0.60,
+      a1 := 0.95,
+      a2 := -0.55,
+      citation := mkSystemCitation "Annexe III" "SYS-PLC-HP-AW"
+        "Courbe de charge partielle PAC air-eau" },
+    { genType := .HeatPumpAirAir,
+      a0 := 0.60,
+      a1 := 0.95,
+      a2 := -0.55,
+      citation := mkSystemCitation "Annexe III" "SYS-PLC-HP-AA"
+        "Courbe de charge partielle PAC air-air" },
+    { genType := .GasBoilerCondensing,
+      a0 := 0.80,
+      a1 := 0.30,
+      a2 := -0.10,
+      citation := mkSystemCitation "Annexe III" "SYS-PLC-GAS-COND"
+        "Courbe de charge partielle chaudiere condensation" },
+    { genType := .WoodBoiler,
+      a0 := 0.70,
+      a1 := 0.40,
+      a2 := -0.10,
+      citation := mkSystemCitation "Annexe III" "SYS-PLC-WOOD"
+        "Courbe de charge partielle chaudiere biomasse" } ]
+
+private def partLoadCurveConventionEntry? (genType : GeneratorType) : Option PartLoadCurveConventionEntry :=
+  partLoadCurveConventionTable.find? (fun e => e.genType == genType)
+
+/-- Courbe de charge partielle conventionnelle pour un type donné. -/
+def partLoadCurveConvention? (genType : GeneratorType) : Option PartLoadCurve :=
+  (partLoadCurveConventionEntry? genType).map (fun e =>
+    { a0 := e.a0, a1 := e.a1, a2 := e.a2, a3 := e.a3 })
+
+/-- Citation de courbe de charge partielle conventionnelle. -/
+def partLoadCurveCitation? (genType : GeneratorType) : Option SystemCitation :=
+  (partLoadCurveConventionEntry? genType).map (·.citation)
+
 /-- Version avancée avec courbe polynomiale -/
 def calculateFinalEnergyWithPolynomialCurve
     (thermalNeeds : Float)
@@ -161,7 +312,7 @@ def applyWeatherCompensation
     (slope : Float := 0.5) : Float :=
   baseSetpoint + slope * (20.0 - outdoorTemp)  -- exemple de loi d'eau
 
-/-- Modélisation simplifiée de l'ECS (Eau Chaude Sanitaire) -/
+/-- Modélisation de l'ECS (Eau Chaude Sanitaire) -/
 structure DHWSystem where
   dailyNeeds : Float          -- litres/jour ou kWh/jour
   generator : Generator
@@ -186,14 +337,7 @@ def calculateCoolingFinalEnergy
 
 /-- Courbes de rendement plus détaillées par type de générateur -/
 def getDefaultPartLoadCurve (genType : GeneratorType) : PartLoadCurve :=
-  match genType with
-  | GeneratorType.HeatPumpAirWater | GeneratorType.HeatPumpAirAir =>
-      { a0 := 0.60, a1 := 0.95, a2 := -0.55 }
-  | GeneratorType.GasBoilerCondensing =>
-      { a0 := 0.80, a1 := 0.30, a2 := -0.10 }
-  | GeneratorType.WoodBoiler =>
-      { a0 := 0.70, a1 := 0.40, a2 := -0.10 }
-  | _ => defaultBoilerPartLoadCurve
+  (partLoadCurveConvention? genType).getD defaultBoilerPartLoadCurve
 
 /-- Stockage thermique (ballon tampon ou ballon ECS) -/
 structure ThermalStorage where
@@ -204,7 +348,7 @@ structure ThermalStorage where
 def storageCapacity (storage : ThermalStorage) : Float :=
   storage.volume * 4.18 * storage.deltaT / 3600.0   -- kWh approx
 
-/-- Impact simplifié du stockage sur les performances (réduction des cycles) -/
+/-- Impact du stockage sur les performances (réduction des cycles) -/
 def applyStorageEffect
     (baseConsumption : Float)
     (storage : ThermalStorage)
@@ -379,7 +523,7 @@ def calculateDetailedDistributionLoss (d : DetailedDistribution) : Float :=
                       (1.0 / d.pipeDiameter + resistance)
   lossPerMeter * d.length
 
-/-- Stockage thermique avec stratification simplifiée -/
+/-- Stockage thermique avec stratification -/
 structure StratifiedStorage where
   volume : Float
   upperTemp : Float
@@ -465,7 +609,7 @@ def calculateVentilationConsumption
     (averageLoad : Float) : Float :=
   vent.specificPower * vent.nominalAirflow * averageLoad * hours / 1000.0
 
-/-- ECS solaire thermique simplifié (Annexe III) -/
+/-- ECS solaire thermique (Annexe III) -/
 structure SolarThermalDHW where
   collectorArea : Float
   efficiency : Float

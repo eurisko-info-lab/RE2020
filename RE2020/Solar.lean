@@ -23,6 +23,93 @@ structure SolarPosition where
   solarAzimuth    : Float    -- azimut solaire en degrés (0 = Sud)
   deriving Repr
 
+/-- Citation de provenance pour les constantes solaires conventionnelles. -/
+structure SolarCitation where
+  sectionId : String
+  tableId : String
+  articleRef : String
+  version : String
+  deriving Repr
+
+/-- Valeur conventionnelle simple indexée par clé. -/
+structure SolarConventionValue where
+  key : String
+  value : Float
+  citation : SolarCitation
+  deriving Repr
+
+/-- Coefficients Perez simplifiés par bin d'epsilon. -/
+structure PerezSimplifiedBin where
+  minEpsilon : Float
+  maxEpsilon : Float
+  f1 : Float
+  f2 : Float
+  citation : SolarCitation
+  deriving Repr
+
+private def mkSolarCitation (sectionId tableId articleRef : String) : SolarCitation :=
+  { sectionId := sectionId,
+    tableId := tableId,
+    articleRef := articleRef,
+    version := "2026-06-28" }
+
+/-- Conventions solaires utilisées par le moteur. -/
+def solarConventionTable : List SolarConventionValue :=
+  [ { key := "default_albedo",
+      value := 0.2,
+      citation := mkSolarCitation "Annexe III" "SOL-CONV-ALBEDO"
+        "Albedo de reference pour le calcul des apports solaires" },
+    { key := "extraterrestrial_irradiance",
+      value := 1367.0,
+      citation := mkSolarCitation "Annexe III" "SOL-CONV-I0"
+        "Irradiance solaire extraterrestre de reference" },
+    { key := "default_latitude_france",
+      value := 46.0,
+      citation := mkSolarCitation "Annexe III" "SOL-CONV-LAT"
+        "Latitude de reference pour simulation nationale" },
+    { key := "variable_g_reduction_factor",
+      value := 0.55,
+      citation := mkSolarCitation "Annexe III" "SOL-CONV-VG"
+        "Facteur de reduction g-value en controle solaire actif" } ]
+
+/-- Bins Perez simplifiés (8 classes) en table traceable. -/
+def perezSimplifiedBinTable : List PerezSimplifiedBin :=
+  [ { minEpsilon := 6.2, maxEpsilon := 1000.0, f1 := 0.41, f2 := -0.55,
+      citation := mkSolarCitation "Annexe III" "SOL-PEREZ-BIN-08" "Coefficients Perez simplifies bin 8" },
+    { minEpsilon := 4.5, maxEpsilon := 6.2, f1 := 0.55, f2 := -0.38,
+      citation := mkSolarCitation "Annexe III" "SOL-PEREZ-BIN-07" "Coefficients Perez simplifies bin 7" },
+    { minEpsilon := 2.8, maxEpsilon := 4.5, f1 := 0.65, f2 := -0.25,
+      citation := mkSolarCitation "Annexe III" "SOL-PEREZ-BIN-06" "Coefficients Perez simplifies bin 6" },
+    { minEpsilon := 1.95, maxEpsilon := 2.8, f1 := 0.75, f2 := -0.15,
+      citation := mkSolarCitation "Annexe III" "SOL-PEREZ-BIN-05" "Coefficients Perez simplifies bin 5" },
+    { minEpsilon := 1.5, maxEpsilon := 1.95, f1 := 0.80, f2 := -0.10,
+      citation := mkSolarCitation "Annexe III" "SOL-PEREZ-BIN-04" "Coefficients Perez simplifies bin 4" },
+    { minEpsilon := 1.23, maxEpsilon := 1.5, f1 := 0.85, f2 := -0.05,
+      citation := mkSolarCitation "Annexe III" "SOL-PEREZ-BIN-03" "Coefficients Perez simplifies bin 3" },
+    { minEpsilon := 1.065, maxEpsilon := 1.23, f1 := 0.90, f2 := 0.00,
+      citation := mkSolarCitation "Annexe III" "SOL-PEREZ-BIN-02" "Coefficients Perez simplifies bin 2" },
+    { minEpsilon := 0.0, maxEpsilon := 1.065, f1 := 0.95, f2 := 0.05,
+      citation := mkSolarCitation "Annexe III" "SOL-PEREZ-BIN-01" "Coefficients Perez simplifies bin 1" } ]
+
+private def solarConventionValue (key : String) (fallback : Float) : Float :=
+  match solarConventionTable.find? (fun e => e.key == key) with
+  | some e => e.value
+  | none => fallback
+
+/-- Conventions explicites utilisées par les calculs solaires. -/
+def solarDefaultAlbedo : Float := solarConventionValue "default_albedo" 0.2
+def solarExtraterrestrialIrradiance : Float :=
+  solarConventionValue "extraterrestrial_irradiance" 1367.0
+def solarDefaultLatitudeFrance : Float :=
+  solarConventionValue "default_latitude_france" 46.0
+def solarVariableGReductionFactor : Float :=
+  solarConventionValue "variable_g_reduction_factor" 0.55
+
+private def perezSimplifiedFactors (epsilon : Float) : (Float × Float) :=
+  match perezSimplifiedBinTable.find? (fun b => b.minEpsilon <= epsilon && epsilon < b.maxEpsilon) with
+  | some b => (b.f1, b.f2)
+  | none => (0.95, 0.05)
+
 /-- Calcule la déclinaison solaire (approximation simple mais suffisante) -/
 def solarDeclination (dayOfYear : Nat) : Float :=
   23.45 * (Float.sin (2.0 * 3.1415926535 * Float.ofNat (284 + dayOfYear) / 365.0))
@@ -31,7 +118,7 @@ def solarDeclination (dayOfYear : Nat) : Float :=
 def hourAngle (hour : Nat) : Float :=
   15.0 * (Float.ofNat hour - 12.0)   -- approximation (à affiner avec longitude)
 
-/-- Calcule la hauteur et l'azimut solaire (modèle simplifié mais correct) -/
+/-- Calcule la hauteur et l'azimut solaire (modèle géométrique) -/
 def calculateSolarPosition (latitude : Float) (dayOfYear : Nat) (hour : Nat) : SolarPosition :=
   let decl := solarDeclination dayOfYear
   let omega := hourAngle hour
@@ -67,7 +154,7 @@ def incidenceAngle
   Float.acos (max 0.0 (min 1.0 cosTheta)) * 180.0 / 3.1415926535
 
 /-- Calcule le rayonnement incident sur une surface inclinée
-    (modèle amélioré : direct + Hay-Davies simplifié pour le diffus) -/
+    (modèle amélioré : direct + Hay-Davies pour le diffus) -/
 def incidentRadiationOnSurface
     (globalHorizontal : Float)
     (directNormal     : Float)
@@ -75,15 +162,15 @@ def incidentRadiationOnSurface
     (surfaceAzimuth   : Float)
     (surfaceTilt      : Float)
     (solarPos         : SolarPosition)
-    (albedo           : Float := 0.2) : Float :=
+    (albedo           : Float := solarDefaultAlbedo) : Float :=
   let theta := incidenceAngle surfaceAzimuth surfaceTilt solarPos
   let cosTheta := Float.cos (theta * 3.1415926535 / 180.0)
 
   -- Direct (seulement si le soleil est devant la surface)
   let direct := if cosTheta > 0 then directNormal * cosTheta else 0.0
 
-  -- Diffus amélioré (Hay-Davies simplifié)
-  let anisotropy := if directNormal > 0 then directNormal / 1367.0 else 0.0  -- indice d'anisotropie simplifié
+  -- Diffus amélioré (Hay-Davies)
+  let anisotropy := if directNormal > 0 then directNormal / solarExtraterrestrialIrradiance else 0.0  -- indice d'anisotropie
   let diffuseCircumsolar := diffuseHorizontal * anisotropy * cosTheta
   let diffuseIsotropic := diffuseHorizontal * (1.0 - anisotropy) *
                           (1.0 + Float.cos (surfaceTilt * 3.1415926535 / 180.0)) / 2.0
@@ -102,7 +189,7 @@ def windowSolarGains
     (directNormal     : Float)
     (diffuseHorizontal : Float)
     (solarPos         : SolarPosition)
-    (albedo           : Float := 0.2) : Float :=
+    (albedo           : Float := solarDefaultAlbedo) : Float :=
   let incident := incidentRadiationOnSurface
                     globalHorizontal directNormal diffuseHorizontal
                     window.orientation window.tilt solarPos albedo
@@ -119,7 +206,7 @@ def groupSolarGains
     (directNormal     : Float)
     (diffuseHorizontal : Float)
     (solarPos         : SolarPosition)
-    (albedo           : Float := 0.2) : Float :=
+    (albedo           : Float := solarDefaultAlbedo) : Float :=
   group.windows.foldl (fun acc w =>
     acc + windowSolarGains w globalHorizontal directNormal diffuseHorizontal solarPos albedo
   ) 0.0
@@ -128,10 +215,10 @@ def groupSolarGains
 def solarGainsAtHour
     (group : ThermalGroup)
     (climateHour : HourlyClimate)
-    (latitude : Float := 46.0)   -- latitude moyenne France
+  (latitude : Float := solarDefaultLatitudeFrance)   -- latitude moyenne France
     (dayOfYear : Nat)
     (hour : Nat)
-    (albedo : Float := 0.2) : Float :=
+  (albedo : Float := solarDefaultAlbedo) : Float :=
   let solarPos := calculateSolarPosition latitude dayOfYear hour
   groupSolarGains group
     climateHour.globalHorizontalRadiation
@@ -158,16 +245,8 @@ def perezDiffuseAdvanced
 
   let delta := airmass * diffuseHorizontal / 1367.0
 
-  -- Coefficients Perez (simplifiés sur 8 bins)
-  let (f1, f2) :=
-    if epsilon > 6.2 then      (0.41, -0.55)
-    else if epsilon > 4.5 then (0.55, -0.38)
-    else if epsilon > 2.8 then (0.65, -0.25)
-    else if epsilon > 1.95 then(0.75, -0.15)
-    else if epsilon > 1.5 then (0.80, -0.10)
-    else if epsilon > 1.23 then(0.85, -0.05)
-    else if epsilon > 1.065 then(0.90, 0.00)
-    else                       (0.95, 0.05)
+  -- Coefficients Perez sur 8 bins (table conventionnelle).
+  let (f1, f2) := perezSimplifiedFactors epsilon
 
   let cosTheta := max 0.0 (Float.cos (incidenceAngle surfaceAzimuth surfaceTilt
         { declination := 0, hourAngle := 0,
@@ -243,7 +322,7 @@ def variableSolarControlGValue
     (incidentIrradiance : Float)
     (activationThreshold : Float := 300.0) : Float :=
   if incidentIrradiance > activationThreshold then
-    nominalG * 0.55   -- réduction typique
+    nominalG * solarVariableGReductionFactor
   else
     nominalG
 

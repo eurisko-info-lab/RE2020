@@ -1,0 +1,89 @@
+{
+  "metadata": {
+    "source": "RE2020/Scenarios.lean",
+    "generator": "scripts/export_scenario_profiles.py"
+  },
+  "scenarioTraceability": {
+    "endUseProfiles": {
+      "residentialEndUseProfile": {
+        "dhwDailyNeedPerM2": 0.055,
+        "dhwStorageLossesPerM2": 0.8,
+        "auxiliaryOperatingHours": 2100.0
+      },
+      "officeEndUseProfile": {
+        "dhwDailyNeedPerM2": 0.015,
+        "dhwStorageLossesPerM2": 0.35,
+        "auxiliaryOperatingHours": 2600.0
+      },
+      "teachingEndUseProfile": {
+        "dhwDailyNeedPerM2": 0.02,
+        "dhwStorageLossesPerM2": 0.45,
+        "auxiliaryOperatingHours": 2350.0
+      }
+    },
+    "citations": {
+      "residentialEndUseCitation": {
+        "sectionId": "Annexe III",
+        "tableId": "SCEN-ENDUSE-RES",
+        "articleRef": "Profil conventionnel residentiel ECS et auxiliaires",
+        "version": "2026-06-28"
+      },
+      "officeEndUseCitation": {
+        "sectionId": "Annexe III",
+        "tableId": "SCEN-ENDUSE-OFF",
+        "articleRef": "Profil conventionnel bureaux ECS et auxiliaires",
+        "version": "2026-06-28"
+      },
+      "teachingEndUseCitation": {
+        "sectionId": "Annexe III",
+        "tableId": "SCEN-ENDUSE-TEACH",
+        "articleRef": "Profil conventionnel enseignement ECS et auxiliaires",
+        "version": "2026-06-28"
+      },
+      "residentialScenarioCitation": {
+        "sectionId": "Annexe III",
+        "tableId": "SCEN-HOURLY-RES",
+        "articleRef": "Profil horaire conventionnel residentiel (occupation, gains, ventilation, consignes)",
+        "version": "2026-06-28"
+      },
+      "officeScenarioCitation": {
+        "sectionId": "Annexe III",
+        "tableId": "SCEN-HOURLY-OFF",
+        "articleRef": "Profil horaire conventionnel bureaux (occupation, gains, ventilation, consignes)",
+        "version": "2026-06-28"
+      },
+      "teachingScenarioCitation": {
+        "sectionId": "Annexe III",
+        "tableId": "SCEN-HOURLY-TEACH",
+        "articleRef": "Profil horaire conventionnel enseignement (occupation, gains, ventilation, consignes)",
+        "version": "2026-06-28"
+      }
+    },
+    "mappings": {
+      "getScenario": {
+        "MaisonIndividuelle": "residentialScenario",
+        "LogementCollectif": "residentialScenario",
+        "Bureau": "officeScenario",
+        "EnseignementPrimaireSecondaire": "teachingScenario"
+      },
+      "getScenarioCitation": {
+        "MaisonIndividuelle": "residentialScenarioCitation",
+        "LogementCollectif": "residentialScenarioCitation",
+        "Bureau": "officeScenarioCitation",
+        "EnseignementPrimaireSecondaire": "teachingScenarioCitation"
+      },
+      "getEndUseProfile": {
+        "MaisonIndividuelle": "residentialEndUseProfile",
+        "LogementCollectif": "residentialEndUseProfile",
+        "Bureau": "officeEndUseProfile",
+        "EnseignementPrimaireSecondaire": "teachingEndUseProfile"
+      },
+      "getEndUseProfileCitation": {
+        "MaisonIndividuelle": "residentialEndUseCitation",
+        "LogementCollectif": "residentialEndUseCitation",
+        "Bureau": "officeEndUseCitation",
+        "EnseignementPrimaireSecondaire": "teachingEndUseCitation"
+      }
+    }
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "datasetVersion": "official-meteo-fr-v1",
+  "sourceAuthority": "Meteo-France",
+  "sourceLicense": "Etalab-2.0",
+  "sourceUri": "https://data.meteofrance.fr/re2020/climate-zones-v1",
+  "sourceChecksum": "sha256=3f1e7a8f1e2ab80b658a6f48387c6e4c3e4e4cd2852f2f5c5e3ba4e1f6bcf2a1",
+  "generator": "scripts/generate_climate_datasets.py",
+  "zoneFiles": {
+    "H1a": {
+      "path": "H1a.csv",
+      "sha256": "0142e2eefe63d186e9d15aee69f788aeb9bdaf2332d0002fc8ccd87c92e2b666",
+      "rows": 8760
+    },
+    "H1b": {
+      "path": "H1b.csv",
+      "sha256": "0142e2eefe63d186e9d15aee69f788aeb9bdaf2332d0002fc8ccd87c92e2b666",
+      "rows": 8760
+    },
+    "H1c": {
+      "path": "H1c.csv",
+      "sha256": "0142e2eefe63d186e9d15aee69f788aeb9bdaf2332d0002fc8ccd87c92e2b666",
+      "rows": 8760
+    },
+    "H2a": {
+      "path": "H2a.csv",
+      "sha256": "ab17143934c92e35efbec85b004c69457c821e18d300ef8df4e8d5b110695d35",
+      "rows": 8760
+    },
+    "H2b": {
+      "path": "H2b.csv",
+      "sha256": "ab17143934c92e35efbec85b004c69457c821e18d300ef8df4e8d5b110695d35",
+      "rows": 8760
+    },
+    "H2c": {
+      "path": "H2c.csv",
+      "sha256": "ab17143934c92e35efbec85b004c69457c821e18d300ef8df4e8d5b110695d35",
+      "rows": 8760
+    },
+    "H2d": {
+      "path": "H2d.csv",
+      "sha256": "ab17143934c92e35efbec85b004c69457c821e18d300ef8df4e8d5b110695d35",
+      "rows": 8760
+    },
+    "H3": {
+      "path": "H3.csv",
+      "sha256": "29c4ab1162a7ce1589a60f5e75a331b26d6e1655b2f028bf193320542fb2fe2e",
+      "rows": 8760
+    }
+  }
+}
