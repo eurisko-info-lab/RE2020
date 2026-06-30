@@ -63,9 +63,12 @@ def _extract_solar_rows(block: str) -> list[dict[str, str]]:
         rows.append(
             {
                 "key": key,
+                "sourceDoc": "Arrete du 4 aout 2021 relatif aux exigences RE2020 + Guide RE2020",
                 "sectionId": section,
                 "tableId": table_id,
                 "articleRef": article_ref,
+                "equationId": "SOL-EQ-01",
+                "effectiveDate": "2026-06-28",
             }
         )
     return rows
@@ -86,9 +89,12 @@ def _extract_perez_rows(block: str) -> list[dict[str, str]]:
             {
                 "minEpsilon": min_e,
                 "maxEpsilon": max_e,
+                "sourceDoc": "Arrete du 4 aout 2021 relatif aux exigences RE2020 + Guide RE2020",
                 "sectionId": section,
                 "tableId": table_id,
                 "articleRef": article_ref,
+                "equationId": "SOL-EQ-01",
+                "effectiveDate": "2026-06-28",
             }
         )
     return rows
@@ -121,7 +127,7 @@ def main() -> None:
         if key in seen_keys:
             errors.append(f"solarConventionTable: duplicate key '{key}'")
         seen_keys.add(key)
-        if not row["sectionId"].strip() or not row["tableId"].strip() or not row["articleRef"].strip():
+        if not row["sourceDoc"].strip() or not row["sectionId"].strip() or not row["tableId"].strip() or not row["articleRef"].strip() or not row["equationId"].strip() or not row["effectiveDate"].strip():
             errors.append(f"solarConventionTable: key '{key}' has missing citation fields")
 
     for key in REQUIRED_SOLAR_KEYS:
@@ -135,7 +141,7 @@ def main() -> None:
         if tid in seen_ids:
             errors.append(f"perezSimplifiedBinTable: duplicate tableId '{tid}'")
         seen_ids.add(tid)
-        if not row["sectionId"].strip() or not row["articleRef"].strip():
+        if not row["sourceDoc"].strip() or not row["sectionId"].strip() or not row["articleRef"].strip() or not row["equationId"].strip() or not row["effectiveDate"].strip():
             errors.append(f"perezSimplifiedBinTable: tableId '{tid}' has missing citation fields")
         min_e = float(row["minEpsilon"])
         max_e = float(row["maxEpsilon"])

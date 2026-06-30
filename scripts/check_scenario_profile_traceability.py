@@ -40,7 +40,7 @@ REQUIRED_SCENARIO_CITATION_DEFS = [
     "teachingScenarioCitation",
 ]
 
-REQUIRED_CITATION_FIELDS = ["sectionId", "tableId", "articleRef", "version"]
+REQUIRED_CITATION_FIELDS = ["sourceDoc", "sectionId", "tableId", "articleRef", "equationId", "version", "effectiveDate"]
 
 
 def parse_args() -> argparse.Namespace:

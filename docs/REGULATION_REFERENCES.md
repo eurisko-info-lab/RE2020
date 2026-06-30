@@ -55,6 +55,7 @@ Exemples d'identifiants de table suivis dans le catalogue :
 - `MCCAT-*`
 - `MBSURFMOY-*`
 - `MBSURFTOT-*`
+- `IND-BBIO-METHOD`
 
 Ancrages directs dans l'implémentation :
 
@@ -79,6 +80,9 @@ Exemples d'identifiants suivis :
 - `PENR-*`
 - `SCEN-HOURLY-*`
 - `SCEN-ENDUSE-*`
+- `IND-CEP-METHOD`
+- `IND-CEPNR-METHOD`
+- `IND-DH-METHOD`
 - les identifiants de conventions systèmes embarqués dans `Systems.lean`
 
 Ancrages directs dans l'implémentation :
@@ -88,6 +92,47 @@ Ancrages directs dans l'implémentation :
 - `RE2020/BuildingCategory/Common.lean` pour l'assemblage des indicateurs, la logique systèmes/résilience et les comparaisons calibrées ;
 - `RE2020/Indicators.lean` pour les calculs `Cep`, `Cep,nr` et inconfort ;
 - `RE2020/Lighting.lean` et `RE2020/Solar.lean` pour les paramètres d'éclairage et conventions solaires.
+
+## Clés juridiques fines désormais exposées
+
+Le dépôt ne se limite plus à des ancres de haut niveau (`Annexe II`, `Annexe III`, tables de coefficients). Une première vague de clés juridiques fines est maintenant exposée dans le code et les exports machine-lisibles.
+
+Champs actuellement portés dans les structures de citation selon les modules :
+
+1. `sourceDoc`
+1. `sectionId`
+2. `tableId`
+3. `articleRef`
+4. `equationId`
+5. `version`
+6. `effectiveDate`
+
+Premiers ancrages méthode/équation explicités :
+
+1. `IND-BBIO-METHOD` / `BBIO-EQ-01`
+2. `IND-CEP-METHOD` / `CEP-EQ-01`
+3. `IND-CEPNR-METHOD` / `CEPNR-EQ-01`
+4. `IND-DH-METHOD` / `DH-EQ-01`
+5. `SCEN-HOURLY-*` / `SCEN-HOURLY-EQ-01`
+6. `SCEN-ENDUSE-*` / `SCEN-ENDUSE-EQ-01`
+7. `LIGHT-PARAM-*` / `LIGHT-EQ-01`
+8. `SYS-GEN-*` et conventions de charge partielle / `SYS-EQ-01`
+9. `SOL-CONV-*` et `SOL-PEREZ-BIN-*` / `SOL-EQ-01`
+
+Ces clés fines sont visibles à la fois :
+
+1. dans les définitions Lean concernées ;
+2. dans `RE2020/data/regulation_tables_export.json` pour les citations de tables, de systèmes, de solaire et les méthodes d'indicateurs exportées ;
+3. dans `RE2020/data/scenario_profiles_export.json` pour les profils de scénario et d'usages finaux ;
+4. dans les gardes structurels dédiés pour les systèmes, le solaire, les scénarios et l'éclairage, qui exigent désormais explicitement la présence de ces clés fines dans les sources concernées ;
+5. dans les gardes d'export machine-lisibles, qui exigent maintenant aussi `sourceDoc` et `effectiveDate` lorsque ces champs font partie du schéma exporté.
+
+Normalisation atteinte à ce stade :
+
+1. les citations d'indicateurs portent `sourceDoc`, `sectionId`, `tableId`, `articleRef`, `equationId`, `version`, `effectiveDate` ;
+2. les citations de scénarios et d'usages finaux portent désormais le même niveau de provenance ;
+3. les citations d'éclairage, de systèmes et de solaire portent également `sourceDoc` et `effectiveDate` directement dans les structures Lean sources ;
+4. les gardes structuraux et d'export imposent cette présence sur les surfaces déjà couvertes par la première vague de déploiement.
 
 ### Méthode Th-BCE 2020
 
@@ -138,7 +183,8 @@ Les principaux artefacts qui portent ou structurent ces références sont :
 2. `docs/REGULATION_TRACEABILITY_MATRIX.md`
 3. `RE2020/data/regulation_traceability_matrix.json`
 4. `RE2020/data/regulation_tables_export.json`
-5. les définitions porteuses de citations dans `RE2020/RegulationTables.lean`, `RE2020/Systems.lean`, `RE2020/Scenarios.lean`, `RE2020/Lighting.lean` et les modules associés
+5. `RE2020/data/scenario_profiles_export.json`
+6. les définitions porteuses de citations dans `RE2020/RegulationTables.lean`, `RE2020/Systems.lean`, `RE2020/Scenarios.lean`, `RE2020/Lighting.lean`, `RE2020/Indicators.lean` et les modules associés
 
 Carte rapide d'implémentation :
 

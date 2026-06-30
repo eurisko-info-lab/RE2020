@@ -22,6 +22,46 @@ structure Indicators where
   dh     : Float    -- °C.h (degrés-heures d'inconfort)
   deriving Repr
 
+/-- Ancre légale explicite de la méthode Bbio portée par le calculateur. -/
+def calculateBbioCitation : RegulationCitation :=
+  { sourceDoc := "Arrete du 4 aout 2021 relatif aux exigences RE2020 + Guide RE2020",
+    sectionId := "Annexe II",
+    tableId := "IND-BBIO-METHOD",
+    articleRef := "Formule Bbio conventionnelle a poids chauffage/refroidissement/eclairage",
+    equationId := "BBIO-EQ-01",
+    version := "2026-06-30",
+    effectiveDate := "2026-06-30" }
+
+/-- Ancre légale explicite de la méthode Cep portée par le calculateur. -/
+def calculateCepCitation : RegulationCitation :=
+  { sourceDoc := "Arrete du 4 aout 2021 relatif aux exigences RE2020 + Guide RE2020",
+    sectionId := "Annexe III",
+    tableId := "IND-CEP-METHOD",
+    articleRef := "Somme des usages energetiques pondérés par facteurs EP et modulations",
+    equationId := "CEP-EQ-01",
+    version := "2026-06-30",
+    effectiveDate := "2026-06-30" }
+
+/-- Ancre légale explicite de la méthode Cep,nr portée par le calculateur. -/
+def calculateCepNrCitation : RegulationCitation :=
+  { sourceDoc := "Arrete du 4 aout 2021 relatif aux exigences RE2020 + Guide RE2020",
+    sectionId := "Annexe III",
+    tableId := "IND-CEPNR-METHOD",
+    articleRef := "Somme des usages energetiques pondérés par facteurs non renouvelables",
+    equationId := "CEPNR-EQ-01",
+    version := "2026-06-30",
+    effectiveDate := "2026-06-30" }
+
+/-- Ancre légale explicite de la méthode DH portée par le calculateur. -/
+def calculateDHFromCaniculeCitation : RegulationCitation :=
+  { sourceDoc := "Arrete du 4 aout 2021 relatif aux exigences RE2020 + Guide RE2020",
+    sectionId := "Annexe III",
+    tableId := "IND-DH-METHOD",
+    articleRef := "Accumulation des degrés-heures d'inconfort via seuil adaptatif de confort",
+    equationId := "DH-EQ-01",
+    version := "2026-06-30",
+    effectiveDate := "2026-06-30" }
+
 /-- Calcul du Bbio selon la formule réglementaire
     Bbio = 2 × Besoins_chauffage + 2 × Besoins_refroidissement + 5 × Besoins_éclairage
     (en points, après pondération par les besoins)

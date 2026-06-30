@@ -78,6 +78,10 @@ def main() -> None:
             ["python3", "scripts/check_modulation_value_alignment.py"],
         ),
         (
+            "Regulation export legal-key validation",
+            ["python3", "scripts/check_regulation_export_legal_keys.py"],
+        ),
+        (
             "Bbio traceability",
             ["python3", "scripts/check_bbio_traceability.py"],
         ),
@@ -128,6 +132,10 @@ def main() -> None:
         (
             "Scenario export consistency",
             ["python3", "scripts/check_scenario_export_consistency.py"],
+        ),
+        (
+            "Scenario export legal-key validation",
+            ["python3", "scripts/check_scenario_export_legal_keys.py"],
         ),
         (
             "Scenario value alignment",

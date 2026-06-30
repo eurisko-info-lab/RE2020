@@ -25,10 +25,13 @@ structure SolarPosition where
 
 /-- Citation de provenance pour les constantes solaires conventionnelles. -/
 structure SolarCitation where
+  sourceDoc : String
   sectionId : String
   tableId : String
   articleRef : String
+  equationId : String
   version : String
+  effectiveDate : String
   deriving Repr
 
 /-- Valeur conventionnelle simple indexée par clé. -/
@@ -48,10 +51,13 @@ structure PerezSimplifiedBin where
   deriving Repr
 
 private def mkSolarCitation (sectionId tableId articleRef : String) : SolarCitation :=
-  { sectionId := sectionId,
+  { sourceDoc := "Arrete du 4 aout 2021 relatif aux exigences RE2020 + Guide RE2020",
+    sectionId := sectionId,
     tableId := tableId,
     articleRef := articleRef,
-    version := "2026-06-28" }
+    equationId := "SOL-EQ-01",
+    version := "2026-06-28",
+    effectiveDate := "2026-06-28" }
 
 /-- Conventions solaires utilisées par le moteur. -/
 def solarConventionTable : List SolarConventionValue :=

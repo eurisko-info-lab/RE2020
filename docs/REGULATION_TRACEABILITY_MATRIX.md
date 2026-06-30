@@ -45,12 +45,13 @@
 
 Current state:
 - High-level references exist (Annexe II/III, Th-BCE, guide).
-- Exact legal anchors are not encoded at equation/table granularity.
+- A first wave of exact legal anchors is now encoded at finer granularity for core indicators, scenario citations, lighting citations, systems conventions, and solar conventions.
+- For those same covered surfaces, source-level provenance now also includes `sourceDoc` and `effectiveDate` rather than only table/equation identifiers.
 
 What is missing for complete references:
-1. Per-function legal citation key (annex section, table ID, equation ID, version date).
-2. Source provenance fields for constants (e.g., modulation, primary factors).
-3. Validation linkage to official benchmark case IDs.
+1. Per-function legal citation key coverage must be extended beyond the current first wave to all compliance-critical functions.
+2. Source provenance fields for constants (e.g., modulation, primary factors) should be normalized to the same fine-grained schema across all modules.
+3. Validation linkage to official benchmark case IDs should be preserved and expanded with the benchmark corpus.
 
 ## Quantitative code signals
 - simplified markers (simplifi*): 0
@@ -68,7 +69,10 @@ What is missing for complete references:
 Rationale:
 1. Core annual engine is executable with strict compliance gate coverage.
 2. Climate, factors, scenarios, and lighting now include table-driven/citation-backed governance and artifact consistency checks.
-3. No remaining readiness-v2 gate blocker at repository level; all qualification gates currently pass.
+3. Core indicators, scenarios, lighting, systems, and solar now expose or enforce a first wave of equation-level legal keys in code and machine-readable or guard-checked evidence paths.
+4. Export-side evidence guards now validate not only legal-key presence (`equationId`) but also provenance fields such as `sourceDoc` and `effectiveDate` where the export schema carries them.
+5. Source-side citation structures for lighting, systems, solar, scenarios, and indicator methods are now aligned on the same richer provenance shape.
+6. No remaining readiness-v2 gate blocker at repository level; all qualification gates currently pass.
 
 ## Immediate compliance blockers
 1. Climate datasets: replace generated synthetic source values with official source files while preserving strict manifest provenance.

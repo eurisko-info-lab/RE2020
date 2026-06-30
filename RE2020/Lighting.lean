@@ -22,10 +22,13 @@ structure LightingParams where
 
 /-- Citation de provenance des paramètres d'éclairage. -/
 structure LightingCitation where
+  sourceDoc : String
   sectionId : String
   tableId : String
   articleRef : String
+  equationId : String
   version : String
+  effectiveDate : String
   deriving Repr
 
 /-- Entrée table-driven des paramètres d'éclairage par catégorie. -/
@@ -46,10 +49,13 @@ def lightingParamTable : List LightingParamEntry :=
         operatingHours := 1700.0
       },
       citation := {
+        sourceDoc := "Arrete du 4 aout 2021 relatif aux exigences RE2020 + Guide RE2020",
         sectionId := "Annexe III",
         tableId := "LIGHT-PARAM-MI",
         articleRef := "Parametres eclairage residentiel (MI)",
-        version := "2026-06-28"
+        equationId := "LIGHT-EQ-01",
+        version := "2026-06-28",
+        effectiveDate := "2026-06-28"
       } },
     { category := .LogementCollectif,
       params := {
@@ -60,10 +66,13 @@ def lightingParamTable : List LightingParamEntry :=
         operatingHours := 1800.0
       },
       citation := {
+        sourceDoc := "Arrete du 4 aout 2021 relatif aux exigences RE2020 + Guide RE2020",
         sectionId := "Annexe III",
         tableId := "LIGHT-PARAM-LC",
         articleRef := "Parametres eclairage residentiel (LC)",
-        version := "2026-06-28"
+        equationId := "LIGHT-EQ-01",
+        version := "2026-06-28",
+        effectiveDate := "2026-06-28"
       } },
     { category := .Bureau,
       params := {
@@ -74,10 +83,13 @@ def lightingParamTable : List LightingParamEntry :=
         operatingHours := 2000.0
       },
       citation := {
+        sourceDoc := "Arrete du 4 aout 2021 relatif aux exigences RE2020 + Guide RE2020",
         sectionId := "Annexe III",
         tableId := "LIGHT-PARAM-BUR",
         articleRef := "Parametres eclairage tertiaire bureaux",
-        version := "2026-06-28"
+        equationId := "LIGHT-EQ-01",
+        version := "2026-06-28",
+        effectiveDate := "2026-06-28"
       } },
     { category := .EnseignementPrimaireSecondaire,
       params := {
@@ -88,10 +100,13 @@ def lightingParamTable : List LightingParamEntry :=
         operatingHours := 1850.0
       },
       citation := {
+        sourceDoc := "Arrete du 4 aout 2021 relatif aux exigences RE2020 + Guide RE2020",
         sectionId := "Annexe III",
         tableId := "LIGHT-PARAM-ENS",
         articleRef := "Parametres eclairage enseignement",
-        version := "2026-06-28"
+        equationId := "LIGHT-EQ-01",
+        version := "2026-06-28",
+        effectiveDate := "2026-06-28"
       } },
     { category := .Autre,
       params := {
@@ -102,10 +117,13 @@ def lightingParamTable : List LightingParamEntry :=
         operatingHours := 1900.0
       },
       citation := {
+        sourceDoc := "Arrete du 4 aout 2021 relatif aux exigences RE2020 + Guide RE2020",
         sectionId := "Annexe III",
         tableId := "LIGHT-PARAM-AUT",
         articleRef := "Parametres eclairage categorie autre",
-        version := "2026-06-28"
+        equationId := "LIGHT-EQ-01",
+        version := "2026-06-28",
+        effectiveDate := "2026-06-28"
       } } ]
 
 /-- Paramètres de fallback si une catégorie n'est pas trouvée dans la table. -/

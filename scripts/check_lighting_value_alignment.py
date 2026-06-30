@@ -38,21 +38,21 @@ def main() -> None:
         sys.exit(2)
 
     row_re = re.compile(
-        r"\{\s*category\s*:=\s*\.([A-Za-z]+),\s*params\s*:=\s*\{\s*installedPowerDensity\s*:=\s*([0-9]+(?:\.[0-9]+)?),\s*daylightFactor\s*:=\s*([0-9]+(?:\.[0-9]+)?),[\s\S]*?operatingHours\s*:=\s*([0-9]+(?:\.[0-9]+)?)[\s\S]*?tableId\s*:=\s*\"([^\"]+)\"",
+        r"\{\s*category\s*:=\s*\.([A-Za-z]+),\s*params\s*:=\s*\{\s*installedPowerDensity\s*:=\s*([0-9]+(?:\.[0-9]+)?),\s*daylightFactor\s*:=\s*([0-9]+(?:\.[0-9]+)?),[\s\S]*?operatingHours\s*:=\s*([0-9]+(?:\.[0-9]+)?)[\s\S]*?tableId\s*:=\s*\"([^\"]+)\"[\s\S]*?equationId\s*:=\s*\"([^\"]*)\"",
         re.S,
     )
 
-    got: dict[str, tuple[str, float, float, float]] = {}
-    for cat, ipd, dlf, oph, tid in row_re.findall(text):
+    got: dict[str, tuple[str, float, float, float, str]] = {}
+    for cat, ipd, dlf, oph, tid, eqid in row_re.findall(text):
         if tid in EXPECTED:
-            got[tid] = (cat, float(ipd), float(dlf), float(oph))
+            got[tid] = (cat, float(ipd), float(dlf), float(oph), eqid)
 
     errs: list[str] = []
     for tid, (ecat, eipd, edlf, eoph) in EXPECTED.items():
         if tid not in got:
             errs.append(f"missing tableId '{tid}'")
             continue
-        gcat, gipd, gdlf, goph = got[tid]
+        gcat, gipd, gdlf, goph, geqid = got[tid]
         if gcat != ecat:
             errs.append(f"{tid}: category drift (got {gcat}, expected {ecat})")
         if not close(gipd, eipd):
@@ -61,6 +61,8 @@ def main() -> None:
             errs.append(f"{tid}: daylightFactor drift (got {gdlf}, expected {edlf})")
         if not close(goph, eoph):
             errs.append(f"{tid}: operatingHours drift (got {goph}, expected {eoph})")
+        if not geqid.strip():
+            errs.append(f"{tid}: missing equationId")
 
     print("Lighting value-alignment guard")
     print(f"- source: {args.source}")

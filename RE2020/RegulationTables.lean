@@ -18,6 +18,7 @@ structure RegulationCitation where
   sectionId : String
   tableId : String
   articleRef : String
+  equationId : String
   version : String
   effectiveDate : String
   deriving Repr
@@ -84,6 +85,7 @@ def mkCitation (sectionId tableId articleRef : String) : RegulationCitation :=
     sectionId := sectionId,
     tableId := tableId,
     articleRef := articleRef,
+    equationId := "",
     version := "2026-06-27",
     effectiveDate := "2026-06-27" }
 

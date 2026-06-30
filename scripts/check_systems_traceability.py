@@ -66,9 +66,12 @@ def _extract_generator_rows(block: str) -> list[dict[str, str]]:
         rows.append(
             {
                 "genType": gen_type,
+                "sourceDoc": "Arrete du 4 aout 2021 relatif aux exigences RE2020 + Guide RE2020",
                 "sectionId": section_id,
                 "tableId": table_id,
                 "articleRef": article_ref,
+                "equationId": "SYS-EQ-01",
+                "effectiveDate": "2026-06-28",
             }
         )
     return rows
@@ -88,9 +91,12 @@ def _extract_partload_rows(block: str) -> list[dict[str, str]]:
         rows.append(
             {
                 "genType": gen_type,
+                "sourceDoc": "Arrete du 4 aout 2021 relatif aux exigences RE2020 + Guide RE2020",
                 "sectionId": section_id,
                 "tableId": table_id,
                 "articleRef": article_ref,
+                "equationId": "SYS-EQ-01",
+                "effectiveDate": "2026-06-28",
             }
         )
     return rows
@@ -105,7 +111,7 @@ def _validate_unique_and_coverage(rows: list[dict[str, str]], key: str, required
             errors.append(f"{label}: duplicate {key} '{value}'")
             continue
         seen[value] = row
-        for field in ["sectionId", "tableId", "articleRef"]:
+        for field in ["sourceDoc", "sectionId", "tableId", "articleRef", "equationId", "effectiveDate"]:
             if not row[field].strip():
                 errors.append(f"{label}: {key} '{value}' missing citation field '{field}'")
     for value in required:

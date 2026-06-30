@@ -1,6 +1,9 @@
 {
   "metadata": {
     "source": "RE2020/RegulationTables.lean",
+    "indicatorSource": "RE2020/Indicators.lean",
+    "systemsSource": "RE2020/Systems.lean",
+    "solarSource": "RE2020/Solar.lean",
     "tableVersion": "re2020-convention-table-v2",
     "generator": "scripts/export_regulation_tables.py"
   },
@@ -10,72 +13,104 @@
         "zone": "H1a",
         "value": 0.15,
         "citation": {
+          "sourceDoc": "Arrete du 4 aout 2021 relatif aux exigences RE2020 + Guide RE2020",
           "sectionId": "Annexe II.B",
           "tableId": "MBGEO-H1a",
-          "articleRef": "Arrete 4 aout 2021 - Annexe II, modulation geographique"
+          "articleRef": "Arrete 4 aout 2021 - Annexe II, modulation geographique",
+          "equationId": "",
+          "version": "2026-06-27",
+          "effectiveDate": "2026-06-27"
         }
       },
       {
         "zone": "H1b",
         "value": 0.13,
         "citation": {
+          "sourceDoc": "Arrete du 4 aout 2021 relatif aux exigences RE2020 + Guide RE2020",
           "sectionId": "Annexe II.B",
           "tableId": "MBGEO-H1b",
-          "articleRef": "Arrete 4 aout 2021 - Annexe II, modulation geographique"
+          "articleRef": "Arrete 4 aout 2021 - Annexe II, modulation geographique",
+          "equationId": "",
+          "version": "2026-06-27",
+          "effectiveDate": "2026-06-27"
         }
       },
       {
         "zone": "H1c",
         "value": 0.11,
         "citation": {
+          "sourceDoc": "Arrete du 4 aout 2021 relatif aux exigences RE2020 + Guide RE2020",
           "sectionId": "Annexe II.B",
           "tableId": "MBGEO-H1c",
-          "articleRef": "Arrete 4 aout 2021 - Annexe II, modulation geographique"
+          "articleRef": "Arrete 4 aout 2021 - Annexe II, modulation geographique",
+          "equationId": "",
+          "version": "2026-06-27",
+          "effectiveDate": "2026-06-27"
         }
       },
       {
         "zone": "H2a",
         "value": 0.08,
         "citation": {
+          "sourceDoc": "Arrete du 4 aout 2021 relatif aux exigences RE2020 + Guide RE2020",
           "sectionId": "Annexe II.B",
           "tableId": "MBGEO-H2a",
-          "articleRef": "Arrete 4 aout 2021 - Annexe II, modulation geographique"
+          "articleRef": "Arrete 4 aout 2021 - Annexe II, modulation geographique",
+          "equationId": "",
+          "version": "2026-06-27",
+          "effectiveDate": "2026-06-27"
         }
       },
       {
         "zone": "H2b",
         "value": 0.06,
         "citation": {
+          "sourceDoc": "Arrete du 4 aout 2021 relatif aux exigences RE2020 + Guide RE2020",
           "sectionId": "Annexe II.B",
           "tableId": "MBGEO-H2b",
-          "articleRef": "Arrete 4 aout 2021 - Annexe II, modulation geographique"
+          "articleRef": "Arrete 4 aout 2021 - Annexe II, modulation geographique",
+          "equationId": "",
+          "version": "2026-06-27",
+          "effectiveDate": "2026-06-27"
         }
       },
       {
         "zone": "H2c",
         "value": 0.04,
         "citation": {
+          "sourceDoc": "Arrete du 4 aout 2021 relatif aux exigences RE2020 + Guide RE2020",
           "sectionId": "Annexe II.B",
           "tableId": "MBGEO-H2c",
-          "articleRef": "Arrete 4 aout 2021 - Annexe II, modulation geographique"
+          "articleRef": "Arrete 4 aout 2021 - Annexe II, modulation geographique",
+          "equationId": "",
+          "version": "2026-06-27",
+          "effectiveDate": "2026-06-27"
         }
       },
       {
         "zone": "H2d",
         "value": 0.05,
         "citation": {
+          "sourceDoc": "Arrete du 4 aout 2021 relatif aux exigences RE2020 + Guide RE2020",
           "sectionId": "Annexe II.B",
           "tableId": "MBGEO-H2d",
-          "articleRef": "Arrete 4 aout 2021 - Annexe II, modulation geographique"
+          "articleRef": "Arrete 4 aout 2021 - Annexe II, modulation geographique",
+          "equationId": "",
+          "version": "2026-06-27",
+          "effectiveDate": "2026-06-27"
         }
       },
       {
         "zone": "H3",
         "value": 0.02,
         "citation": {
+          "sourceDoc": "Arrete du 4 aout 2021 relatif aux exigences RE2020 + Guide RE2020",
           "sectionId": "Annexe II.B",
           "tableId": "MBGEO-H3",
-          "articleRef": "Arrete 4 aout 2021 - Annexe II, modulation geographique"
+          "articleRef": "Arrete 4 aout 2021 - Annexe II, modulation geographique",
+          "equationId": "",
+          "version": "2026-06-27",
+          "effectiveDate": "2026-06-27"
         }
       }
     ],
@@ -84,45 +119,65 @@
         "category": "MaisonIndividuelle",
         "value": 0.04,
         "citation": {
+          "sourceDoc": "Arrete du 4 aout 2021 relatif aux exigences RE2020 + Guide RE2020",
           "sectionId": "Annexe II.B",
           "tableId": "MBCOMBLES-MI",
-          "articleRef": "Arrete 4 aout 2021 - Annexe II, modulation combles"
+          "articleRef": "Arrete 4 aout 2021 - Annexe II, modulation combles",
+          "equationId": "",
+          "version": "2026-06-27",
+          "effectiveDate": "2026-06-27"
         }
       },
       {
         "category": "LogementCollectif",
         "value": 0.02,
         "citation": {
+          "sourceDoc": "Arrete du 4 aout 2021 relatif aux exigences RE2020 + Guide RE2020",
           "sectionId": "Annexe II.B",
           "tableId": "MBCOMBLES-LC",
-          "articleRef": "Arrete 4 aout 2021 - Annexe II, modulation combles"
+          "articleRef": "Arrete 4 aout 2021 - Annexe II, modulation combles",
+          "equationId": "",
+          "version": "2026-06-27",
+          "effectiveDate": "2026-06-27"
         }
       },
       {
         "category": "Bureau",
         "value": 0.01,
         "citation": {
+          "sourceDoc": "Arrete du 4 aout 2021 relatif aux exigences RE2020 + Guide RE2020",
           "sectionId": "Annexe II.B",
           "tableId": "MBCOMBLES-BUR",
-          "articleRef": "Arrete 4 aout 2021 - Annexe II, modulation combles"
+          "articleRef": "Arrete 4 aout 2021 - Annexe II, modulation combles",
+          "equationId": "",
+          "version": "2026-06-27",
+          "effectiveDate": "2026-06-27"
         }
       },
       {
         "category": "EnseignementPrimaireSecondaire",
         "value": 0.015,
         "citation": {
+          "sourceDoc": "Arrete du 4 aout 2021 relatif aux exigences RE2020 + Guide RE2020",
           "sectionId": "Annexe II.B",
           "tableId": "MBCOMBLES-ENS",
-          "articleRef": "Arrete 4 aout 2021 - Annexe II, modulation combles"
+          "articleRef": "Arrete 4 aout 2021 - Annexe II, modulation combles",
+          "equationId": "",
+          "version": "2026-06-27",
+          "effectiveDate": "2026-06-27"
         }
       },
       {
         "category": "Autre",
         "value": 0.01,
         "citation": {
+          "sourceDoc": "Arrete du 4 aout 2021 relatif aux exigences RE2020 + Guide RE2020",
           "sectionId": "Annexe II.B",
           "tableId": "MBCOMBLES-AUT",
-          "articleRef": "Arrete 4 aout 2021 - Annexe II, modulation combles"
+          "articleRef": "Arrete 4 aout 2021 - Annexe II, modulation combles",
+          "equationId": "",
+          "version": "2026-06-27",
+          "effectiveDate": "2026-06-27"
         }
       }
     ],
@@ -131,45 +186,65 @@
         "category": "MaisonIndividuelle",
         "value": 0.0,
         "citation": {
+          "sourceDoc": "Arrete du 4 aout 2021 relatif aux exigences RE2020 + Guide RE2020",
           "sectionId": "Annexe II.B",
           "tableId": "MBBRUIT-MI",
-          "articleRef": "Arrete 4 aout 2021 - Annexe II, modulation bruit"
+          "articleRef": "Arrete 4 aout 2021 - Annexe II, modulation bruit",
+          "equationId": "",
+          "version": "2026-06-27",
+          "effectiveDate": "2026-06-27"
         }
       },
       {
         "category": "LogementCollectif",
         "value": 0.01,
         "citation": {
+          "sourceDoc": "Arrete du 4 aout 2021 relatif aux exigences RE2020 + Guide RE2020",
           "sectionId": "Annexe II.B",
           "tableId": "MBBRUIT-LC",
-          "articleRef": "Arrete 4 aout 2021 - Annexe II, modulation bruit"
+          "articleRef": "Arrete 4 aout 2021 - Annexe II, modulation bruit",
+          "equationId": "",
+          "version": "2026-06-27",
+          "effectiveDate": "2026-06-27"
         }
       },
       {
         "category": "Bureau",
         "value": 0.02,
         "citation": {
+          "sourceDoc": "Arrete du 4 aout 2021 relatif aux exigences RE2020 + Guide RE2020",
           "sectionId": "Annexe II.B",
           "tableId": "MBBRUIT-BUR",
-          "articleRef": "Arrete 4 aout 2021 - Annexe II, modulation bruit"
+          "articleRef": "Arrete 4 aout 2021 - Annexe II, modulation bruit",
+          "equationId": "",
+          "version": "2026-06-27",
+          "effectiveDate": "2026-06-27"
         }
       },
       {
         "category": "EnseignementPrimaireSecondaire",
         "value": 0.015,
         "citation": {
+          "sourceDoc": "Arrete du 4 aout 2021 relatif aux exigences RE2020 + Guide RE2020",
           "sectionId": "Annexe II.B",
           "tableId": "MBBRUIT-ENS",
-          "articleRef": "Arrete 4 aout 2021 - Annexe II, modulation bruit"
+          "articleRef": "Arrete 4 aout 2021 - Annexe II, modulation bruit",
+          "equationId": "",
+          "version": "2026-06-27",
+          "effectiveDate": "2026-06-27"
         }
       },
       {
         "category": "Autre",
         "value": 0.01,
         "citation": {
+          "sourceDoc": "Arrete du 4 aout 2021 relatif aux exigences RE2020 + Guide RE2020",
           "sectionId": "Annexe II.B",
           "tableId": "MBBRUIT-AUT",
-          "articleRef": "Arrete 4 aout 2021 - Annexe II, modulation bruit"
+          "articleRef": "Arrete 4 aout 2021 - Annexe II, modulation bruit",
+          "equationId": "",
+          "version": "2026-06-27",
+          "effectiveDate": "2026-06-27"
         }
       }
     ],
@@ -178,45 +253,65 @@
         "category": "MaisonIndividuelle",
         "value": 0.0,
         "citation": {
+          "sourceDoc": "Arrete du 4 aout 2021 relatif aux exigences RE2020 + Guide RE2020",
           "sectionId": "Annexe II.C",
           "tableId": "MCCAT-MI",
-          "articleRef": "Arrete 4 aout 2021 - Annexe II, modulation categorie Cep"
+          "articleRef": "Arrete 4 aout 2021 - Annexe II, modulation categorie Cep",
+          "equationId": "",
+          "version": "2026-06-27",
+          "effectiveDate": "2026-06-27"
         }
       },
       {
         "category": "LogementCollectif",
         "value": 0.01,
         "citation": {
+          "sourceDoc": "Arrete du 4 aout 2021 relatif aux exigences RE2020 + Guide RE2020",
           "sectionId": "Annexe II.C",
           "tableId": "MCCAT-LC",
-          "articleRef": "Arrete 4 aout 2021 - Annexe II, modulation categorie Cep"
+          "articleRef": "Arrete 4 aout 2021 - Annexe II, modulation categorie Cep",
+          "equationId": "",
+          "version": "2026-06-27",
+          "effectiveDate": "2026-06-27"
         }
       },
       {
         "category": "Bureau",
         "value": 0.03,
         "citation": {
+          "sourceDoc": "Arrete du 4 aout 2021 relatif aux exigences RE2020 + Guide RE2020",
           "sectionId": "Annexe II.C",
           "tableId": "MCCAT-BUR",
-          "articleRef": "Arrete 4 aout 2021 - Annexe II, modulation categorie Cep"
+          "articleRef": "Arrete 4 aout 2021 - Annexe II, modulation categorie Cep",
+          "equationId": "",
+          "version": "2026-06-27",
+          "effectiveDate": "2026-06-27"
         }
       },
       {
         "category": "EnseignementPrimaireSecondaire",
         "value": 0.02,
         "citation": {
+          "sourceDoc": "Arrete du 4 aout 2021 relatif aux exigences RE2020 + Guide RE2020",
           "sectionId": "Annexe II.C",
           "tableId": "MCCAT-ENS",
-          "articleRef": "Arrete 4 aout 2021 - Annexe II, modulation categorie Cep"
+          "articleRef": "Arrete 4 aout 2021 - Annexe II, modulation categorie Cep",
+          "equationId": "",
+          "version": "2026-06-27",
+          "effectiveDate": "2026-06-27"
         }
       },
       {
         "category": "Autre",
         "value": 0.015,
         "citation": {
+          "sourceDoc": "Arrete du 4 aout 2021 relatif aux exigences RE2020 + Guide RE2020",
           "sectionId": "Annexe II.C",
           "tableId": "MCCAT-AUT",
-          "articleRef": "Arrete 4 aout 2021 - Annexe II, modulation categorie Cep"
+          "articleRef": "Arrete 4 aout 2021 - Annexe II, modulation categorie Cep",
+          "equationId": "",
+          "version": "2026-06-27",
+          "effectiveDate": "2026-06-27"
         }
       }
     ],
@@ -226,9 +321,13 @@
         "maxArea": 60.0,
         "value": 0.05,
         "citation": {
+          "sourceDoc": "Arrete du 4 aout 2021 relatif aux exigences RE2020 + Guide RE2020",
           "sectionId": "Annexe II.B",
           "tableId": "MBSURFMOY-000-060",
-          "articleRef": "Arrete 4 aout 2021 - Annexe II, modulation surface moyenne"
+          "articleRef": "Arrete 4 aout 2021 - Annexe II, modulation surface moyenne",
+          "equationId": "",
+          "version": "2026-06-27",
+          "effectiveDate": "2026-06-27"
         }
       },
       {
@@ -236,9 +335,13 @@
         "maxArea": 120.0,
         "value": 0.03,
         "citation": {
+          "sourceDoc": "Arrete du 4 aout 2021 relatif aux exigences RE2020 + Guide RE2020",
           "sectionId": "Annexe II.B",
           "tableId": "MBSURFMOY-060-120",
-          "articleRef": "Arrete 4 aout 2021 - Annexe II, modulation surface moyenne"
+          "articleRef": "Arrete 4 aout 2021 - Annexe II, modulation surface moyenne",
+          "equationId": "",
+          "version": "2026-06-27",
+          "effectiveDate": "2026-06-27"
         }
       },
       {
@@ -246,9 +349,13 @@
         "maxArea": 300.0,
         "value": 0.015,
         "citation": {
+          "sourceDoc": "Arrete du 4 aout 2021 relatif aux exigences RE2020 + Guide RE2020",
           "sectionId": "Annexe II.B",
           "tableId": "MBSURFMOY-120-300",
-          "articleRef": "Arrete 4 aout 2021 - Annexe II, modulation surface moyenne"
+          "articleRef": "Arrete 4 aout 2021 - Annexe II, modulation surface moyenne",
+          "equationId": "",
+          "version": "2026-06-27",
+          "effectiveDate": "2026-06-27"
         }
       },
       {
@@ -256,9 +363,13 @@
         "maxArea": 1000000000.0,
         "value": 0.0,
         "citation": {
+          "sourceDoc": "Arrete du 4 aout 2021 relatif aux exigences RE2020 + Guide RE2020",
           "sectionId": "Annexe II.B",
           "tableId": "MBSURFMOY-300-INF",
-          "articleRef": "Arrete 4 aout 2021 - Annexe II, modulation surface moyenne"
+          "articleRef": "Arrete 4 aout 2021 - Annexe II, modulation surface moyenne",
+          "equationId": "",
+          "version": "2026-06-27",
+          "effectiveDate": "2026-06-27"
         }
       }
     ],
@@ -268,9 +379,13 @@
         "maxArea": 100.0,
         "value": 0.03,
         "citation": {
+          "sourceDoc": "Arrete du 4 aout 2021 relatif aux exigences RE2020 + Guide RE2020",
           "sectionId": "Annexe II.B",
           "tableId": "MBSURFTOT-000-100",
-          "articleRef": "Arrete 4 aout 2021 - Annexe II, modulation surface totale"
+          "articleRef": "Arrete 4 aout 2021 - Annexe II, modulation surface totale",
+          "equationId": "",
+          "version": "2026-06-27",
+          "effectiveDate": "2026-06-27"
         }
       },
       {
@@ -278,9 +393,13 @@
         "maxArea": 500.0,
         "value": 0.015,
         "citation": {
+          "sourceDoc": "Arrete du 4 aout 2021 relatif aux exigences RE2020 + Guide RE2020",
           "sectionId": "Annexe II.B",
           "tableId": "MBSURFTOT-100-500",
-          "articleRef": "Arrete 4 aout 2021 - Annexe II, modulation surface totale"
+          "articleRef": "Arrete 4 aout 2021 - Annexe II, modulation surface totale",
+          "equationId": "",
+          "version": "2026-06-27",
+          "effectiveDate": "2026-06-27"
         }
       },
       {
@@ -288,9 +407,13 @@
         "maxArea": 2000.0,
         "value": 0.005,
         "citation": {
+          "sourceDoc": "Arrete du 4 aout 2021 relatif aux exigences RE2020 + Guide RE2020",
           "sectionId": "Annexe II.B",
           "tableId": "MBSURFTOT-500-2000",
-          "articleRef": "Arrete 4 aout 2021 - Annexe II, modulation surface totale"
+          "articleRef": "Arrete 4 aout 2021 - Annexe II, modulation surface totale",
+          "equationId": "",
+          "version": "2026-06-27",
+          "effectiveDate": "2026-06-27"
         }
       },
       {
@@ -298,9 +421,13 @@
         "maxArea": 1000000000.0,
         "value": 0.0,
         "citation": {
+          "sourceDoc": "Arrete du 4 aout 2021 relatif aux exigences RE2020 + Guide RE2020",
           "sectionId": "Annexe II.B",
           "tableId": "MBSURFTOT-2000-INF",
-          "articleRef": "Arrete 4 aout 2021 - Annexe II, modulation surface totale"
+          "articleRef": "Arrete 4 aout 2021 - Annexe II, modulation surface totale",
+          "equationId": "",
+          "version": "2026-06-27",
+          "effectiveDate": "2026-06-27"
         }
       }
     ],
@@ -309,45 +436,65 @@
         "usage": "heating",
         "value": 1.0,
         "citation": {
+          "sourceDoc": "Arrete du 4 aout 2021 relatif aux exigences RE2020 + Guide RE2020",
           "sectionId": "Annexe III",
           "tableId": "PEF-HEATING",
-          "articleRef": "Facteur energie primaire chauffage selon vecteur retenu"
+          "articleRef": "Facteur energie primaire chauffage selon vecteur retenu",
+          "equationId": "",
+          "version": "2026-06-27",
+          "effectiveDate": "2026-06-27"
         }
       },
       {
         "usage": "dhw",
         "value": 2.3,
         "citation": {
+          "sourceDoc": "Arrete du 4 aout 2021 relatif aux exigences RE2020 + Guide RE2020",
           "sectionId": "Annexe III",
           "tableId": "PEF-DHW",
-          "articleRef": "Facteur energie primaire ECS (convention electrique par defaut)"
+          "articleRef": "Facteur energie primaire ECS (convention electrique par defaut)",
+          "equationId": "",
+          "version": "2026-06-27",
+          "effectiveDate": "2026-06-27"
         }
       },
       {
         "usage": "cooling",
         "value": 2.3,
         "citation": {
+          "sourceDoc": "Arrete du 4 aout 2021 relatif aux exigences RE2020 + Guide RE2020",
           "sectionId": "Annexe III",
           "tableId": "PEF-COOLING",
-          "articleRef": "Facteur energie primaire refroidissement (electricite)"
+          "articleRef": "Facteur energie primaire refroidissement (electricite)",
+          "equationId": "",
+          "version": "2026-06-27",
+          "effectiveDate": "2026-06-27"
         }
       },
       {
         "usage": "lighting",
         "value": 2.3,
         "citation": {
+          "sourceDoc": "Arrete du 4 aout 2021 relatif aux exigences RE2020 + Guide RE2020",
           "sectionId": "Annexe III",
           "tableId": "PEF-LIGHTING",
-          "articleRef": "Facteur energie primaire eclairage (electricite)"
+          "articleRef": "Facteur energie primaire eclairage (electricite)",
+          "equationId": "",
+          "version": "2026-06-27",
+          "effectiveDate": "2026-06-27"
         }
       },
       {
         "usage": "auxiliaries",
         "value": 2.3,
         "citation": {
+          "sourceDoc": "Arrete du 4 aout 2021 relatif aux exigences RE2020 + Guide RE2020",
           "sectionId": "Annexe III",
           "tableId": "PEF-AUX",
-          "articleRef": "Facteur energie primaire auxiliaires (electricite)"
+          "articleRef": "Facteur energie primaire auxiliaires (electricite)",
+          "equationId": "",
+          "version": "2026-06-27",
+          "effectiveDate": "2026-06-27"
         }
       }
     ],
@@ -356,45 +503,483 @@
         "usage": "heating",
         "value": 1.0,
         "citation": {
+          "sourceDoc": "Arrete du 4 aout 2021 relatif aux exigences RE2020 + Guide RE2020",
           "sectionId": "Annexe III",
           "tableId": "PENR-HEATING",
-          "articleRef": "Facteur non renouvelable chauffage selon vecteur retenu"
+          "articleRef": "Facteur non renouvelable chauffage selon vecteur retenu",
+          "equationId": "",
+          "version": "2026-06-27",
+          "effectiveDate": "2026-06-27"
         }
       },
       {
         "usage": "dhw",
         "value": 2.3,
         "citation": {
+          "sourceDoc": "Arrete du 4 aout 2021 relatif aux exigences RE2020 + Guide RE2020",
           "sectionId": "Annexe III",
           "tableId": "PENR-DHW",
-          "articleRef": "Facteur non renouvelable ECS (convention electrique par defaut)"
+          "articleRef": "Facteur non renouvelable ECS (convention electrique par defaut)",
+          "equationId": "",
+          "version": "2026-06-27",
+          "effectiveDate": "2026-06-27"
         }
       },
       {
         "usage": "cooling",
         "value": 2.3,
         "citation": {
+          "sourceDoc": "Arrete du 4 aout 2021 relatif aux exigences RE2020 + Guide RE2020",
           "sectionId": "Annexe III",
           "tableId": "PENR-COOLING",
-          "articleRef": "Facteur non renouvelable refroidissement (electricite)"
+          "articleRef": "Facteur non renouvelable refroidissement (electricite)",
+          "equationId": "",
+          "version": "2026-06-27",
+          "effectiveDate": "2026-06-27"
         }
       },
       {
         "usage": "lighting",
         "value": 2.3,
         "citation": {
+          "sourceDoc": "Arrete du 4 aout 2021 relatif aux exigences RE2020 + Guide RE2020",
           "sectionId": "Annexe III",
           "tableId": "PENR-LIGHTING",
-          "articleRef": "Facteur non renouvelable eclairage (electricite)"
+          "articleRef": "Facteur non renouvelable eclairage (electricite)",
+          "equationId": "",
+          "version": "2026-06-27",
+          "effectiveDate": "2026-06-27"
         }
       },
       {
         "usage": "auxiliaries",
         "value": 2.3,
         "citation": {
+          "sourceDoc": "Arrete du 4 aout 2021 relatif aux exigences RE2020 + Guide RE2020",
           "sectionId": "Annexe III",
           "tableId": "PENR-AUX",
-          "articleRef": "Facteur non renouvelable auxiliaires (electricite)"
+          "articleRef": "Facteur non renouvelable auxiliaires (electricite)",
+          "equationId": "",
+          "version": "2026-06-27",
+          "effectiveDate": "2026-06-27"
+        }
+      }
+    ],
+    "indicatorMethodCitations": [
+      {
+        "symbol": "calculateBbioCitation",
+        "citation": {
+          "sourceDoc": "Arrete du 4 aout 2021 relatif aux exigences RE2020 + Guide RE2020",
+          "sectionId": "Annexe II",
+          "tableId": "IND-BBIO-METHOD",
+          "articleRef": "Formule Bbio conventionnelle a poids chauffage/refroidissement/eclairage",
+          "equationId": "BBIO-EQ-01",
+          "version": "2026-06-30",
+          "effectiveDate": "2026-06-30"
+        }
+      },
+      {
+        "symbol": "calculateCepCitation",
+        "citation": {
+          "sourceDoc": "Arrete du 4 aout 2021 relatif aux exigences RE2020 + Guide RE2020",
+          "sectionId": "Annexe III",
+          "tableId": "IND-CEP-METHOD",
+          "articleRef": "Somme des usages energetiques pondérés par facteurs EP et modulations",
+          "equationId": "CEP-EQ-01",
+          "version": "2026-06-30",
+          "effectiveDate": "2026-06-30"
+        }
+      },
+      {
+        "symbol": "calculateCepNrCitation",
+        "citation": {
+          "sourceDoc": "Arrete du 4 aout 2021 relatif aux exigences RE2020 + Guide RE2020",
+          "sectionId": "Annexe III",
+          "tableId": "IND-CEPNR-METHOD",
+          "articleRef": "Somme des usages energetiques pondérés par facteurs non renouvelables",
+          "equationId": "CEPNR-EQ-01",
+          "version": "2026-06-30",
+          "effectiveDate": "2026-06-30"
+        }
+      },
+      {
+        "symbol": "calculateDHFromCaniculeCitation",
+        "citation": {
+          "sourceDoc": "Arrete du 4 aout 2021 relatif aux exigences RE2020 + Guide RE2020",
+          "sectionId": "Annexe III",
+          "tableId": "IND-DH-METHOD",
+          "articleRef": "Accumulation des degrés-heures d'inconfort via seuil adaptatif de confort",
+          "equationId": "DH-EQ-01",
+          "version": "2026-06-30",
+          "effectiveDate": "2026-06-30"
+        }
+      }
+    ],
+    "generatorConventionTable": [
+      {
+        "genType": "GasBoilerCondensing",
+        "nominalEfficiency": 0.92,
+        "seasonalPerformance": 0.9,
+        "auxiliaryPower": 50.0,
+        "primaryEnergyFactor": 1.0,
+        "citation": {
+          "sourceDoc": "Arrete du 4 aout 2021 relatif aux exigences RE2020 + Guide RE2020",
+          "sectionId": "Annexe III",
+          "tableId": "SYS-GEN-GAS-COND",
+          "articleRef": "Conventions systemes - chaudiere gaz condensation",
+          "equationId": "SYS-EQ-01",
+          "version": "2026-06-28",
+          "effectiveDate": "2026-06-28"
+        }
+      },
+      {
+        "genType": "OilBoiler",
+        "nominalEfficiency": 0.88,
+        "seasonalPerformance": 0.85,
+        "auxiliaryPower": 60.0,
+        "primaryEnergyFactor": 1.0,
+        "citation": {
+          "sourceDoc": "Arrete du 4 aout 2021 relatif aux exigences RE2020 + Guide RE2020",
+          "sectionId": "Annexe III",
+          "tableId": "SYS-GEN-OIL",
+          "articleRef": "Conventions systemes - chaudiere fioul",
+          "equationId": "SYS-EQ-01",
+          "version": "2026-06-28",
+          "effectiveDate": "2026-06-28"
+        }
+      },
+      {
+        "genType": "WoodBoiler",
+        "nominalEfficiency": 0.85,
+        "seasonalPerformance": 0.82,
+        "auxiliaryPower": 55.0,
+        "primaryEnergyFactor": 1.0,
+        "citation": {
+          "sourceDoc": "Arrete du 4 aout 2021 relatif aux exigences RE2020 + Guide RE2020",
+          "sectionId": "Annexe III",
+          "tableId": "SYS-GEN-WOOD",
+          "articleRef": "Conventions systemes - chaudiere biomasse",
+          "equationId": "SYS-EQ-01",
+          "version": "2026-06-28",
+          "effectiveDate": "2026-06-28"
+        }
+      },
+      {
+        "genType": "HeatPumpAirAir",
+        "nominalEfficiency": 3.2,
+        "seasonalPerformance": 2.8,
+        "auxiliaryPower": 80.0,
+        "primaryEnergyFactor": 2.3,
+        "citation": {
+          "sourceDoc": "Arrete du 4 aout 2021 relatif aux exigences RE2020 + Guide RE2020",
+          "sectionId": "Annexe III",
+          "tableId": "SYS-GEN-HP-AA",
+          "articleRef": "Conventions systemes - PAC air-air",
+          "equationId": "SYS-EQ-01",
+          "version": "2026-06-28",
+          "effectiveDate": "2026-06-28"
+        }
+      },
+      {
+        "genType": "HeatPumpAirWater",
+        "nominalEfficiency": 3.5,
+        "seasonalPerformance": 3.0,
+        "auxiliaryPower": 100.0,
+        "primaryEnergyFactor": 2.3,
+        "citation": {
+          "sourceDoc": "Arrete du 4 aout 2021 relatif aux exigences RE2020 + Guide RE2020",
+          "sectionId": "Annexe III",
+          "tableId": "SYS-GEN-HP-AW",
+          "articleRef": "Conventions systemes - PAC air-eau",
+          "equationId": "SYS-EQ-01",
+          "version": "2026-06-28",
+          "effectiveDate": "2026-06-28"
+        }
+      },
+      {
+        "genType": "HeatPumpWaterWater",
+        "nominalEfficiency": 4.2,
+        "seasonalPerformance": 3.7,
+        "auxiliaryPower": 110.0,
+        "primaryEnergyFactor": 2.3,
+        "citation": {
+          "sourceDoc": "Arrete du 4 aout 2021 relatif aux exigences RE2020 + Guide RE2020",
+          "sectionId": "Annexe III",
+          "tableId": "SYS-GEN-HP-WW",
+          "articleRef": "Conventions systemes - PAC eau-eau",
+          "equationId": "SYS-EQ-01",
+          "version": "2026-06-28",
+          "effectiveDate": "2026-06-28"
+        }
+      },
+      {
+        "genType": "DistrictHeating",
+        "nominalEfficiency": 0.95,
+        "seasonalPerformance": 0.9,
+        "auxiliaryPower": 30.0,
+        "primaryEnergyFactor": 1.0,
+        "citation": {
+          "sourceDoc": "Arrete du 4 aout 2021 relatif aux exigences RE2020 + Guide RE2020",
+          "sectionId": "Annexe III",
+          "tableId": "SYS-GEN-DH",
+          "articleRef": "Conventions systemes - reseau de chaleur",
+          "equationId": "SYS-EQ-01",
+          "version": "2026-06-28",
+          "effectiveDate": "2026-06-28"
+        }
+      },
+      {
+        "genType": "ElectricHeating",
+        "nominalEfficiency": 1.0,
+        "seasonalPerformance": 1.0,
+        "auxiliaryPower": 20.0,
+        "primaryEnergyFactor": 2.3,
+        "citation": {
+          "sourceDoc": "Arrete du 4 aout 2021 relatif aux exigences RE2020 + Guide RE2020",
+          "sectionId": "Annexe III",
+          "tableId": "SYS-GEN-ELEC",
+          "articleRef": "Conventions systemes - chauffage electrique",
+          "equationId": "SYS-EQ-01",
+          "version": "2026-06-28",
+          "effectiveDate": "2026-06-28"
+        }
+      }
+    ],
+    "partLoadCurveConventionTable": [
+      {
+        "genType": "HeatPumpAirWater",
+        "a0": 0.6,
+        "a1": 0.95,
+        "a2": -0.55,
+        "citation": {
+          "sourceDoc": "Arrete du 4 aout 2021 relatif aux exigences RE2020 + Guide RE2020",
+          "sectionId": "Annexe III",
+          "tableId": "SYS-PLC-HP-AW",
+          "articleRef": "Courbe de charge partielle PAC air-eau",
+          "equationId": "SYS-EQ-01",
+          "version": "2026-06-28",
+          "effectiveDate": "2026-06-28"
+        }
+      },
+      {
+        "genType": "HeatPumpAirAir",
+        "a0": 0.6,
+        "a1": 0.95,
+        "a2": -0.55,
+        "citation": {
+          "sourceDoc": "Arrete du 4 aout 2021 relatif aux exigences RE2020 + Guide RE2020",
+          "sectionId": "Annexe III",
+          "tableId": "SYS-PLC-HP-AA",
+          "articleRef": "Courbe de charge partielle PAC air-air",
+          "equationId": "SYS-EQ-01",
+          "version": "2026-06-28",
+          "effectiveDate": "2026-06-28"
+        }
+      },
+      {
+        "genType": "GasBoilerCondensing",
+        "a0": 0.8,
+        "a1": 0.3,
+        "a2": -0.1,
+        "citation": {
+          "sourceDoc": "Arrete du 4 aout 2021 relatif aux exigences RE2020 + Guide RE2020",
+          "sectionId": "Annexe III",
+          "tableId": "SYS-PLC-GAS-COND",
+          "articleRef": "Courbe de charge partielle chaudiere condensation",
+          "equationId": "SYS-EQ-01",
+          "version": "2026-06-28",
+          "effectiveDate": "2026-06-28"
+        }
+      },
+      {
+        "genType": "WoodBoiler",
+        "a0": 0.7,
+        "a1": 0.4,
+        "a2": -0.1,
+        "citation": {
+          "sourceDoc": "Arrete du 4 aout 2021 relatif aux exigences RE2020 + Guide RE2020",
+          "sectionId": "Annexe III",
+          "tableId": "SYS-PLC-WOOD",
+          "articleRef": "Courbe de charge partielle chaudiere biomasse",
+          "equationId": "SYS-EQ-01",
+          "version": "2026-06-28",
+          "effectiveDate": "2026-06-28"
+        }
+      }
+    ],
+    "solarConventionTable": [
+      {
+        "key": "default_albedo",
+        "value": 0.2,
+        "citation": {
+          "sourceDoc": "Arrete du 4 aout 2021 relatif aux exigences RE2020 + Guide RE2020",
+          "sectionId": "Annexe III",
+          "tableId": "SOL-CONV-ALBEDO",
+          "articleRef": "Albedo de reference pour le calcul des apports solaires",
+          "equationId": "SOL-EQ-01",
+          "version": "2026-06-28",
+          "effectiveDate": "2026-06-28"
+        }
+      },
+      {
+        "key": "extraterrestrial_irradiance",
+        "value": 1367.0,
+        "citation": {
+          "sourceDoc": "Arrete du 4 aout 2021 relatif aux exigences RE2020 + Guide RE2020",
+          "sectionId": "Annexe III",
+          "tableId": "SOL-CONV-I0",
+          "articleRef": "Irradiance solaire extraterrestre de reference",
+          "equationId": "SOL-EQ-01",
+          "version": "2026-06-28",
+          "effectiveDate": "2026-06-28"
+        }
+      },
+      {
+        "key": "default_latitude_france",
+        "value": 46.0,
+        "citation": {
+          "sourceDoc": "Arrete du 4 aout 2021 relatif aux exigences RE2020 + Guide RE2020",
+          "sectionId": "Annexe III",
+          "tableId": "SOL-CONV-LAT",
+          "articleRef": "Latitude de reference pour simulation nationale",
+          "equationId": "SOL-EQ-01",
+          "version": "2026-06-28",
+          "effectiveDate": "2026-06-28"
+        }
+      },
+      {
+        "key": "variable_g_reduction_factor",
+        "value": 0.55,
+        "citation": {
+          "sourceDoc": "Arrete du 4 aout 2021 relatif aux exigences RE2020 + Guide RE2020",
+          "sectionId": "Annexe III",
+          "tableId": "SOL-CONV-VG",
+          "articleRef": "Facteur de reduction g-value en controle solaire actif",
+          "equationId": "SOL-EQ-01",
+          "version": "2026-06-28",
+          "effectiveDate": "2026-06-28"
+        }
+      }
+    ],
+    "perezSimplifiedBinTable": [
+      {
+        "minEpsilon": 6.2,
+        "maxEpsilon": 1000.0,
+        "f1": 0.41,
+        "f2": -0.55,
+        "citation": {
+          "sourceDoc": "Arrete du 4 aout 2021 relatif aux exigences RE2020 + Guide RE2020",
+          "sectionId": "Annexe III",
+          "tableId": "SOL-PEREZ-BIN-08",
+          "articleRef": "Coefficients Perez simplifies bin 8",
+          "equationId": "SOL-EQ-01",
+          "version": "2026-06-28",
+          "effectiveDate": "2026-06-28"
+        }
+      },
+      {
+        "minEpsilon": 4.5,
+        "maxEpsilon": 6.2,
+        "f1": 0.55,
+        "f2": -0.38,
+        "citation": {
+          "sourceDoc": "Arrete du 4 aout 2021 relatif aux exigences RE2020 + Guide RE2020",
+          "sectionId": "Annexe III",
+          "tableId": "SOL-PEREZ-BIN-07",
+          "articleRef": "Coefficients Perez simplifies bin 7",
+          "equationId": "SOL-EQ-01",
+          "version": "2026-06-28",
+          "effectiveDate": "2026-06-28"
+        }
+      },
+      {
+        "minEpsilon": 2.8,
+        "maxEpsilon": 4.5,
+        "f1": 0.65,
+        "f2": -0.25,
+        "citation": {
+          "sourceDoc": "Arrete du 4 aout 2021 relatif aux exigences RE2020 + Guide RE2020",
+          "sectionId": "Annexe III",
+          "tableId": "SOL-PEREZ-BIN-06",
+          "articleRef": "Coefficients Perez simplifies bin 6",
+          "equationId": "SOL-EQ-01",
+          "version": "2026-06-28",
+          "effectiveDate": "2026-06-28"
+        }
+      },
+      {
+        "minEpsilon": 1.95,
+        "maxEpsilon": 2.8,
+        "f1": 0.75,
+        "f2": -0.15,
+        "citation": {
+          "sourceDoc": "Arrete du 4 aout 2021 relatif aux exigences RE2020 + Guide RE2020",
+          "sectionId": "Annexe III",
+          "tableId": "SOL-PEREZ-BIN-05",
+          "articleRef": "Coefficients Perez simplifies bin 5",
+          "equationId": "SOL-EQ-01",
+          "version": "2026-06-28",
+          "effectiveDate": "2026-06-28"
+        }
+      },
+      {
+        "minEpsilon": 1.5,
+        "maxEpsilon": 1.95,
+        "f1": 0.8,
+        "f2": -0.1,
+        "citation": {
+          "sourceDoc": "Arrete du 4 aout 2021 relatif aux exigences RE2020 + Guide RE2020",
+          "sectionId": "Annexe III",
+          "tableId": "SOL-PEREZ-BIN-04",
+          "articleRef": "Coefficients Perez simplifies bin 4",
+          "equationId": "SOL-EQ-01",
+          "version": "2026-06-28",
+          "effectiveDate": "2026-06-28"
+        }
+      },
+      {
+        "minEpsilon": 1.23,
+        "maxEpsilon": 1.5,
+        "f1": 0.85,
+        "f2": -0.05,
+        "citation": {
+          "sourceDoc": "Arrete du 4 aout 2021 relatif aux exigences RE2020 + Guide RE2020",
+          "sectionId": "Annexe III",
+          "tableId": "SOL-PEREZ-BIN-03",
+          "articleRef": "Coefficients Perez simplifies bin 3",
+          "equationId": "SOL-EQ-01",
+          "version": "2026-06-28",
+          "effectiveDate": "2026-06-28"
+        }
+      },
+      {
+        "minEpsilon": 1.065,
+        "maxEpsilon": 1.23,
+        "f1": 0.9,
+        "f2": 0.0,
+        "citation": {
+          "sourceDoc": "Arrete du 4 aout 2021 relatif aux exigences RE2020 + Guide RE2020",
+          "sectionId": "Annexe III",
+          "tableId": "SOL-PEREZ-BIN-02",
+          "articleRef": "Coefficients Perez simplifies bin 2",
+          "equationId": "SOL-EQ-01",
+          "version": "2026-06-28",
+          "effectiveDate": "2026-06-28"
+        }
+      },
+      {
+        "minEpsilon": 0.0,
+        "maxEpsilon": 1.065,
+        "f1": 0.95,
+        "f2": 0.05,
+        "citation": {
+          "sourceDoc": "Arrete du 4 aout 2021 relatif aux exigences RE2020 + Guide RE2020",
+          "sectionId": "Annexe III",
+          "tableId": "SOL-PEREZ-BIN-01",
+          "articleRef": "Coefficients Perez simplifies bin 1",
+          "equationId": "SOL-EQ-01",
+          "version": "2026-06-28",
+          "effectiveDate": "2026-06-28"
         }
       }
     ]

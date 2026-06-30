@@ -35,10 +35,13 @@ structure Generator where
 
 /-- Citation de provenance pour les conventions systèmes. -/
 structure SystemCitation where
+  sourceDoc : String
   sectionId : String
   tableId : String
   articleRef : String
+  equationId : String
   version : String
+  effectiveDate : String
   deriving Repr
 
 /-- Entrée conventionnelle de générateur avec citation. -/
@@ -62,10 +65,13 @@ structure PartLoadCurveConventionEntry where
   deriving Repr
 
 private def mkSystemCitation (sectionId tableId articleRef : String) : SystemCitation :=
-  { sectionId := sectionId,
+  { sourceDoc := "Arrete du 4 aout 2021 relatif aux exigences RE2020 + Guide RE2020",
+    sectionId := sectionId,
     tableId := tableId,
     articleRef := articleRef,
-    version := "2026-06-28" }
+    equationId := "SYS-EQ-01",
+    version := "2026-06-28",
+    effectiveDate := "2026-06-28" }
 
 /-- Table conventionnelle des paramètres générateurs. -/
 def generatorConventionTable : List GeneratorConventionEntry :=

@@ -87,10 +87,13 @@ def extract_scenario_traceability(source_path: Path) -> dict[str, Any]:
         if not block:
             continue
         citations[name] = {
+            "sourceDoc": parse_string_field(block, "sourceDoc") or "",
             "sectionId": parse_string_field(block, "sectionId") or "",
             "tableId": parse_string_field(block, "tableId") or "",
             "articleRef": parse_string_field(block, "articleRef") or "",
+            "equationId": parse_string_field(block, "equationId") or "",
             "version": parse_string_field(block, "version") or "",
+            "effectiveDate": parse_string_field(block, "effectiveDate") or "",
         }
 
     mappings: dict[str, dict[str, str]] = {}

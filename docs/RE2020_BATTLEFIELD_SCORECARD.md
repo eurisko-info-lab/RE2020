@@ -134,10 +134,40 @@ Scoring note for external rows:
 
 ## Priority Moves to Extend Lead
 1. Expand official benchmark corpus from 12 to 30+ cases with category/zone diversity and publish stable deltas over time.
+  Output:
+  add benchmark cases across maison individuelle, logement collectif, bureau, and mixed climate zones with the same URI/checksum/tolerance governance already used by the current 12-case floor.
+  Success signal:
+  the readiness model still remains at 100/100 while the benchmark corpus line item becomes materially harder for competitors to match.
+  Execution artifact:
+  `docs/BENCHMARK_CORPUS_EXPANSION_PLAN.md`
 2. Add equation/table-level legal keying metadata directly at function level for audit trace depth.
+  Output:
+  annotate compliance-critical functions with annex section, table ID, equation ID, and version date, then surface those keys in exported evidence artifacts.
+  Success signal:
+  an auditor can trace any regulated constant or formula from code path to legal anchor without relying on narrative-only documentation.
+  Execution artifact:
+  `docs/LEGAL_KEYING_ROLLOUT_PLAN.md`
 3. Publish an external benchmark report pack (methodology + reproducibility recipe + signed artifact set).
+  Output:
+  produce a versioned report bundle containing benchmark methodology, corpus definition, tolerance policy, result tables, and reproduction commands tied to committed artifacts.
+  Success signal:
+  third parties can rerun the benchmark pack and obtain the same headline claims without private internal steps.
+  Execution artifact:
+  `docs/EXTERNAL_BENCHMARK_REPORT_PACK.md`
 4. Add operational maturity artifacts (release cadence KPIs, defect escape rate, reproducibility SLA).
+  Output:
+  document release process, quality KPIs, expected artifact freshness windows, and incident/defect handling expectations for the compliance evidence pipeline.
+  Success signal:
+  the repo stops looking like a strong technical prototype and starts looking like a governable product surface.
+  Execution artifact:
+  `docs/OPERATIONAL_MATURITY_ARTIFACTS.md`
 5. Translate the current internal 100/100 posture into a buyer-facing proof bundle rather than leaving the evidence repository-local.
+  Output:
+  create a concise public-facing package with scorecard, traceability summary, benchmark summary, reproducibility claims, and limitations stated in commercial language.
+  Success signal:
+  a prospect, auditor, or investor can understand the advantage in one sitting without needing to inspect the repository structure directly.
+  Execution artifact:
+  `docs/BUYER_FACING_PROOF_BUNDLE.md`
 
 ## Caveats
 - This scorecard is intentionally evidence-only and repository-local.

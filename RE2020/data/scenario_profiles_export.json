@@ -23,40 +23,58 @@
     },
     "citations": {
       "residentialEndUseCitation": {
+        "sourceDoc": "Arrete du 4 aout 2021 relatif aux exigences RE2020 + Guide RE2020",
         "sectionId": "Annexe III",
         "tableId": "SCEN-ENDUSE-RES",
         "articleRef": "Profil conventionnel residentiel ECS et auxiliaires",
-        "version": "2026-06-28"
+        "equationId": "SCEN-ENDUSE-EQ-01",
+        "version": "2026-06-28",
+        "effectiveDate": "2026-06-28"
       },
       "officeEndUseCitation": {
+        "sourceDoc": "Arrete du 4 aout 2021 relatif aux exigences RE2020 + Guide RE2020",
         "sectionId": "Annexe III",
         "tableId": "SCEN-ENDUSE-OFF",
         "articleRef": "Profil conventionnel bureaux ECS et auxiliaires",
-        "version": "2026-06-28"
+        "equationId": "SCEN-ENDUSE-EQ-01",
+        "version": "2026-06-28",
+        "effectiveDate": "2026-06-28"
       },
       "teachingEndUseCitation": {
+        "sourceDoc": "Arrete du 4 aout 2021 relatif aux exigences RE2020 + Guide RE2020",
         "sectionId": "Annexe III",
         "tableId": "SCEN-ENDUSE-TEACH",
         "articleRef": "Profil conventionnel enseignement ECS et auxiliaires",
-        "version": "2026-06-28"
+        "equationId": "SCEN-ENDUSE-EQ-01",
+        "version": "2026-06-28",
+        "effectiveDate": "2026-06-28"
       },
       "residentialScenarioCitation": {
+        "sourceDoc": "Arrete du 4 aout 2021 relatif aux exigences RE2020 + Guide RE2020",
         "sectionId": "Annexe III",
         "tableId": "SCEN-HOURLY-RES",
         "articleRef": "Profil horaire conventionnel residentiel (occupation, gains, ventilation, consignes)",
-        "version": "2026-06-28"
+        "equationId": "SCEN-HOURLY-EQ-01",
+        "version": "2026-06-28",
+        "effectiveDate": "2026-06-28"
       },
       "officeScenarioCitation": {
+        "sourceDoc": "Arrete du 4 aout 2021 relatif aux exigences RE2020 + Guide RE2020",
         "sectionId": "Annexe III",
         "tableId": "SCEN-HOURLY-OFF",
         "articleRef": "Profil horaire conventionnel bureaux (occupation, gains, ventilation, consignes)",
-        "version": "2026-06-28"
+        "equationId": "SCEN-HOURLY-EQ-01",
+        "version": "2026-06-28",
+        "effectiveDate": "2026-06-28"
       },
       "teachingScenarioCitation": {
+        "sourceDoc": "Arrete du 4 aout 2021 relatif aux exigences RE2020 + Guide RE2020",
         "sectionId": "Annexe III",
         "tableId": "SCEN-HOURLY-TEACH",
         "articleRef": "Profil horaire conventionnel enseignement (occupation, gains, ventilation, consignes)",
-        "version": "2026-06-28"
+        "equationId": "SCEN-HOURLY-EQ-01",
+        "version": "2026-06-28",
+        "effectiveDate": "2026-06-28"
       }
     },
     "mappings": {

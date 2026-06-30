@@ -36,18 +36,24 @@ structure EndUseProfile where
 
 /-- Citation de provenance pour les constantes de profil d'usages finaux. -/
 structure EndUseProfileCitation where
+  sourceDoc : String
   sectionId : String
   tableId : String
   articleRef : String
+  equationId : String
   version : String
+  effectiveDate : String
   deriving Repr
 
 /-- Citation de provenance pour les constantes d'un scénario horaire. -/
 structure ScenarioProfileCitation where
+  sourceDoc : String
   sectionId : String
   tableId : String
   articleRef : String
+  equationId : String
   version : String
+  effectiveDate : String
   deriving Repr
 
 /-- Scénario conventionnel résidentiel -/
@@ -91,24 +97,33 @@ def teachingScenario : HourlyProfile :=
 
 /-- Citation du scenario horaire residentiel. -/
 def residentialScenarioCitation : ScenarioProfileCitation :=
-  { sectionId := "Annexe III",
+  { sourceDoc := "Arrete du 4 aout 2021 relatif aux exigences RE2020 + Guide RE2020",
+    sectionId := "Annexe III",
     tableId := "SCEN-HOURLY-RES",
     articleRef := "Profil horaire conventionnel residentiel (occupation, gains, ventilation, consignes)",
-    version := "2026-06-28" }
+    equationId := "SCEN-HOURLY-EQ-01",
+    version := "2026-06-28",
+    effectiveDate := "2026-06-28" }
 
 /-- Citation du scenario horaire bureaux. -/
 def officeScenarioCitation : ScenarioProfileCitation :=
-  { sectionId := "Annexe III",
+  { sourceDoc := "Arrete du 4 aout 2021 relatif aux exigences RE2020 + Guide RE2020",
+    sectionId := "Annexe III",
     tableId := "SCEN-HOURLY-OFF",
     articleRef := "Profil horaire conventionnel bureaux (occupation, gains, ventilation, consignes)",
-    version := "2026-06-28" }
+    equationId := "SCEN-HOURLY-EQ-01",
+    version := "2026-06-28",
+    effectiveDate := "2026-06-28" }
 
 /-- Citation du scenario horaire enseignement. -/
 def teachingScenarioCitation : ScenarioProfileCitation :=
-  { sectionId := "Annexe III",
+  { sourceDoc := "Arrete du 4 aout 2021 relatif aux exigences RE2020 + Guide RE2020",
+    sectionId := "Annexe III",
     tableId := "SCEN-HOURLY-TEACH",
     articleRef := "Profil horaire conventionnel enseignement (occupation, gains, ventilation, consignes)",
-    version := "2026-06-28" }
+    equationId := "SCEN-HOURLY-EQ-01",
+    version := "2026-06-28",
+    effectiveDate := "2026-06-28" }
 
 /-- Profil d'usages finaux conventionnels résidentiels. -/
 def residentialEndUseProfile : EndUseProfile :=
@@ -130,24 +145,33 @@ def teachingEndUseProfile : EndUseProfile :=
 
 /-- Citation du profil residentiel d'usages finaux. -/
 def residentialEndUseCitation : EndUseProfileCitation :=
-  { sectionId := "Annexe III",
+  { sourceDoc := "Arrete du 4 aout 2021 relatif aux exigences RE2020 + Guide RE2020",
+    sectionId := "Annexe III",
     tableId := "SCEN-ENDUSE-RES",
     articleRef := "Profil conventionnel residentiel ECS et auxiliaires",
-    version := "2026-06-28" }
+    equationId := "SCEN-ENDUSE-EQ-01",
+    version := "2026-06-28",
+    effectiveDate := "2026-06-28" }
 
 /-- Citation du profil bureaux d'usages finaux. -/
 def officeEndUseCitation : EndUseProfileCitation :=
-  { sectionId := "Annexe III",
+  { sourceDoc := "Arrete du 4 aout 2021 relatif aux exigences RE2020 + Guide RE2020",
+    sectionId := "Annexe III",
     tableId := "SCEN-ENDUSE-OFF",
     articleRef := "Profil conventionnel bureaux ECS et auxiliaires",
-    version := "2026-06-28" }
+    equationId := "SCEN-ENDUSE-EQ-01",
+    version := "2026-06-28",
+    effectiveDate := "2026-06-28" }
 
 /-- Citation du profil enseignement d'usages finaux. -/
 def teachingEndUseCitation : EndUseProfileCitation :=
-  { sectionId := "Annexe III",
+  { sourceDoc := "Arrete du 4 aout 2021 relatif aux exigences RE2020 + Guide RE2020",
+    sectionId := "Annexe III",
     tableId := "SCEN-ENDUSE-TEACH",
     articleRef := "Profil conventionnel enseignement ECS et auxiliaires",
-    version := "2026-06-28" }
+    equationId := "SCEN-ENDUSE-EQ-01",
+    version := "2026-06-28",
+    effectiveDate := "2026-06-28" }
 
 /-- Récupère le scénario adapté au type de bâtiment -/
 def getScenario (category : BuildingCategory) : HourlyProfile :=

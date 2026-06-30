@@ -25,6 +25,12 @@ Statut publication:
 - `docs/REGULATION_REFERENCES.md` : synthèse humaine des références réglementaires et techniques utilisées pour écrire le code.
 - `docs/REGULATION_TRACEABILITY_MATRIX.md` : rapport de traçabilité lisible par humain.
 - `docs/REGULATION_GAP_CLOSURE_ROADMAP.md` : feuille de route priorisée pour combler les écarts de conformité/fidélité.
+- `docs/RE2020_BATTLEFIELD_SCORECARD.md` : scorecard stratégique positionnant le dépôt face aux autres approches RE2020.
+- `docs/BENCHMARK_CORPUS_EXPANSION_PLAN.md` : plan concret pour étendre le corpus officiel de benchmark.
+- `docs/LEGAL_KEYING_ROLLOUT_PLAN.md` : plan de déploiement des clés juridiques section/table/équation dans le code et les exports.
+- `docs/EXTERNAL_BENCHMARK_REPORT_PACK.md` : contenu et procédure du pack de benchmark publiable.
+- `docs/OPERATIONAL_MATURITY_ARTIFACTS.md` : artefacts de maturité opérationnelle attendus pour une posture produit.
+- `docs/BUYER_FACING_PROOF_BUNDLE.md` : bundle synthétique orienté audit/acheteur/investisseur.
 
 ## Prérequis
 

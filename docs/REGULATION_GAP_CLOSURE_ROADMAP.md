@@ -18,6 +18,12 @@ Maintain an audit-ready, traceable, and reproducible RE2020 implementation while
   - Added Mathlib-backed Real bridge in `RE2020/FormalRealBridge.lean`.
   - Added approximation-certificate bridge in `RE2020/FormalApproxBridge.lean` for controlled Float-to-Real assurance.
   - Root exports updated in `RE2020.lean`.
+- Legal keying rollout advanced
+  - Added explicit method-level legal keys for core indicators in `RE2020/Indicators.lean` and exported them in `RE2020/data/regulation_tables_export.json`.
+  - Extended `equationId` support and enforcement to scenarios, lighting, systems, and solar citation-bearing structures and guards.
+  - Extended machine-readable export guards so regulation and scenario exports now enforce provenance-bearing fields such as `sourceDoc` and `effectiveDate` where applicable.
+  - Normalized source-level provenance for lighting, systems, solar, and scenarios so these modules now carry `sourceDoc` and `effectiveDate` directly in their citation structures.
+  - Human-readable compliance documents now reflect this first fine-grained legal-key wave.
 - Float/Real approximation governance added
   - Added generated approximation certificate artifacts:
     - `RE2020/data/formal_approx_certificate.json`
