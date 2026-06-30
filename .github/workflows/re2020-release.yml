@@ -55,7 +55,9 @@ jobs:
           cp LICENSE dist/
           cp NOTICE dist/
           cp docs/CHANGELOG.md dist/CHANGELOG.md
-          cp examples/Validation_CSTB_RE2020_MaisonPierre2011.xlsx dist/
+          if [[ -f examples/Validation_CSTB_RE2020_MaisonPierre2011.xlsx ]]; then
+            cp examples/Validation_CSTB_RE2020_MaisonPierre2011.xlsx dist/
+          fi
 
       - name: Create GitHub release
         uses: softprops/action-gh-release@v2
@@ -68,4 +70,3 @@ jobs:
             dist/LICENSE
             dist/NOTICE
             dist/CHANGELOG.md
-            dist/Validation_CSTB_RE2020_MaisonPierre2011.xlsx
