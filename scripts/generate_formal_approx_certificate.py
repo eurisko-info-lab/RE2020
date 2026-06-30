@@ -102,8 +102,8 @@ def _compute_source_fingerprint(paths: list[Path], relative_factor: float, abs_f
 def main() -> None:
     parser = argparse.ArgumentParser(description="Generate formal approximation certificate")
     parser.add_argument("--repo-root", default=".")
-    parser.add_argument("--examples-dir", default="examples")
-    parser.add_argument("--glob", default="result_*.json")
+    parser.add_argument("--examples-dir", default="RE2020/data/validation")
+    parser.add_argument("--glob", default="*.json")
     parser.add_argument("--relative-factor", type=float, default=1e-10)
     parser.add_argument("--abs-floor", type=float, default=1e-9)
     parser.add_argument("--json-out", default="RE2020/data/formal_approx_certificate.json")

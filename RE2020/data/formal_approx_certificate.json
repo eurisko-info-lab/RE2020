@@ -1,56 +1,42 @@
 {
   "profile": "empirical-float-real-bridge-v1",
-  "sourceFingerprint": "f044517581acdca1aacba18e7a2418ad3721c10744a8b432b7842231e0f1f602",
+  "sourceFingerprint": "bb94b6f2e25d1f54b78c0f2e1f30dd031233b487b99291862ea3809730b7b2e6",
   "model": {
     "relativeFactor": 1e-10,
     "absFloor": 1e-09,
     "rationale": "Conservative magnitude-scaled absolute margin derived from observed corpus extrema."
   },
   "corpus": {
-    "examplesDir": "examples",
-    "glob": "result_*.json",
-    "files": 15,
-    "indicatorSamples": 45
+    "examplesDir": "RE2020/data/validation",
+    "glob": "*.json",
+    "files": 1,
+    "indicatorSamples": 2
   },
   "files": [
-    "examples/result_bbio.json",
-    "examples/result_cep.json",
-    "examples/result_maison_pierre_2011.json",
-    "examples/result_pareto_bbio60_top5.json",
-    "examples/result_pareto_cap01.json",
-    "examples/result_pareto_cap14.json",
-    "examples/result_pareto_top3.json",
-    "examples/result_reason_budget.json",
-    "examples/result_reason_budget_blocked.json",
-    "examples/result_reason_searchspace.json",
-    "examples/result_require_fail.json",
-    "examples/result_require_ok.json",
-    "examples/result_top3.json",
-    "examples/result_unmet.json",
-    "examples/result_unmet_strict.json"
+    "RE2020/data/validation/maison_pierre_2011_cstb_re2020_template.json"
   ],
   "stats": {
     "bbio": {
-      "maxAbsObserved": 118.873366,
-      "samples": 45
+      "maxAbsObserved": 282.596521,
+      "samples": 2
     },
     "cep": {
-      "maxAbsObserved": 104.476212,
-      "samples": 45
+      "maxAbsObserved": 189.586003,
+      "samples": 2
     },
     "cepNr": {
-      "maxAbsObserved": 91.6458,
-      "samples": 45
+      "maxAbsObserved": 156.682647,
+      "samples": 2
     },
     "dh": {
-      "maxAbsObserved": 0.0,
-      "samples": 45
+      "maxAbsObserved": 0.886836,
+      "samples": 2
     }
   },
   "eps": {
-    "bbio": 1.18873366e-08,
-    "cep": 1.04476212e-08,
-    "cepNr": 9.16458e-09,
+    "bbio": 2.82596521e-08,
+    "cep": 1.89586003e-08,
+    "cepNr": 1.5668264700000002e-08,
     "dh": 1e-09
   }
 }
