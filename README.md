@@ -38,6 +38,94 @@ Statut publication:
 - `lake` (installé avec la toolchain Lean).
 - Python 3.10+ pour les scripts dans `scripts/`.
 
+## Installation de VS Code, Copilot et Lake
+
+Cette section décrit une installation recommandée pour travailler confortablement sur le dépôt avec VS Code, GitHub Copilot et l'outillage Lean/Lake.
+
+### 1. Installer Visual Studio Code
+
+Télécharger VS Code depuis le site officiel :
+
+- `https://code.visualstudio.com/`
+
+Vérifier ensuite que la commande `code` est disponible dans le terminal :
+
+```bash
+code --version
+```
+
+Si ce n'est pas le cas, ouvrir la palette de commandes VS Code puis activer :
+
+- `Shell Command: Install 'code' command in PATH`
+
+### 2. Installer GitHub Copilot dans VS Code
+
+Depuis VS Code :
+
+1. ouvrir l'onglet Extensions ;
+2. rechercher `GitHub Copilot` ;
+3. installer l'extension `GitHub Copilot` ;
+4. installer aussi `GitHub Copilot Chat` si vous voulez piloter le dépôt par prompts dans l'éditeur.
+
+Ensuite :
+
+1. se connecter avec un compte GitHub ;
+2. vérifier que l'abonnement ou l'accès Copilot est actif ;
+3. autoriser Copilot dans le workspace si VS Code le demande.
+
+### 3. Installer Lean 4 et Lake via elan
+
+`lake` n'est pas installé séparément : il est fourni avec la toolchain Lean gérée par `elan`.
+
+Installation standard :
+
+```bash
+curl https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -sSf | sh
+```
+
+Recharger ensuite le shell, puis vérifier :
+
+```bash
+elan --version
+lean --version
+lake --version
+```
+
+Le dépôt contient déjà un fichier `lean-toolchain`, donc l'ouverture du projet ou l'exécution de `lake` sélectionnera automatiquement la bonne version de Lean.
+
+### 4. Installer l'extension Lean pour VS Code
+
+Dans VS Code, installer l'extension officielle :
+
+- `Lean 4`
+
+Cette extension fournit notamment :
+
+1. le support d'édition Lean ;
+2. les diagnostics interactifs ;
+3. l'intégration avec `lake` et la toolchain du dépôt.
+
+### 5. Cloner et ouvrir le dépôt
+
+```bash
+git clone https://github.com/eurisko-info-lab/RE2020.git
+cd RE2020
+code .
+```
+
+Au premier chargement, VS Code + l'extension Lean peuvent prendre quelques instants pour télécharger les dépendances et initialiser l'environnement.
+
+### 6. Vérification minimale de l'environnement
+
+Une fois le dépôt ouvert :
+
+```bash
+lake build
+python3 scripts/check_compliance_gate.py --strict-legal-catalog
+```
+
+Si ces deux commandes passent, l'environnement local est prêt pour contribuer au dépôt.
+
 ## Démarrage rapide
 
 1. Compiler le projet Lean :
