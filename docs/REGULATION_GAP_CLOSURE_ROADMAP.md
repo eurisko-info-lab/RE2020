@@ -1,12 +1,43 @@
 # RE2020 Gap-Closure Roadmap
 
 ## Objective
-Move from current partial implementation to audit-ready RE2020 traceable implementation.
+Maintain an audit-ready, traceable, and reproducible RE2020 implementation while closing the remaining frontier gaps between strong repository evidence and certification-grade external proof.
 
 ## Current baseline
-- Structural coverage: about 80%
-- Regulatory fidelity (certification readiness): about 65%
-- Primary blockers: official climate source ingestion, final legal value alignment, reference validation cases
+- Structural coverage: repository hardening is complete for the currently tracked implementation surface.
+- Objective readiness indicator: 100.0 / 100 (`readiness-v2`, 4/4 qualification gates passed).
+- Current frontier gaps: official-source climate replacement, finalized legal value alignment beyond `baseline-v1`, broader external benchmark corpus, and deeper equation/table-level legal keying.
+
+## Progress update (2026-06-30)
+- 100/100 evidence-readiness state stabilized
+  - Strict composite compliance gate remains green with build included (`python3 scripts/check_compliance_gate.py --include-build --strict-legal-catalog`).
+  - Readiness model remains at 100.0 / 100 with 4/4 qualification gates passed (benchmark corpus, official source proof, tolerance calibration, reproducible artifacts).
+  - All currently tracked implementation domains are now treated as implemented in the annex-anchor evidence matrix.
+- Formal assurance layer added
+  - Added fully proved discrete theorem layer in `RE2020/FormalTheorems.lean`.
+  - Added Mathlib-backed Real bridge in `RE2020/FormalRealBridge.lean`.
+  - Added approximation-certificate bridge in `RE2020/FormalApproxBridge.lean` for controlled Float-to-Real assurance.
+  - Root exports updated in `RE2020.lean`.
+- Float/Real approximation governance added
+  - Added generated approximation certificate artifacts:
+    - `RE2020/data/formal_approx_certificate.json`
+    - `RE2020/data/formal_approx_certificate.md`
+  - Added certificate generator and guards:
+    - `scripts/generate_formal_approx_certificate.py`
+    - `scripts/check_formal_approx_certificate.py`
+    - `scripts/check_formal_approx_certificate_drift.py`
+  - Integrated generation, validation, and drift protection into the composite compliance gate.
+- CI and release posture hardened
+  - Added repository workflows for build and release automation under `.github/workflows/`.
+  - Drift-sensitive exported artifacts are now guarded in CI, reducing silent evidence skew.
+- Documentation posture refreshed
+  - Added battlefield positioning scorecard in `docs/RE2020_BATTLEFIELD_SCORECARD.md`.
+  - Moved compliance evidence artifacts and roadmap/matrix files into `docs/` and `RE2020/data/` for clearer governance boundaries.
+- Remaining frontier after current hardening wave
+  - Replace generated climate CSV profiles with official source files while preserving manifest proof guarantees.
+  - Replace `baseline-v1` legal/value profiles with finalized official-source-aligned profiles.
+  - Expand external benchmark/reference corpus beyond the current 12 official-calibrated cases.
+  - Add equation/table-level legal citation keys directly at function level for deeper audit trace granularity.
 
 ## Progress update (2026-06-27)
 - P0.1 Climate dataset ingestion: started
@@ -137,61 +168,62 @@ Move from current partial implementation to audit-ready RE2020 traceable impleme
 
 ### P0 (must fix first)
 1. Climate dataset ingestion
-- Target: replace synthetic placeholders with official climate inputs by zone, including canicule sequence.
+- Target: replace generated climate placeholders with official climate inputs by zone, including canicule sequence, while keeping current manifest proof and CI guarantees.
 - Files: Climate.lean
 - Deliverables:
   - deterministic parser/loader
   - provenance metadata (source file id, version, checksum)
   - validation tests for array sizes and ranges
-- Exit criteria: no placeholder climate values in production path.
+- Exit criteria: production path uses official source files, provenance remains strict, and composite gate stays green.
 
 2. Annual simulation core
-- Target: implement simulateYear end-to-end with reproducible hourly outputs.
+- Target: preserve implemented annual simulation while extending evidence depth around numerical fidelity and reference diversity.
 - Files: Thermal.lean
 - Deliverables:
-  - remove sorry
-  - unit tests for energy balance and HVAC clamping logic
-  - integration test for annual accumulation
-- Exit criteria: simulateYear fully executable with deterministic regression fixtures.
+  - maintain executable simulation with deterministic fixtures
+  - extend benchmark/reference diversity around annual outputs
+  - add any missing higher-granularity diagnostic regressions where useful
+- Exit criteria: simulation remains executable and is covered by broader certification-grade evidence.
 
 3. Modulation tables and factor provenance
-- Target: replace zero defaults with table-driven modulation and factor lookup.
+- Target: keep table-driven lookup but migrate from internal baseline profiles to finalized official-source-aligned legal values/IDs.
 - Files: RE2020.lean, Types.lean, Indicators.lean
 - Deliverables:
-  - encoded coefficient tables
-  - mapping from building/category/zone to coefficients
-  - per-value source tag in comments or metadata
-- Exit criteria: no hardcoded all-zero modulation defaults.
+  - finalized official-source-aligned tables
+  - stable mapping from building/category/zone to coefficients
+  - per-value source key at audit depth
+- Exit criteria: no remaining `baseline-v1` dependency in compliance-critical value alignment.
 
 4. Reference-case validation path
-- Target: implement reference validation without placeholders.
+- Target: move from strong internal reference rigor to broader external certification-grade comparability.
 - Files: RE2020.lean, potentially Indicators.lean/Thermal.lean
 - Deliverables:
-  - thermal bridge impact function wired
-  - benchmark suite with pass/fail thresholds
-- Exit criteria: no placeholder 0.0 in compliance-critical validation metrics.
+  - larger official benchmark suite
+  - maintained pass/fail thresholds and tolerance governance
+  - reproducible artifact synchronization for the expanded corpus
+- Exit criteria: benchmark corpus breadth is materially stronger than the current 12-case floor while preserving strict CI and readiness gates.
 
 ### P1 (high-value fidelity improvements)
 1. Full Cep/Cep_nr usage matrix coverage
-- Extend beyond heating/cooling/lighting in final pipeline aggregation.
+- Preserve current extended usage coverage and harden legal source alignment at finer granularity where needed.
 - Files: RE2020.lean, Indicators.lean, Systems.lean
 
 2. Occupancy and operation conventions
-- Replace heuristic schedules with table-driven scenario profiles.
+- Preserve table-driven scenario profiles and deepen function-level legal anchoring and external evidence links.
 - Files: Scenarios.lean
 
 3. DH and lighting fidelity improvements
-- Replace simplified thresholds and wrapper formulas with traceable equation-level methods.
+- Move from current table-driven and citation-backed methods to equation/table-level legal anchoring and external calibration depth.
 - Files: Indicators.lean, Lighting.lean
-- Status: in progress (category-based table/citations integrated in active pipeline; legal value alignment pending)
+- Status: structurally implemented; next step is finer-grained legal anchoring and finalized official-source value alignment.
 
 ### P2 (secondary but important)
 1. Solar model coefficient fidelity
-- Replace simplified bins/coefs with explicit referenced tables.
+- Preserve current explicit referenced tables and improve legal-source depth where audit granularity demands it.
 - Files: Solar.lean
 
 2. Systems model hardening
-- Improve part-load and auxiliary models to traceable annex equations.
+- Improve part-load and auxiliary models toward deeper annex-equation traceability and broader external validation proof.
 - Files: Systems.lean
 
 ## Traceability requirements (Definition of Done)
@@ -203,34 +235,32 @@ Each regulatory function must include:
 
 ## Suggested execution sequence
 1. P0 climate ingestion
-2. P0 simulateYear completion
-3. P0 modulation/factor tables
-4. P0 reference validation suite
-5. P1 indicator and scenario expansion
-6. P2 model refinements
+2. P0 finalized legal value alignment
+3. P0 benchmark corpus expansion
+4. P1 equation/table-level legal keying
+5. P1 deeper indicator and scenario calibration evidence
+6. P2 model refinements and external proof packaging
 
 ## Measurable targets
 - Coverage target after P0: fidelity >= 60% (achieved)
 - Coverage target after P1: fidelity >= 80% (achieved)
-- Coverage target after P1/P2 hardening wave: fidelity >= 85% (active global target)
-- Coverage target after P2: fidelity >= 90%
+- Coverage target after P1/P2 hardening wave: fidelity >= 85% (achieved)
+- Coverage target after current evidence-hardening wave: objective readiness = 100.0 / 100 (achieved)
+- Coverage target after next frontier wave: preserve 100.0 / 100 while replacing baseline/internal proof dependencies with finalized official-source and broader external benchmark proof
 - Objective computed indicator (auto-published): 100.0 / 100 (`RE2020/data/compliance_readiness_score.json`, model `readiness-v2`)
 - Placeholder targets: sorry=0, critical placeholder=0, TODO-critical=0
 
-## 85% target queue (priority order)
-Objective: bring every `Partial` domain to at least 85% completion.
+## Next frontier queue
+Objective: preserve the current 100/100 evidence posture while reducing residual dependence on internal baseline profiles and limited benchmark breadth.
 
 Current status:
-- Climate datasets now at 85%.
-- Validation references now at 85%.
-- Modulation coefficients now at 85%.
-- All tracked `Partial` domains are now at 85%.
+- Composite strict gate is green.
+- Deep negative-regression mode is available and green when invoked.
+- Formal theorem, Real bridge, approximation certificate, and drift guard layers are in place.
 
-Execution order to reach 85% target:
-1. Completed: P0 - Climate datasets / Validation references / Modulation coefficients reached 85%.
-
-2. Completed: P1 - Cep / Cep,nr / Occupancy / Lighting / Bbio / Systems / DH reached 85%.
-
-3. Completed: P2 - Solar gains reached 85%.
-
-4. Next hardening (>85): migrate from baseline-aligned profiles to fully official-source-aligned datasets and certification-grade reference suites.
+Execution order for the next wave:
+1. Replace generated climate datasets with official source files while preserving manifest proof guarantees.
+2. Replace `baseline-v1` profiles with finalized official-source-aligned value profiles across all guarded domains.
+3. Expand official benchmark/reference corpus beyond the current 12-case floor.
+4. Add per-function legal citation keys (annex section, table/equation ID, version date) across compliance-critical functions.
+5. Package external benchmark evidence and reproducibility material for third-party review.

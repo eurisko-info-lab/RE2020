@@ -1,7 +1,7 @@
 # Formal Approximation Certificate
 
 - profile: `empirical-float-real-bridge-v1`
-- generatedAt: `2026-06-30T01:08:01.801282+00:00`
+- sourceFingerprint: `f044517581acdca1aacba18e7a2418ad3721c10744a8b432b7842231e0f1f602`
 - corpus files: `15`
 - indicator samples: `45`
 

@@ -31,7 +31,7 @@ jobs:
       - name: Set up Lean
         uses: leanprover/lean-action@v1
         with:
-          use-mathlib-cache: false
+          use-mathlib-cache: true
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -42,4 +42,4 @@ jobs:
         run: lake build
 
       - name: Run strict compliance gate
-        run: python3 scripts/check_compliance_gate.py --include-build --strict-legal-catalog
+        run: python3 scripts/check_compliance_gate.py --strict-legal-catalog

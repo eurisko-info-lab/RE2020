@@ -8,9 +8,9 @@ conservative per-metric eps values (absolute margins).
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import math
-from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
@@ -64,7 +64,7 @@ def _build_md_report(cert: dict[str, Any]) -> str:
     lines.append("# Formal Approximation Certificate")
     lines.append("")
     lines.append(f"- profile: `{cert['profile']}`")
-    lines.append(f"- generatedAt: `{cert['generatedAt']}`")
+    lines.append(f"- sourceFingerprint: `{cert['sourceFingerprint']}`")
     lines.append(f"- corpus files: `{cert['corpus']['files']}`")
     lines.append(f"- indicator samples: `{cert['corpus']['indicatorSamples']}`")
     lines.append("")
@@ -87,6 +87,16 @@ def _build_md_report(cert: dict[str, Any]) -> str:
     lines.append(f"- relativeFactor: `{cert['model']['relativeFactor']}`")
     lines.append(f"- absFloor: `{cert['model']['absFloor']}`")
     return "\n".join(lines) + "\n"
+
+
+def _compute_source_fingerprint(paths: list[Path], relative_factor: float, abs_floor: float) -> str:
+        digest = hashlib.sha256()
+        digest.update(f"relative_factor={relative_factor}\n".encode("utf-8"))
+        digest.update(f"abs_floor={abs_floor}\n".encode("utf-8"))
+        for path in paths:
+            digest.update(f"path={path.as_posix()}\n".encode("utf-8"))
+            digest.update(path.read_bytes())
+        return digest.hexdigest()
 
 
 def main() -> None:
@@ -113,6 +123,8 @@ def main() -> None:
     if not indicator_sets:
         raise SystemExit("No indicator sets were found in the selected corpus")
 
+    source_fingerprint = _compute_source_fingerprint(paths, args.relative_factor, args.abs_floor)
+
     stats: dict[str, dict[str, float | int]] = {
         m: {"maxAbsObserved": 0.0, "samples": 0} for m in METRICS
     }
@@ -130,7 +142,7 @@ def main() -> None:
 
     cert: dict[str, Any] = {
         "profile": "empirical-float-real-bridge-v1",
-        "generatedAt": datetime.now(timezone.utc).isoformat(),
+        "sourceFingerprint": source_fingerprint,
         "model": {
             "relativeFactor": args.relative_factor,
             "absFloor": args.abs_floor,
