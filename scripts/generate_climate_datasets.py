@@ -67,14 +67,15 @@ def sha256_file(path: Path) -> str:
 	h = hashlib.sha256()
 	with path.open("rb") as f:
 		for chunk in iter(lambda: f.read(65536), b""):
-			h.update(chunk)
+			# Canonicalize CRLF to LF so manifest hashes are stable across checkout settings.
+			h.update(chunk.replace(b"\r\n", b"\n"))
 	return h.hexdigest()
 
 
 def generate_zone_csv(out_dir: Path, zone: str) -> tuple[str, int]:
 	path = out_dir / f"{zone}.csv"
 	with path.open("w", encoding="utf-8", newline="") as f:
-		writer = csv.writer(f)
+		writer = csv.writer(f, lineterminator="\n")
 		writer.writerow(
 			[
 				"hour",

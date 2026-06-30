@@ -27,9 +27,10 @@ REQUIRED_ZONES = {"H1a", "H1b", "H1c", "H2a", "H2b", "H2c", "H2d", "H3"}
 
 def sha256_file(path: Path) -> str:
     h = hashlib.sha256()
+    # Canonicalize CRLF to LF so manifest hashes are stable across checkout settings.
     with path.open("rb") as f:
         for chunk in iter(lambda: f.read(65536), b""):
-            h.update(chunk)
+            h.update(chunk.replace(b"\r\n", b"\n"))
     return h.hexdigest()
 
 
