@@ -5,7 +5,15 @@ import RE2020.Solar
 import RE2020.Systems
 import RE2020.Indicators
 import RE2020.Optimization
-import RE2020.DetailedMaisonPierre2011
+import RE2020.FormalTheorems
+import RE2020.FormalRealBridge
+import RE2020.FormalApproxBridge
+import RE2020.BuildingCategory.LogementCollectif
+import RE2020.BuildingCategory.Bureau
+import RE2020.BuildingCategory.EnseignementPrimaireSecondaire
+import RE2020.BuildingCategory.Autre
+import RE2020.BuildingCategory.MaisonIndividuelle
+import Example.MaisonPierre2011
 import RE2020.Scenarios
 import RE2020.Climate
 import RE2020.Lighting

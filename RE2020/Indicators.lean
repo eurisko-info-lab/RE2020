@@ -33,6 +33,7 @@ def calculateBbio
     (lightingNeeds : Float)
     (modulations : ModulationCoefficients)
     (bbioMaxMoyen : Float := 63.0) : Float :=
+  let _ := bbioMaxMoyen
   let heatingWeight := bbioWeightValue "heating_need"
   let coolingWeight := bbioWeightValue "cooling_need"
   let lightingWeight := bbioWeightValue "lighting_need"
@@ -48,6 +49,7 @@ def calculateCep
     (primaryFactors : List (String × Float))    -- coefficients EP (électricité = 2.3, etc.)
     (modulations : ModulationCoefficients)
     (cepMaxMoyen : Float := 75.0) : Float :=
+  let _ := cepMaxMoyen
   let cepRaw := finalEnergyByUse.foldl (fun acc (use, energy) =>
     let factor := (primaryFactors.find? (fun p => p.1 == use)).map (·.2) |>.getD 1.0
     acc + energy * factor
@@ -97,6 +99,7 @@ def calculateDH
     (hourlyOutdoorTemp : List Float)
     (occupancyMask : List Bool)
     (dhMax : Float := 1250.0) : Float :=
+  let _ := dhMax
   List.zip hourlyIndoorTemp hourlyOutdoorTemp
     |>.zip occupancyMask
     |>.foldl (fun acc ((tInt, tExt), occupied) =>

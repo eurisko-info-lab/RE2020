@@ -2,7 +2,7 @@
 """Fail when modulation tables miss traceability coverage or citation fields.
 
 This guard validates zone/category/area modulation tables in
-RE2020/regulation_tables_export.json.
+RE2020/data/regulation_tables_export.json.
 """
 
 from __future__ import annotations
@@ -31,7 +31,7 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument(
         "--export",
-        default="RE2020/regulation_tables_export.json",
+        default="RE2020/data/regulation_tables_export.json",
         help="Path to exported regulation tables JSON",
     )
     return parser.parse_args()

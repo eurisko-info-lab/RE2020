@@ -58,7 +58,6 @@ def ventilationLosses
     (deltaT : Float)
     (ventRate : Float := 0.6)           -- m³/h par m² (conventionnel)
     (heatRecoveryEfficiency : Float := 0.0) : Float :=  -- 0 = naturelle, 0.85 = VMC double flux performante
-  let volume := group.volume
   let qv := ventRate * group.referenceArea   -- m³/h
   let effectiveDeltaT := deltaT * (1.0 - heatRecoveryEfficiency)
   0.34 * qv * effectiveDeltaT
@@ -187,7 +186,7 @@ def simulateYear
         let ventRate :=
           match scenario with
           | some profile =>
-            if h : profile.size > 0 then
+            if profile.size > 0 then
               profile[(i % profile.size)]!
             else
               0.6

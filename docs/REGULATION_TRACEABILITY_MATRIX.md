@@ -22,7 +22,7 @@
 ## Indicator policy
 - Domain percentages in the matrix are milestone tracking values, not the objective readiness indicator.
 - The objective indicator is the evidence-derived score published by `scripts/compute_compliance_readiness_score.py`.
-- Latest computed score artifact: `RE2020/compliance_readiness_score.json` (model `readiness-v2`).
+- Latest computed score artifact: `RE2020/data/compliance_readiness_score.json` (model `readiness-v2`).
 
 ## Annex-anchor matrix
 
@@ -60,7 +60,7 @@ What is missing for complete references:
 - explicit legal-reference mentions (Annexe, arrete, Guide RE2020, Th-BCE): 19
 
 ## Automated readiness score
-- Latest computed score: 100.0 / 100 (`RE2020/compliance_readiness_score.json`, `RE2020/compliance_readiness_score.md`).
+- Latest computed score: 100.0 / 100 (`RE2020/data/compliance_readiness_score.json`, `RE2020/data/compliance_readiness_score.md`).
 - Score model: `readiness-v2` (weighted components + qualification hard cap).
 - Hard-cap status: 4/4 qualification gates passed (benchmark corpus, official source proof, tolerance calibration, reproducible artifacts).
 - This score is generated automatically during the composite compliance gate.

@@ -236,14 +236,8 @@ def perezDiffuseAdvanced
     (surfaceAzimuth : Float)
     (solarAzimuth : Float) : Float :=
 
-  let airmass := if solarAltitude > 1.0 then
-                   1.0 / Float.sin (solarAltitude * 3.1415926535 / 180.0)
-                 else 40.0
-
   let epsilon := if diffuseHorizontal > 0.0 then
                    1.0 + directNormal / diffuseHorizontal else 1.0
-
-  let delta := airmass * diffuseHorizontal / 1367.0
 
   -- Coefficients Perez sur 8 bins (table conventionnelle).
   let (f1, f2) := perezSimplifiedFactors epsilon

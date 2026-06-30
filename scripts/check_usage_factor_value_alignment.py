@@ -31,7 +31,7 @@ EXPECTED_NON_REN = {
 
 def parse_args() -> argparse.Namespace:
     p = argparse.ArgumentParser(description="Validate usage factor value alignment")
-    p.add_argument("--export", default="RE2020/regulation_tables_export.json")
+    p.add_argument("--export", default="RE2020/data/regulation_tables_export.json")
     return p.parse_args()
 
 

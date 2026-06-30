@@ -1,0 +1,56 @@
+{
+  "profile": "empirical-float-real-bridge-v1",
+  "generatedAt": "2026-06-30T01:08:01.801282+00:00",
+  "model": {
+    "relativeFactor": 1e-10,
+    "absFloor": 1e-09,
+    "rationale": "Conservative magnitude-scaled absolute margin derived from observed corpus extrema."
+  },
+  "corpus": {
+    "examplesDir": "examples",
+    "glob": "result_*.json",
+    "files": 15,
+    "indicatorSamples": 45
+  },
+  "files": [
+    "examples/result_bbio.json",
+    "examples/result_cep.json",
+    "examples/result_maison_pierre_2011.json",
+    "examples/result_pareto_bbio60_top5.json",
+    "examples/result_pareto_cap01.json",
+    "examples/result_pareto_cap14.json",
+    "examples/result_pareto_top3.json",
+    "examples/result_reason_budget.json",
+    "examples/result_reason_budget_blocked.json",
+    "examples/result_reason_searchspace.json",
+    "examples/result_require_fail.json",
+    "examples/result_require_ok.json",
+    "examples/result_top3.json",
+    "examples/result_unmet.json",
+    "examples/result_unmet_strict.json"
+  ],
+  "stats": {
+    "bbio": {
+      "maxAbsObserved": 118.873366,
+      "samples": 45
+    },
+    "cep": {
+      "maxAbsObserved": 104.476212,
+      "samples": 45
+    },
+    "cepNr": {
+      "maxAbsObserved": 91.6458,
+      "samples": 45
+    },
+    "dh": {
+      "maxAbsObserved": 0.0,
+      "samples": 45
+    }
+  },
+  "eps": {
+    "bbio": 1.18873366e-08,
+    "cep": 1.04476212e-08,
+    "cepNr": 9.16458e-09,
+    "dh": 1e-09
+  }
+}

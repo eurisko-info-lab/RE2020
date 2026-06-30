@@ -34,10 +34,10 @@ Move from current partial implementation to audit-ready RE2020 traceable impleme
   - Added explicit citation mappings for end-use profiles in `Scenarios.lean` (`getEndUseProfileCitation`).
   - Added explicit citation mappings for hourly scenario profiles in `Scenarios.lean` (`getScenarioCitation`).
   - Added CI-style guard script `scripts/check_scenario_profile_traceability.py` to validate category coverage + end-use profile sanity + hourly/end-use citation presence.
-  - Added machine-readable scenario traceability export `RE2020/scenario_profiles_export.json` via `scripts/export_scenario_profiles.py`.
+  - Added machine-readable scenario traceability export `RE2020/data/scenario_profiles_export.json` via `scripts/export_scenario_profiles.py`.
   - Added consistency guard `scripts/check_scenario_export_consistency.py` to detect drift between `Scenarios.lean` and exported scenario artifact.
   - Added composite fail-fast compliance gate `scripts/check_compliance_gate.py` to orchestrate climate + regulation + scenario traceability checks (optional build included).
-  - Added legal reference catalog `RE2020/legal_reference_catalog.json` covering citation IDs used across regulation + scenario exports.
+  - Added legal reference catalog `RE2020/data/legal_reference_catalog.json` covering citation IDs used across regulation + scenario exports.
   - Added guard `scripts/check_legal_reference_catalog.py` to enforce exported citation IDs are cataloged.
   - Added strict catalog options (`--require-finalized-used`, `--fail-on-unused-catalog`) and composite gate switch (`--strict-legal-catalog`) for certification cutover hardening.
   - Promoted all currently used catalog references to `finalized` and validated strict gate mode end-to-end (`check_compliance_gate.py --include-build --strict-legal-catalog`).
@@ -54,7 +54,7 @@ Move from current partial implementation to audit-ready RE2020 traceable impleme
   - Remaining work moves to the >85 track: official-source replacement and certification-grade reference calibration.
 - Objective readiness indicator automated
   - Added `scripts/compute_compliance_readiness_score.py` (model `readiness-v1`) to compute a weighted, evidence-derived score.
-  - Integrated score computation into the composite gate so CI publishes `RE2020/compliance_readiness_score.json` and `RE2020/compliance_readiness_score.md` on each strict run.
+  - Integrated score computation into the composite gate so CI publishes `RE2020/data/compliance_readiness_score.json` and `RE2020/data/compliance_readiness_score.md` on each strict run.
   - Model upgraded to `readiness-v2` with qualification gates and hard-cap logic.
   - Latest computed score: 100.0 / 100 (raw weighted 100.0, hard cap 100.0 with 4/4 qualification gates).
 - Score uplift actions (evidence-backed)
@@ -214,7 +214,7 @@ Each regulatory function must include:
 - Coverage target after P1: fidelity >= 80% (achieved)
 - Coverage target after P1/P2 hardening wave: fidelity >= 85% (active global target)
 - Coverage target after P2: fidelity >= 90%
-- Objective computed indicator (auto-published): 100.0 / 100 (`RE2020/compliance_readiness_score.json`, model `readiness-v2`)
+- Objective computed indicator (auto-published): 100.0 / 100 (`RE2020/data/compliance_readiness_score.json`, model `readiness-v2`)
 - Placeholder targets: sorry=0, critical placeholder=0, TODO-critical=0
 
 ## 85% target queue (priority order)

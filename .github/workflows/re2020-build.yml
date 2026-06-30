@@ -1,0 +1,45 @@
+name: re2020-build
+
+on:
+  push:
+    paths:
+      - "RE2020/**"
+      - "scripts/**"
+      - "docs/**"
+      - "lakefile.lean"
+      - "lean-toolchain"
+      - "README.md"
+      - ".github/workflows/re2020-build.yml"
+  pull_request:
+    paths:
+      - "RE2020/**"
+      - "scripts/**"
+      - "docs/**"
+      - "lakefile.lean"
+      - "lean-toolchain"
+      - "README.md"
+      - ".github/workflows/re2020-build.yml"
+  workflow_dispatch:
+
+jobs:
+  build-and-guard:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Lean
+        uses: leanprover/lean-action@v1
+        with:
+          use-mathlib-cache: false
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Build Lean project
+        run: lake build
+
+      - name: Run strict compliance gate
+        run: python3 scripts/check_compliance_gate.py --include-build --strict-legal-catalog

@@ -35,7 +35,7 @@ EXPECTED_ENDUSE = {
 
 def parse_args() -> argparse.Namespace:
     p = argparse.ArgumentParser(description="Validate scenario value alignment")
-    p.add_argument("--export", default="RE2020/scenario_profiles_export.json")
+    p.add_argument("--export", default="RE2020/data/scenario_profiles_export.json")
     return p.parse_args()
 
 

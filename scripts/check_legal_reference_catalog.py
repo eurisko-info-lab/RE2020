@@ -15,17 +15,17 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Validate citation IDs against legal catalog")
     parser.add_argument(
         "--catalog",
-        default="RE2020/legal_reference_catalog.json",
+        default="RE2020/data/legal_reference_catalog.json",
         help="Path to legal reference catalog JSON",
     )
     parser.add_argument(
         "--regulation-export",
-        default="RE2020/regulation_tables_export.json",
+        default="RE2020/data/regulation_tables_export.json",
         help="Path to regulation table export JSON",
     )
     parser.add_argument(
         "--scenario-export",
-        default="RE2020/scenario_profiles_export.json",
+        default="RE2020/data/scenario_profiles_export.json",
         help="Path to scenario profile export JSON",
     )
     parser.add_argument(

@@ -2,7 +2,7 @@
 """Fail CI when any required-priority traceability item is still Missing.
 
 Default behavior enforces that all P0 entries in
-RE2020/regulation_traceability_matrix.json are not Missing.
+RE2020/data/regulation_traceability_matrix.json are not Missing.
 """
 
 from __future__ import annotations
@@ -20,7 +20,7 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument(
         "--matrix",
-        default="RE2020/regulation_traceability_matrix.json",
+        default="RE2020/data/regulation_traceability_matrix.json",
         help="Path to traceability JSON matrix.",
     )
     parser.add_argument(

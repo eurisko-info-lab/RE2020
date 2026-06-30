@@ -353,6 +353,7 @@ def applyStorageEffect
     (baseConsumption : Float)
     (storage : ThermalStorage)
     (cyclingLossFactor : Float := 0.05) : Float :=
+  let _ := storage
   -- Le stockage réduit les pertes de cyclage
   baseConsumption * (1.0 - cyclingLossFactor)
 
@@ -592,6 +593,7 @@ def coolingPerformance
     (sinkTemp : Float)
     (loadRatio : Float)
     (nominalEER : Float) : Float :=
+  let _ := coolingNeeds
   let tempFactor := max 0.55 (1.0 - (sinkTemp - sourceTemp - 8.0) / 35.0)
   let partLoad := 0.65 + 0.35 * loadRatio
   nominalEER * tempFactor * partLoad
@@ -648,7 +650,8 @@ def calculateAdvancedHybrid
     (needs : Float)
     (outdoor : Float)
     (indoor : Float) : Float :=
-  let supply := calculateSupplyTemp sys.regulation outdoor
+  let _ := calculateSupplyTemp sys.regulation outdoor
+  let _ := indoor
   if outdoor >= sys.switchTemp then
     calculateFinalEnergyWithPartLoad needs 1600.0 sys.heatPump
   else

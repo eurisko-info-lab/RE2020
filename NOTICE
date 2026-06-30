@@ -1,0 +1,13 @@
+RE2020 Lean Reference Implementation
+
+This product includes software and documentation developed for a Lean 4
+implementation reference of the RE2020 regulatory calculation engine.
+
+Copyright 2026 Contributors to the RE2020 Lean project.
+
+Licensed under the Apache License, Version 2.0.
+
+This repository is intended to serve as a transparent technical reference
+implementation. It is not an official publication of CSTB or the French State,
+and local example artifacts included in the repository are provided for
+engineering validation and reproducibility purposes.

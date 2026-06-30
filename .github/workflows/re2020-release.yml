@@ -1,0 +1,71 @@
+name: re2020-release
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+    inputs:
+      release_tag:
+        description: "Existing git tag to publish"
+        required: true
+        type: string
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Resolve release tag
+        id: tag
+        run: |
+          if [[ "${GITHUB_EVENT_NAME}" == "workflow_dispatch" ]]; then
+            echo "value=${{ inputs.release_tag }}" >> "$GITHUB_OUTPUT"
+          else
+            echo "value=${GITHUB_REF_NAME}" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Set up Lean
+        uses: leanprover/lean-action@v1
+        with:
+          use-mathlib-cache: false
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Build Lean project
+        run: lake build
+
+      - name: Run strict compliance gate
+        run: python3 scripts/check_compliance_gate.py --include-build --strict-legal-catalog
+
+      - name: Prepare release artifacts
+        run: |
+          mkdir -p dist
+          git archive --format=tar.gz --output "dist/re2020-${{ steps.tag.outputs.value }}-source.tar.gz" HEAD
+          cp README.md dist/
+          cp LICENSE dist/
+          cp NOTICE dist/
+          cp docs/CHANGELOG.md dist/CHANGELOG.md
+          cp examples/Validation_CSTB_RE2020_MaisonPierre2011.xlsx dist/
+
+      - name: Create GitHub release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.tag.outputs.value }}
+          generate_release_notes: true
+          files: |
+            dist/re2020-${{ steps.tag.outputs.value }}-source.tar.gz
+            dist/README.md
+            dist/LICENSE
+            dist/NOTICE
+            dist/CHANGELOG.md
+            dist/Validation_CSTB_RE2020_MaisonPierre2011.xlsx

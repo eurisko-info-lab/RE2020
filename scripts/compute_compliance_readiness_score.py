@@ -36,6 +36,8 @@ REQUIRED_GATE_CHECKS = [
     "scripts/check_scenario_export_consistency.py",
     "scripts/check_scenario_value_alignment.py",
     "scripts/check_lighting_value_alignment.py",
+    "scripts/check_formal_approx_certificate.py",
+    "scripts/check_formal_approx_certificate_drift.py",
     "scripts/check_legal_reference_catalog.py",
 ]
 
@@ -138,17 +140,17 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--repo-root", default=".")
     p.add_argument("--gate-script", default="scripts/check_compliance_gate.py")
     p.add_argument("--manifest", default="RE2020/data/climate/manifest.json")
-    p.add_argument("--catalog", default="RE2020/legal_reference_catalog.json")
-    p.add_argument("--regulation-export", default="RE2020/regulation_tables_export.json")
-    p.add_argument("--scenario-export", default="RE2020/scenario_profiles_export.json")
+    p.add_argument("--catalog", default="RE2020/data/legal_reference_catalog.json")
+    p.add_argument("--regulation-export", default="RE2020/data/regulation_tables_export.json")
+    p.add_argument("--scenario-export", default="RE2020/data/scenario_profiles_export.json")
     p.add_argument("--re2020-source", default="RE2020/RE2020.lean")
     p.add_argument(
         "--benchmark-evidence-dir",
         default="RE2020/data/validation/cases",
         help="Directory containing local benchmark evidence files (<officialCaseId>.json)",
     )
-    p.add_argument("--json-out", default="RE2020/compliance_readiness_score.json")
-    p.add_argument("--md-out", default="RE2020/compliance_readiness_score.md")
+    p.add_argument("--json-out", default="RE2020/data/compliance_readiness_score.json")
+    p.add_argument("--md-out", default="RE2020/data/compliance_readiness_score.md")
     p.add_argument(
         "--min-score",
         type=float,

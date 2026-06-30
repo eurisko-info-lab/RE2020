@@ -1,0 +1,59 @@
+{
+  "officialCaseId": "LOCAL-MP-MI-H1C-2011",
+  "isOfficialCase": false,
+  "source": {
+    "authority": "CSTB",
+    "dataset": "re2020-local-validation-template",
+    "uri": "https://data.gouv.fr/fr/datasets/re2020-reference-cases/"
+  },
+  "provenance": {
+    "capturedAt": "2026-06-29T00:00:00Z",
+    "evidenceType": "local-template-fill",
+    "status": "present",
+    "generatedBy": "GitHub Copilot"
+  },
+  "notes": "Local Maison Pierre 2011 validation artifact modeled on the CSTB/RE2020 evidence template. This is a non-official local case and is intentionally stored outside RE2020/data/validation/cases so official benchmark sync checks remain unaffected.",
+  "reference": {
+    "sourceDoc": "local:examples/maison_pierre_bbc2005_2011.json",
+    "toleranceProfile": "local-cstb-re2020-template-v1",
+    "citationId": "VAL-LOCAL-MAISON-PIERRE-2011"
+  },
+  "subject": {
+    "name": "Maison Pierre BBC2005 2011 (modele detaille)",
+    "category": "MaisonIndividuelle",
+    "climateZone": "H1c",
+    "referenceAreaM2": 95.0,
+    "exampleModule": "Example.MaisonPierre2011"
+  },
+  "results": {
+    "baseDetailed": {
+      "bbio": 282.596521,
+      "cep": 189.586003,
+      "cepNr": 156.682647,
+      "dh": 0.0,
+      "climateKgCO2m2": 24.574266
+    },
+    "resilienceScenario": {
+      "bbio": 271.965961,
+      "cep": 32.20832,
+      "cepNr": 21.452643,
+      "dh": 0.886836,
+      "climateKgCO2m2": 1.011313,
+      "systemsPackage": "defaultResilienceSystemsPackage"
+    },
+    "calibrationToCep85": {
+      "targetCep": 85.0,
+      "bestCep": 108.570443,
+      "bestCepNr": 108.570443,
+      "absoluteError": 23.570443,
+      "profile": {
+        "heatingNeedsScale": 0.65,
+        "dhwNeedsScale": 0.8,
+        "lightingNeedsScale": 0.7,
+        "auxiliaryNeedsScale": 0.7,
+        "electricPrimaryFactor": 2.3,
+        "applyCepModulations": false
+      }
+    }
+  }
+}

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Fail when modulation table values/IDs drift from the baseline alignment profile.
 
-This guard compares modulation rows in RE2020/regulation_tables_export.json against
+This guard compares modulation rows in RE2020/data/regulation_tables_export.json against
 an expected baseline snapshot (values + table IDs) to enforce deterministic
 alignment tracking before official legal-source reconciliation.
 """
@@ -72,7 +72,7 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Validate modulation value alignment")
     parser.add_argument(
         "--export",
-        default="RE2020/regulation_tables_export.json",
+        default="RE2020/data/regulation_tables_export.json",
         help="Path to exported regulation tables JSON",
     )
     return parser.parse_args()

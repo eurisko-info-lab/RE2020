@@ -16,7 +16,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--source", default="RE2020/Scenarios.lean", help="Path to Scenarios.lean")
     parser.add_argument(
         "--export",
-        default="RE2020/scenario_profiles_export.json",
+        default="RE2020/data/scenario_profiles_export.json",
         help="Path to scenario export JSON",
     )
     return parser.parse_args()

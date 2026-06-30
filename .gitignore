@@ -2,7 +2,7 @@
 .cache/
 
 # Generated optimization outputs
-RE2020/examples/result_*.json
+examples/result_*.json
 
 # Python bytecode/cache
 scripts/__pycache__/

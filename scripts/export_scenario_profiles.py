@@ -16,7 +16,7 @@ def main() -> None:
     parser.add_argument("--input", default="RE2020/Scenarios.lean", help="Path to Scenarios.lean")
     parser.add_argument(
         "--output",
-        default="RE2020/scenario_profiles_export.json",
+        default="RE2020/data/scenario_profiles_export.json",
         help="Path to write JSON export",
     )
     parser.add_argument(

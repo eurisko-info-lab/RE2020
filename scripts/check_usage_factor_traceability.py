@@ -2,7 +2,7 @@
 """Fail when required pipeline usages are missing factor traceability coverage.
 
 This guard validates both primary and non-renewable factor tables in
-RE2020/regulation_tables_export.json.
+RE2020/data/regulation_tables_export.json.
 """
 
 from __future__ import annotations
@@ -24,7 +24,7 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument(
         "--export",
-        default="RE2020/regulation_tables_export.json",
+        default="RE2020/data/regulation_tables_export.json",
         help="Path to exported regulation tables JSON",
     )
     parser.add_argument(

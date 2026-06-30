@@ -138,6 +138,39 @@ def main() -> None:
             ["python3", "scripts/check_lighting_value_alignment.py"],
         ),
         (
+            "Formal approximation certificate generation",
+            [
+                "python3",
+                "scripts/generate_formal_approx_certificate.py",
+                "--json-out",
+                "RE2020/data/formal_approx_certificate.json",
+                "--md-out",
+                "RE2020/data/formal_approx_certificate.md",
+            ],
+        ),
+        (
+            "Formal approximation certificate validation",
+            [
+                "python3",
+                "scripts/check_formal_approx_certificate.py",
+                "--certificate",
+                "RE2020/data/formal_approx_certificate.json",
+                "--max-eps",
+                "1e-3",
+            ],
+        ),
+        (
+            "Formal approximation certificate drift",
+            [
+                "python3",
+                "scripts/check_formal_approx_certificate_drift.py",
+                "--json",
+                "RE2020/data/formal_approx_certificate.json",
+                "--md",
+                "RE2020/data/formal_approx_certificate.md",
+            ],
+        ),
+        (
             "Legal reference catalog coverage",
             legal_catalog_command,
         ),
@@ -147,9 +180,9 @@ def main() -> None:
                 "python3",
                 "scripts/compute_compliance_readiness_score.py",
                 "--json-out",
-                "RE2020/compliance_readiness_score.json",
+                "RE2020/data/compliance_readiness_score.json",
                 "--md-out",
-                "RE2020/compliance_readiness_score.md",
+                "RE2020/data/compliance_readiness_score.md",
             ],
         ),
     ]

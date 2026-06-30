@@ -1,7 +1,7 @@
 {
   "metadata": {
     "modelVersion": "readiness-v2",
-    "computedAt": "2026-06-28T10:55:33.320235+00:00",
+    "computedAt": "2026-06-30T01:08:01.888426+00:00",
     "repoRoot": "/home/patrick/RE2020/re2020_lean"
   },
   "overallScore": 100.0,
@@ -57,8 +57,8 @@
       "score": 100.0,
       "weightedContribution": 30.0,
       "details": {
-        "requiredChecks": 19,
-        "foundChecks": 19,
+        "requiredChecks": 21,
+        "foundChecks": 21,
         "missingChecks": []
       }
     },

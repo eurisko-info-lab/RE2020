@@ -163,7 +163,7 @@ def main() -> None:
     )
     parser.add_argument(
         "--output",
-        default="RE2020/regulation_tables_export.json",
+        default="RE2020/data/regulation_tables_export.json",
         help="Path to write exported JSON",
     )
     parser.add_argument(
